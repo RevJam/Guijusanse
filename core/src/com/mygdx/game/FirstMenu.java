@@ -40,10 +40,12 @@ public class FirstMenu implements Screen {
         buttonExit = new TextButton("Exit", skin);
         title = new Label("Titre un peu long",skin);
 
+        skin.getFont("title").setScale(4f, 4f);
+        skin.getFont("medium").setScale(2f, 2f);
         // On ajoute les elements a la trame
-        table.add(title).padBottom(40).row();
-        table.add(buttonPlay).size(300,100).padBottom(20).row();
-        table.add(buttonExit).size(300,100).padBottom(20).row();
+        table.add(title).padBottom(400).row();
+        table.add(buttonPlay).size(400,150).padBottom(30).row();
+        table.add(buttonExit).size(400,150).padBottom(20).row();
 
     }
 
@@ -56,7 +58,6 @@ public class FirstMenu implements Screen {
         stage.act();
         stage.draw();
 
-        /**/
     }
 
     public void resize(int width, int height) {

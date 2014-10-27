@@ -5,7 +5,8 @@
         yellow: { r: 0.5, g: 0.5, b: 0, a: 1 }
     },
     com.badlogic.gdx.graphics.g2d.BitmapFont: {
-        medium: { file: skin/font.fnt }
+        medium: { file: skin/font.fnt },
+        title: { file: skin/font.fnt }
     },
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
         default: {
@@ -13,7 +14,7 @@
         },
     },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-         default: { font: medium, fontColor: red}
+         default: { font: title, fontColor: red}
     }
 
 }
