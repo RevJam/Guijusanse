@@ -1,0 +1,87 @@
+
+default.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+font
+  rotate: false
+  xy: 1, 205
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+buttonC
+  rotate: false
+  xy: 1, 103
+  size: 100, 100
+  split: 13, 12, 11, 12
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonC
+  rotate: false
+  xy: 1, 103
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonE
+  rotate: false
+  xy: 515, 617
+  size: 100, 100
+  split: 13, 12, 12, 11
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonE
+  rotate: false
+  xy: 515, 617
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonA
+  rotate: false
+  xy: 1, 1
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonA
+  rotate: false
+  xy: 1, 1
+  size: 100, 100
+  split: 12, 11, 10, 11
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonD
+  rotate: false
+  xy: 103, 103
+  size: 100, 100
+  split: 13, 11, 11, 11
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonD
+  rotate: false
+  xy: 103, 103
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonB
+  rotate: false
+  xy: 515, 515
+  size: 100, 100
+  split: 12, 11, 11, 11
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+buttonB
+  rotate: false
+  xy: 515, 515
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,5 @@
+{
+    "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+        "title": { "file": "skin/font.fnt" },
+    },
+ }
