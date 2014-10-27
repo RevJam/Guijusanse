@@ -31,7 +31,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
-        String test = "Hey!";
+        String test = "Hey2!";
 
         hpos -= (int)(Gdx.input.getAccelerometerY());
         vpos -= (int)(Gdx.input.getAccelerometerX());
