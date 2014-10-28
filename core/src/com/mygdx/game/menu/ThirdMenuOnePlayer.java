@@ -76,13 +76,13 @@ public class ThirdMenuOnePlayer implements Screen {
         buttonDifficulty.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                game.setScreen(game.getDm());
             }
         });
         buttonSong.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                game.setScreen(game.getSongm());
             }
         });
         buttonPlay.addListener(new ClickListener(){
@@ -97,8 +97,6 @@ public class ThirdMenuOnePlayer implements Screen {
                 game.setScreen(game.getSm());
             }
         });
-
-
 
         table.setFillParent(true);
         //On ajoute les acteurs a la scène

@@ -18,16 +18,16 @@ import java.util.ArrayList;
 /**
  * Created by jamu on 28/10/14.
  */
-public class DifficultyMenu implements Screen{
+public class SongMenu implements Screen {
     MyGdxGame game;
     Skin skin;
     Table table;
     Stage stage;
-    ArrayList<TextButton> difficulty;
+    ArrayList<TextButton> song;
     Label title;
     ArrayList<String> list;
 
-    public DifficultyMenu(MyGdxGame game) {
+    public SongMenu(MyGdxGame game) {
         this.game = game;
 
         // Crée la scene
@@ -45,19 +45,10 @@ public class DifficultyMenu implements Screen{
         title = new Label("GuiJuSanSe",skin);
         table.add(title).padBottom(500).row();
 
-        // Liste de Difficulté et création des boutons
         list = new ArrayList<String>();
-        list.add("Easy");
-        list.add("Normal");
-        list.add("Difficult");
 
         // Crée les boutons
-        difficulty = new ArrayList<TextButton>();
-        for (String s : list) {
-            TextButton button = new TextButton(s, skin);
-            difficulty.add(button);
-            table.add(button).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        }
+        song = new ArrayList<TextButton>();
 
     }
 
@@ -77,27 +68,16 @@ public class DifficultyMenu implements Screen{
     }
 
     public void show() {
-        //On active nos boutons
 
-        for (final TextButton button : difficulty) {
+        //On active nos boutons
+        // Liste des chansons selon la difficulté.
+        for (final TextButton button : song) {
             button.addListener(new ClickListener() {
                 TextButton t=button;
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    game.setSong("");
-                    game.setSongm(new SongMenu(game));
-                    game.getTmA().buttonSong.setText("Choix Chanson");
-                    game.setDifficulty(t.getText().toString());
-                    game.getTmA().buttonDifficulty.setText(t.getText().toString());
-                    // Ajout des chansons OPE
-                    game.getSongm().list.add("Song1");
-                    game.getSongm().list.add("Song2");
-                    game.getSongm().list.add("Song3");
-                    for (String s : game.getSongm().list) {
-                        TextButton button = new TextButton(s, skin);
-                        game.getSongm().song.add(button);
-                        game.getSongm().table.add(button).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-                    }
+                    game.setSong(t.getText().toString());
+                    game.getTmA().buttonSong.setText(t.getText().toString());
                     game.setScreen(game.getTmA());
                 }
             });
