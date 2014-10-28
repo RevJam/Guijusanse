@@ -50,7 +50,7 @@ public class MyGdxGame extends Game {
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         gogame = new GoGame(this);
-        background = new Texture("skin/sky.jpg");
+        //background = new Texture("skin/sky.jpg");
         setScreen(fm);
         Lecture lectur = new Lecture();
        /* try {
