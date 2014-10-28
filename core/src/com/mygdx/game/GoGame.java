@@ -14,6 +14,7 @@ public class GoGame implements Screen {
 
     public GoGame(MyGdxGame game) {
         this.game = game;
+        // Si song OR difficulty == "", => Aleatoire
     }
 
     public void render(float delta) {

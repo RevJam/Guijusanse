@@ -6,9 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.fichier.Lecture;
 import com.mygdx.game.menu.DifficultyMenu;
 import com.mygdx.game.menu.FirstMenu;
+import com.mygdx.game.menu.MultiMenu;
 import com.mygdx.game.menu.SecondMenu;
 import com.mygdx.game.menu.SongMenu;
-import com.mygdx.game.menu.ThirdMenuOnePlayer;
+import com.mygdx.game.menu.ThirdMenu;
 
 import java.io.IOException;
 
@@ -26,8 +27,8 @@ public class MyGdxGame extends Game {
     // Différents menus
     FirstMenu fm;
     SecondMenu sm;
-    ThirdMenuOnePlayer tmA;
-    //ThirdMenuMultiPlayer tmB;
+    MultiMenu mm;
+    ThirdMenu tmA;
     DifficultyMenu dm;
     SongMenu songm;
 
@@ -35,13 +36,16 @@ public class MyGdxGame extends Game {
     GoGame gogame;
     String difficulty;
     String song;
-
+    // 0 = OnePlayer, 1 = Multi
+    int typeplayer;
 
     public MyGdxGame() {
         super();
+
     }
-	
-	@Override
+
+
+    @Override
 	public void create () {
         // Faux Jeu
         batch = new SpriteBatch();
@@ -50,6 +54,7 @@ public class MyGdxGame extends Game {
         // Initialisation variable Jeu
         difficulty = "";
         song = "";
+        typeplayer = -1;
 
         // Initialisation Screen Jeu
         gogame = new GoGame(this);
@@ -57,9 +62,10 @@ public class MyGdxGame extends Game {
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
         sm = new SecondMenu(this);
-        tmA = new ThirdMenuOnePlayer(this);
+        tmA = new ThirdMenu(this);
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
+        mm = new MultiMenu(this);
 
         //background = new Texture("skin/sky.jpg");
 
@@ -91,11 +97,11 @@ public class MyGdxGame extends Game {
         this.sm = sm;
     }
 
-    public ThirdMenuOnePlayer getTmA() {
+    public ThirdMenu getTmA() {
         return tmA;
     }
 
-    public void setTmA(ThirdMenuOnePlayer tmA) {
+    public void setTmA(ThirdMenu tmA) {
         this.tmA = tmA;
     }
 
@@ -137,5 +143,21 @@ public class MyGdxGame extends Game {
 
     public void setSongm(SongMenu songm) {
         this.songm = songm;
+    }
+
+    public int getTypeplayer() {
+        return typeplayer;
+    }
+
+    public void setTypeplayer(int typeplayer) {
+        this.typeplayer = typeplayer;
+    }
+
+    public MultiMenu getMm() {
+        return mm;
+    }
+
+    public void setMm(MultiMenu mm) {
+        this.mm = mm;
     }
 }

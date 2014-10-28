@@ -13,18 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 
+
 /**
- * Created by jamu on 27/10/14.
+ * Created by jamu on 28/10/14.
  */
-public class SecondMenu implements Screen {
+public class ThirdMenu implements Screen {
     MyGdxGame game;
     Skin skin;
     Table table;
     Stage stage;
-    TextButton buttonOnePlayer, buttonMulti, buttonReturn;
+    TextButton buttonPlay, buttonReturn, buttonDifficulty, buttonSong;
     Label title;
 
-    public SecondMenu(MyGdxGame game) {
+    public ThirdMenu(MyGdxGame game) {
         this.game = game;
 
         // Crée la scene
@@ -36,20 +37,21 @@ public class SecondMenu implements Screen {
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
-        // On crée trois boutons et un titre
-        buttonOnePlayer = new TextButton("Solo", skin);
-        buttonMulti = new TextButton("Multi", skin, "buttontwo");
-        buttonReturn = new TextButton("Retour", skin, "buttonthree");
+        // On crée deux boutons et un titre
+        buttonPlay = new TextButton("Go!", skin);
+        buttonReturn = new TextButton("Retour", skin, "buttonfour");
+        buttonDifficulty = new TextButton("Difficulte", skin, "buttontwo");
+        buttonSong = new TextButton("Choix Chanson", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
 
-        // On change la taille de la police
         skin.getFont("title").setScale(3.5f, 5f);
         skin.getFont("medium").setScale(2.5f, 2.5f);
-
         // On ajoute les elements a la trame
+
         table.add(title).padBottom(500).row();
-        table.add(buttonOnePlayer).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        table.add(buttonMulti).size( Gdx.graphics.getWidth(),150).padBottom(20).row();
+        table.add(buttonDifficulty).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+        table.add(buttonSong).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+        table.add(buttonPlay).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
         table.add(buttonReturn).size( Gdx.graphics.getWidth(),150).padBottom(20).row();
 
     }
@@ -71,28 +73,39 @@ public class SecondMenu implements Screen {
 
     public void show() {
         //On active nos boutons
-        buttonOnePlayer.addListener(new ClickListener(){
+        buttonDifficulty.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setTypeplayer(0);
-                game.setScreen(game.getTmA());
+                game.setScreen(game.getDm());
             }
         });
-        buttonMulti.addListener(new ClickListener(){
+        buttonSong.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setTypeplayer(1);
-                game.setScreen(game.getMm());
+                if (game.getSongm().list.size() == 0){
+                    TextButton button = new TextButton("Retour Precedent", skin);
+                    game.getSongm().song.add(button);
+                    game.getSongm().table.add(button).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+                }
+                game.setScreen(game.getSongm());
+            }
+        });
+        buttonPlay.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(game.getTypeplayer() == 1){
+                    // game.setScreen(game.Waitgame());
+                }else {
+                    game.setScreen(game.getGogame());
+                }
             }
         });
         buttonReturn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               game.setScreen(game.getFm());
+                game.setScreen(game.getSm());
             }
         });
-
-
 
         table.setFillParent(true);
         //On ajoute les acteurs a la scène

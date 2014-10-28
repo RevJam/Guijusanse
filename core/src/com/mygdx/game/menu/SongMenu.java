@@ -80,13 +80,17 @@ public class SongMenu implements Screen {
                 TextButton t=button;
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    if (t.getText().toString() == "Retour Precedent"){
+                        game.setScreen(game.getTmA());
+                    }else{
+                        // On enregistre la chanson selectionnée
+                        game.setSong(t.getText().toString());
+                        //On l'affiche sur le menu
+                        game.getTmA().buttonSong.setText(t.getText().toString());
+                        //On retourne a l'ecran precedent
+                        game.setScreen(game.getTmA());
+                    }
 
-                    // On enregistre la chanson selectionnée
-                    game.setSong(t.getText().toString());
-                    //On l'affiche sur le menu
-                    game.getTmA().buttonSong.setText(t.getText().toString());
-                    //On retourne a l'ecran precedent
-                    game.setScreen(game.getTmA());
                 }
             });
         }

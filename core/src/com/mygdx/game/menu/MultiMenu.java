@@ -13,19 +13,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 
-
 /**
  * Created by jamu on 28/10/14.
  */
-public class ThirdMenuOnePlayer implements Screen {
+public class MultiMenu implements Screen {
     MyGdxGame game;
     Skin skin;
     Table table;
     Stage stage;
-    TextButton buttonPlay, buttonReturn, buttonDifficulty, buttonSong;
+    TextButton buttonReturn, buttonServeur, buttonClient;
     Label title;
 
-    public ThirdMenuOnePlayer(MyGdxGame game) {
+    public MultiMenu(MyGdxGame game) {
         this.game = game;
 
         // Crée la scene
@@ -38,10 +37,9 @@ public class ThirdMenuOnePlayer implements Screen {
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
         // On crée deux boutons et un titre
-        buttonPlay = new TextButton("Go!", skin);
         buttonReturn = new TextButton("Retour", skin, "buttonfour");
-        buttonDifficulty = new TextButton("Difficulté", skin, "buttontwo");
-        buttonSong = new TextButton("Choix Chanson", skin, "buttonthree");
+        buttonServeur = new TextButton("Creer une partie", skin, "buttontwo");
+        buttonClient = new TextButton("Rejoindre une partie", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
 
         skin.getFont("title").setScale(3.5f, 5f);
@@ -49,9 +47,8 @@ public class ThirdMenuOnePlayer implements Screen {
         // On ajoute les elements a la trame
 
         table.add(title).padBottom(500).row();
-        table.add(buttonDifficulty).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        table.add(buttonSong).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        table.add(buttonPlay).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+        table.add(buttonServeur).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+        table.add(buttonClient).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
         table.add(buttonReturn).size( Gdx.graphics.getWidth(),150).padBottom(20).row();
 
     }
@@ -73,22 +70,16 @@ public class ThirdMenuOnePlayer implements Screen {
 
     public void show() {
         //On active nos boutons
-        buttonDifficulty.addListener(new ClickListener(){
+        buttonServeur.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(game.getDm());
+                game.setScreen(game.getTmA());
             }
         });
-        buttonSong.addListener(new ClickListener(){
+        buttonClient.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(game.getSongm());
-            }
-        });
-        buttonPlay.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(game.getGogame());
+                //game.setScreen(game.getFmcp);
             }
         });
         buttonReturn.addListener(new ClickListener(){
