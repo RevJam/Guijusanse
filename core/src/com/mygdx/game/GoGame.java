@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 /**
  * Created by jamu on 28/10/14.
  */
+
+// JEU EN LUI MEME
 public class GoGame implements Screen {
     MyGdxGame game;
 

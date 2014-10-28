@@ -37,16 +37,17 @@ public class FirstMenu implements Screen {
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
-        // On crée deux boutons et un titre
+        // On crée trois boutons et un titre
         buttonPlay = new TextButton("Jouer", skin);
         buttonExit = new TextButton("Exit", skin, "buttonthree");
         buttonOption = new TextButton("Option", skin, "buttontwo");
         title = new Label("GuiJuSanSe",skin);
 
+        // On change al taille de la police
         skin.getFont("title").setScale(3.5f, 5f);
         skin.getFont("medium").setScale(2.5f, 2.5f);
-        // On ajoute les elements a la trame
 
+        // On ajoute les elements a la trame
         table.add(title).padBottom(500).row();
         table.add(buttonPlay).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
         table.add(buttonOption).size( Gdx.graphics.getWidth(),150).padBottom(20).row();

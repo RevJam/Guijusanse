@@ -13,6 +13,7 @@ import com.mygdx.game.menu.ThirdMenuOnePlayer;
 import java.io.IOException;
 
 public class MyGdxGame extends Game {
+    // Faux jeu pour le moment
 	SpriteBatch batch;
 	Texture img;
     Texture background;
@@ -22,6 +23,7 @@ public class MyGdxGame extends Game {
     Integer vpos = 0;
     Integer vspeed = 200;
 
+    // Différents menus
     FirstMenu fm;
     SecondMenu sm;
     ThirdMenuOnePlayer tmA;
@@ -29,6 +31,7 @@ public class MyGdxGame extends Game {
     DifficultyMenu dm;
     SongMenu songm;
 
+    // Variable pour le Jeu
     GoGame gogame;
     String difficulty;
     String song;
@@ -40,18 +43,30 @@ public class MyGdxGame extends Game {
 	
 	@Override
 	public void create () {
+        // Faux Jeu
+        batch = new SpriteBatch();
+        img = new Texture("badlogic.jpg");
+
+        // Initialisation variable Jeu
         difficulty = "";
         song = "";
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+
+        // Initialisation Screen Jeu
+        gogame = new GoGame(this);
+
+        // Initialisation Screen Menus
         fm = new FirstMenu(this);
         sm = new SecondMenu(this);
         tmA = new ThirdMenuOnePlayer(this);
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
-        gogame = new GoGame(this);
+
         //background = new Texture("skin/sky.jpg");
+
+        //Lancer le premier Menu
         setScreen(fm);
+
+
         Lecture lectur = new Lecture();
        /* try {
             lectur.lecture("fichiers/"+"test.srt");

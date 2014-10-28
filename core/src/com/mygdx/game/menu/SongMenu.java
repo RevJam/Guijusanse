@@ -40,14 +40,18 @@ public class SongMenu implements Screen {
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
+        // On change la taillde la police
         skin.getFont("title").setScale(3.5f, 5f);
         skin.getFont("medium").setScale(2.5f, 2.5f);
+
+        // On ajoute le titre a la trame
         title = new Label("GuiJuSanSe",skin);
         table.add(title).padBottom(500).row();
 
+        // On crée une liste pour les chansons OK
         list = new ArrayList<String>();
 
-        // Crée les boutons
+        // Crée une liste de boutons
         song = new ArrayList<TextButton>();
 
     }
@@ -76,8 +80,12 @@ public class SongMenu implements Screen {
                 TextButton t=button;
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+
+                    // On enregistre la chanson selectionnée
                     game.setSong(t.getText().toString());
+                    //On l'affiche sur le menu
                     game.getTmA().buttonSong.setText(t.getText().toString());
+                    //On retourne a l'ecran precedent
                     game.setScreen(game.getTmA());
                 }
             });
