@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by jamu on 27/10/14.
@@ -20,7 +22,7 @@ public class FirstMenu implements Screen {
     Skin skin;
     Table table;
     Stage stage;
-    TextButton buttonPlay, buttonExit;
+    TextButton buttonPlay, buttonExit, buttonOption;
     Label title;
 
     public FirstMenu(MyGdxGame game) {
@@ -36,16 +38,19 @@ public class FirstMenu implements Screen {
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
         // On crée deux boutons et un titre
-        buttonPlay = new TextButton("Play", skin);
-        buttonExit = new TextButton("Exit", skin);
-        title = new Label("Titre un peu long",skin);
+        buttonPlay = new TextButton("Jouer", skin);
+        buttonExit = new TextButton("Exit", skin, "buttonthree");
+        buttonOption = new TextButton("Option", skin, "buttontwo");
+        title = new Label("GuiJuSanSe",skin);
 
-        skin.getFont("title").setScale(4f, 4f);
-        skin.getFont("medium").setScale(2f, 2f);
+        skin.getFont("title").setScale(3.5f, 5f);
+        skin.getFont("medium").setScale(2.5f, 2.5f);
         // On ajoute les elements a la trame
-        table.add(title).padBottom(400).row();
-        table.add(buttonPlay).size(400,150).padBottom(30).row();
-        table.add(buttonExit).size(400,150).padBottom(20).row();
+
+        table.add(title).padBottom(500).row();
+        table.add(buttonPlay).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+        table.add(buttonOption).size( Gdx.graphics.getWidth(),150).padBottom(20).row();
+        table.add(buttonExit).size( Gdx.graphics.getWidth(),150).padBottom(20).row();
 
     }
 
@@ -69,7 +74,7 @@ public class FirstMenu implements Screen {
         buttonPlay.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(game.sm);
+                game.setScreen(game.getSm());
             }
         });
         buttonExit.addListener(new ClickListener(){

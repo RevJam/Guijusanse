@@ -3,10 +3,17 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.fichier.Lecture;
+import com.mygdx.game.menu.FirstMenu;
+import com.mygdx.game.menu.SecondMenu;
+import com.mygdx.game.menu.ThirdMenuOnePlayer;
+
+import java.io.IOException;
 
 public class MyGdxGame extends Game {
 	SpriteBatch batch;
 	Texture img;
+    Texture background;
 
     Integer hpos = 0;
     Integer hspeed = 120;
@@ -15,6 +22,10 @@ public class MyGdxGame extends Game {
 
     FirstMenu fm;
     SecondMenu sm;
+    ThirdMenuOnePlayer tmA;
+    //ThirdMenuMultiPlayer tmB;
+    GoGame gogame;
+    String difficulty;
 
 
     public MyGdxGame() {
@@ -23,37 +34,60 @@ public class MyGdxGame extends Game {
 	
 	@Override
 	public void create () {
+        difficulty = "";
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
         fm = new FirstMenu(this);
         sm = new SecondMenu(this);
+        tmA = new ThirdMenuOnePlayer(this);
+        gogame = new GoGame(this);
+        background = new Texture("skin/sky.jpg");
         setScreen(fm);
+        Lecture lectur = new Lecture();
+       /* try {
+            lectur.lecture("fichiers/"+"test.srt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 	}
 
-	/*@Override
-	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
+    public FirstMenu getFm() {
+        return fm;
+    }
 
-        String test = "Hey2!";
+    public void setFm(FirstMenu fm) {
+        this.fm = fm;
+    }
 
-        hpos -= (int)(Gdx.input.getAccelerometerY());
-        vpos -= (int)(Gdx.input.getAccelerometerX());
+    public SecondMenu getSm() {
+        return sm;
+    }
 
-        if (hpos < 0) hpos = 0;
-        if (hpos > Gdx.graphics.getHeight() - img.getHeight()) hpos = Gdx.graphics.getHeight() - img.getHeight();
-        if (vpos < 0) vpos = 0;
-        if (vpos > Gdx.graphics.getWidth() - img.getWidth()) vpos = Gdx.graphics.getWidth() - img.getWidth();*/
+    public void setSm(SecondMenu sm) {
+        this.sm = sm;
+    }
 
-        /*hpos += (int)(Gdx.graphics.getDeltaTime() * hspeed);
-        vpos += (int)(Gdx.graphics.getDeltaTime() * vspeed);
-        if (hpos < 0) hspeed *= -1;
-        if (hpos > Gdx.graphics.getHeight() - img.getHeight()) hspeed *= -1;
-        if (vpos < 0) vspeed *= -1;
-        if (vpos > Gdx.graphics.getWidth() - img.getWidth()) vspeed *= -1;*/
+    public ThirdMenuOnePlayer getTmA() {
+        return tmA;
+    }
 
-       /* batch.draw(img, vpos, hpos);
-		batch.end();
-	}*/
+    public void setTmA(ThirdMenuOnePlayer tmA) {
+        this.tmA = tmA;
+    }
+
+    public GoGame getGogame() {
+        return gogame;
+    }
+
+    public void setGogame(GoGame gogame) {
+        this.gogame = gogame;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
 }

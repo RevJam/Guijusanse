@@ -5,29 +5,30 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 /**
- * Created by jamu on 27/10/14.
+ * Created by jamu on 28/10/14.
  */
-public class SecondMenu implements Screen {
+public class GoGame implements Screen {
     MyGdxGame game;
 
-    public SecondMenu(MyGdxGame game) {
+    public GoGame(MyGdxGame game) {
         this.game = game;
     }
 
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         game.batch.begin();
 
-        String test = "Hey2!";
-
-        game.hpos -= (int)(Gdx.input.getAccelerometerY());
-        game.vpos -= (int)(Gdx.input.getAccelerometerX());
+        game.hpos -= (int) (Gdx.input.getAccelerometerY());
+        game.vpos -= (int) (Gdx.input.getAccelerometerX());
 
         if (game.hpos < 0) game.hpos = 0;
-        if (game.hpos > Gdx.graphics.getHeight() - game.img.getHeight()) game.hpos = Gdx.graphics.getHeight() - game.img.getHeight();
+        if (game.hpos > Gdx.graphics.getHeight() - game.img.getHeight())
+            game.hpos = Gdx.graphics.getHeight() - game.img.getHeight();
         if (game.vpos < 0) game.vpos = 0;
-        if (game.vpos > Gdx.graphics.getWidth() - game.img.getWidth()) game.vpos = Gdx.graphics.getWidth() - game.img.getWidth();
+        if (game.vpos > Gdx.graphics.getWidth() - game.img.getWidth())
+            game.vpos = Gdx.graphics.getWidth() - game.img.getWidth();
 
         /*hpos += (int)(Gdx.graphics.getDeltaTime() * hspeed);
         vpos += (int)(Gdx.graphics.getDeltaTime() * vspeed);
@@ -37,7 +38,7 @@ public class SecondMenu implements Screen {
         if (vpos > Gdx.graphics.getWidth() - img.getWidth()) vspeed *= -1;*/
 
         game.batch.draw(game.img, game.vpos, game.hpos);
-		game.batch.end();
+        game.batch.end();
 
         if (Gdx.input.justTouched())
             game.setScreen(game.fm);
