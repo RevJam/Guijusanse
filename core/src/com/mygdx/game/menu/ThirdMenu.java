@@ -44,15 +44,17 @@ public class ThirdMenu implements Screen {
         buttonSong = new TextButton("Choix Chanson", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
 
-        skin.getFont("title").setScale(3.5f, 5f);
-        skin.getFont("medium").setScale(2.5f, 2.5f);
+        // On change la taille de la police
+        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
+        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
+
         // On ajoute les elements a la trame
 
-        table.add(title).padBottom(500).row();
-        table.add(buttonDifficulty).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        table.add(buttonSong).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        table.add(buttonPlay).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
-        table.add(buttonReturn).size( Gdx.graphics.getWidth(),150).padBottom(20).row();
+        table.add(title).padBottom((game.getLongueur()/5)).row();
+        table.add(buttonDifficulty).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+        table.add(buttonSong).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+        table.add(buttonPlay).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+        table.add(buttonReturn).size( game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
 
     }
 
@@ -85,7 +87,7 @@ public class ThirdMenu implements Screen {
                 if (game.getSongm().list.size() == 0){
                     TextButton button = new TextButton("Retour Precedent", skin);
                     game.getSongm().song.add(button);
-                    game.getSongm().table.add(button).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+                    game.getSongm().table.add(button).size( game.getLargeur(),(game.getLongueur()/10)).padBottom(20).row();
                 }
                 game.setScreen(game.getSongm());
             }

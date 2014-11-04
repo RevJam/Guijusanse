@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.fichier.Lecture;
@@ -12,6 +13,7 @@ import com.mygdx.game.menu.SongMenu;
 import com.mygdx.game.menu.ThirdMenu;
 
 import java.io.IOException;
+import java.sql.SQLData;
 
 public class MyGdxGame extends Game {
     // Faux jeu pour le moment
@@ -31,6 +33,10 @@ public class MyGdxGame extends Game {
     ThirdMenu tmA;
     DifficultyMenu dm;
     SongMenu songm;
+
+    // Taille de l'écran
+    int largeur;
+    int longueur;
 
     // Variable pour le Jeu
     GoGame gogame;
@@ -55,6 +61,8 @@ public class MyGdxGame extends Game {
         difficulty = "";
         song = "";
         typeplayer = -1;
+        largeur = Gdx.graphics.getWidth();
+        longueur = Gdx.graphics.getHeight();
 
         // Initialisation Screen Jeu
         gogame = new GoGame(this);
@@ -66,6 +74,7 @@ public class MyGdxGame extends Game {
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
+
 
         //background = new Texture("skin/sky.jpg");
 
@@ -159,5 +168,21 @@ public class MyGdxGame extends Game {
 
     public void setMm(MultiMenu mm) {
         this.mm = mm;
+    }
+
+    public int getLongueur() {
+        return longueur;
+    }
+
+    public void setLongueur(int longueur) {
+        this.longueur = longueur;
+    }
+
+    public int getLargeur() {
+        return largeur;
+    }
+
+    public void setLargeur(int largeur) {
+        this.largeur = largeur;
     }
 }

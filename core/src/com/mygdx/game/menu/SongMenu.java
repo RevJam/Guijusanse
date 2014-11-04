@@ -40,13 +40,13 @@ public class SongMenu implements Screen {
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
-        // On change la taillde la police
-        skin.getFont("title").setScale(3.5f, 5f);
-        skin.getFont("medium").setScale(2.5f, 2.5f);
+        // On change la taille de la police
+        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
+        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
 
         // On ajoute le titre a la trame
         title = new Label("GuiJuSanSe",skin);
-        table.add(title).padBottom(500).row();
+        table.add(title).padBottom((game.getLongueur()/5)).row();
 
         // On crée une liste pour les chansons OK
         list = new ArrayList<String>();

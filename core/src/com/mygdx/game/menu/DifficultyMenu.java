@@ -39,13 +39,13 @@ public class DifficultyMenu implements Screen{
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
-        // Changer la taille des polices
-        skin.getFont("title").setScale(3.5f, 5f);
-        skin.getFont("medium").setScale(2.5f, 2.5f);
+        // On change la taille de la police
+        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
+        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
 
         // Ajout du titre
         title = new Label("GuiJuSanSe",skin);
-        table.add(title).padBottom(500).row();
+        table.add(title).padBottom((game.getLongueur()/5)).row();
 
         // Crée les différentes difficultés
         list = new ArrayList<String>();
@@ -58,7 +58,7 @@ public class DifficultyMenu implements Screen{
         for (String s : list) {
             TextButton button = new TextButton(s, skin);
             difficulty.add(button);
-            table.add(button).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+            table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         }
 
     }
@@ -91,7 +91,7 @@ public class DifficultyMenu implements Screen{
                     game.getSongm().list.clear();
                     game.getSongm().table.clear();
                     game.getSongm().song.clear();
-                    game.getSongm().table.add(title).padBottom(500).row();
+                    game.getSongm().table.add(title).padBottom((game.getLongueur()/5)).row();
                     game.getTmA().buttonSong.setText("Choix Chanson");
 
                     //On enregistre la difficulté
@@ -107,7 +107,7 @@ public class DifficultyMenu implements Screen{
                     for (String s : game.getSongm().list) {
                         TextButton button = new TextButton(s, skin);
                         game.getSongm().song.add(button);
-                        game.getSongm().table.add(button).size(Gdx.graphics.getWidth(), 150).padBottom(20).row();
+                        game.getSongm().table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
                     }
 
                     // On retourne a l'écran précédent
