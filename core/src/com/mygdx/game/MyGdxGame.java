@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.fichier.Lecture;
@@ -45,6 +46,8 @@ public class MyGdxGame extends Game {
     // 0 = OnePlayer, 1 = Multi
     int typeplayer;
 
+    Music music;
+
     public MyGdxGame() {
         super();
 
@@ -63,6 +66,12 @@ public class MyGdxGame extends Game {
         typeplayer = -1;
         largeur = Gdx.graphics.getWidth();
         longueur = Gdx.graphics.getHeight();
+
+        // Music
+        music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+        music.play();
 
         // Initialisation Screen Jeu
         gogame = new GoGame(this);
@@ -184,5 +193,11 @@ public class MyGdxGame extends Game {
 
     public void setLargeur(int largeur) {
         this.largeur = largeur;
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        music.dispose();
     }
 }
