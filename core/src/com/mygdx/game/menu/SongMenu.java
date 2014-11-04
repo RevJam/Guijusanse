@@ -80,7 +80,7 @@ public class SongMenu implements Screen {
                 TextButton t=button;
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (t.getText().toString() == "Retour Precedent"){
+                    if (game.getDifficulty().equals("")){
                         game.setScreen(game.getTmA());
                     }else{
                         // On enregistre la chanson selectionnée

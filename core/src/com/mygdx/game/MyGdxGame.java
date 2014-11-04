@@ -20,10 +20,10 @@ public class MyGdxGame extends Game {
     // Faux jeu pour le moment
 	SpriteBatch batch;
 	Texture img;
-    Texture background;
+    //Texture background;
 
-    Integer hpos = 0;
-    Integer hspeed = 120;
+    //Integer hpos = 0;
+    //Integer hspeed = 120;
     Integer vpos = 0;
     Integer vspeed = 200;
 
@@ -67,28 +67,29 @@ public class MyGdxGame extends Game {
         largeur = Gdx.graphics.getWidth();
         longueur = Gdx.graphics.getHeight();
 
-        // Music
-        music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
-        music.setLooping(true);
-        music.setVolume(0.5f);
-        music.play();
 
         // Initialisation Screen Jeu
         gogame = new GoGame(this);
 
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
+
+        setScreen(fm);
         sm = new SecondMenu(this);
         tmA = new ThirdMenu(this);
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
+        // Music
+        music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+        music.play();
 
 
         //background = new Texture("skin/sky.jpg");
 
         //Lancer le premier Menu
-        setScreen(fm);
 
 
         Lecture lectur = new Lecture();
@@ -199,5 +200,16 @@ public class MyGdxGame extends Game {
     public void dispose() {
         super.dispose();
         music.dispose();
+        batch.dispose();
+        img.dispose();
+
+        fm.dispose();
+        sm.dispose();
+        mm.dispose();
+        tmA.dispose();
+        dm.dispose();
+        songm.dispose();
+
+        gogame.dispose();
     }
 }
