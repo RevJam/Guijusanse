@@ -47,7 +47,6 @@ public class MyGdxGame extends Game {
 
     public MyGdxGame() {
         super();
-
     }
 
 

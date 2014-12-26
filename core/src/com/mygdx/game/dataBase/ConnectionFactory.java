@@ -12,7 +12,7 @@ public class ConnectionFactory extends Exception {
     /**
      * le driver de la bdd
      */
-    private static final String DRIVER = "org.sqlite.JDBC";
+    private static final String DRIVER = "SQLite.JDBCDriver";
     /**
      * le login de connection a la bdd
      */
@@ -28,7 +28,7 @@ public class ConnectionFactory extends Exception {
     /**
      * l'url de la bdd
      */
-    private static final String DATABASE_URL = "jdbc:sqlite:/mnt/sdcard/" + DATABASE_NAME;
+    private static final String DATABASE_URL = "jdbc:sqlite:/sdcard/" + DATABASE_NAME;
     /**
      * instance pointant sur elle meme
      */
@@ -54,9 +54,8 @@ public class ConnectionFactory extends Exception {
 
     public Connection createConnection() {
         Connection connection = null;
-
         try {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            connection = DriverManager.getConnection(DATABASE_URL);
         } catch (SQLException e) {
             LOGGER.finest(ConnectionFactory.class.getName() + "ERROR: createConnection.\n" + e);
         }
