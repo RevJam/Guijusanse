@@ -13,9 +13,6 @@ import com.mygdx.game.menu.SecondMenu;
 import com.mygdx.game.menu.SongMenu;
 import com.mygdx.game.menu.ThirdMenu;
 
-import java.io.IOException;
-import java.sql.SQLData;
-
 public class MyGdxGame extends Game {
     // Faux jeu pour le moment
 	SpriteBatch batch;

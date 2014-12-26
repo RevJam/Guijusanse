@@ -7,17 +7,33 @@ import java.util.List;
  * Created by juliette on 28/10/14.
  */
 public class Chanson {
-    private String title;
-    private List<Note> listNote = new ArrayList<Note>();
 
-    public Chanson(String title, List<Note> listNote) {
+    private int idChanson;
+    private String title;
+    private TypeDifficultee difficulte;
+    private int score;
+    private List<Note> listNote;
+
+    public Chanson(String title,TypeDifficultee difficulte,int score, List<Note> listNote) {
         this.title = title;
+        this.difficulte = difficulte;
+        this.score = 0;
         this.listNote = listNote;
     }
 
     public Chanson() {
-        title=null;
-        listNote=null;
+        idChanson = -1;
+        title="";
+        difficulte=null;
+        listNote=new ArrayList<Note>();
+    }
+
+    public int getIdChanson() {
+        return idChanson;
+    }
+
+    public void setIdChanson(int idChanson) {
+        this.idChanson = idChanson;
     }
 
     public String getTitle() {
@@ -26,6 +42,22 @@ public class Chanson {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public TypeDifficultee getDifficulte() {
+        return difficulte;
+    }
+
+    public void setDifficulte(TypeDifficultee difficulte) {
+        this.difficulte = difficulte;
     }
 
     public List<Note> getListNote() {

@@ -7,10 +7,6 @@ import java.util.List;
  * Created by juliette on 28/10/14.
  */
 public class Difficulte {
-    public enum TypeDifficultee{
-        FACILE, NORMAL;
-    }
-
 
     private List<Chanson> listeChanson = null;
     private TypeDifficultee type=null;
