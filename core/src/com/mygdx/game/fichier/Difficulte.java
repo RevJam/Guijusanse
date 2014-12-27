@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Difficulte {
 
+
     private List<Chanson> listeChanson = null;
     private TypeDifficultee type=null;
 

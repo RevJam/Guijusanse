@@ -1,45 +1,81 @@
 package com.mygdx.game.fichier;
 
-import com.badlogic.gdx.Gdx;
+import com.mygdx.game.fichier.Chanson;
+import com.mygdx.game.fichier.Difficulte;
+import com.mygdx.game.fichier.Note;
+import com.mygdx.game.fichier.TypeDifficultee;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by juliette on 28/10/14.
  */
 public class Lecture {
-    private Note note;
-    private Chanson chansonqCourante;
-    private Difficulte difficulteLue;
 
-    private String texte = null;
+    private List<Note> listNote;
+    private List<Chanson> listeChanson;
+    private TypeDifficultee difficulteLue;
+    int duree,position,temps;
+    private String titre;
 
-    public Lecture(Note note, Chanson chansonqCourante, Difficulte difficulte) {
-        this.note = note;
-        this.chansonqCourante = chansonqCourante;
-        this.difficulteLue = difficulte;
-    }
 
     public Lecture() {
+        this.difficulteLue = null;
+        this.listNote = new ArrayList<Note>();
+        this.listeChanson = new ArrayList<Chanson>();
 
-        this.chansonqCourante = new Chanson();
-        this.note = new Note();
-        this.difficulteLue = new Difficulte();
     }
 
     public void lecture(String input) throws IOException {
 
-        String str;
-        int i=0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(input));
+            String str;
+            while ((str = br.readLine()) != null ){
+                int difficulty = Integer.parseInt(str);
+                titre =br.readLine();
+                int nombreNoteALire = Integer.parseInt(br.readLine());
+                for(int i = 0; i< nombreNoteALire; i++ ){
+                    String [] notes = br.readLine().split("\\| ");
+                    try{
+                        // any positive or negative integer or not!
+                        if(notes[0].matches("-?\\d+"))
+                            temps = Integer.parseInt(notes[0]);
+                        if(notes[1].matches("-?\\d+"))
+                            position = Integer.parseInt(notes[1]);
+                        if(notes[2].matches("-?\\d+"))
+                            duree = Integer.parseInt(notes[2]);
+                    }catch(NumberFormatException nfe){
+                        nfe.printStackTrace();
+                    }
+                    listNote.add(new Note(temps, duree, position));
 
-        BufferedReader reader = Gdx.files.internal(input).reader(2048);
-        String [] tab =new String[10000];
-        while ((str = reader.readLine()+1)!=null){
-            tab[i]=str;
-            i++;
+                }
+                switch (difficulty) {
+                    case 0:
+                        difficulteLue= TypeDifficultee.FACILE;
+                        break;
 
+                    case 1:
+                        difficulteLue=TypeDifficultee.NORMAL;
+                        break;
+                    default:
+                        break;
+                }
+                listeChanson.add(new Chanson(titre,difficulteLue,listNote));
+            }
+
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Gdx.app.log("fr", "LICORNE !!!!");
     }
 }

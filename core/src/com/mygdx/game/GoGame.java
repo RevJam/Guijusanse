@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.mygdx.game.fichier.Lecture;
+
+import java.io.IOException;
 
 /**
  * Created by jamu on 28/10/14.
@@ -22,7 +25,7 @@ public class GoGame implements Screen {
     int hpos, vpos, diff;
     int tailleBarre, score;
 
-    public GoGame(MyGdxGame game, Texture tex) {
+    public GoGame(MyGdxGame game, Texture tex) throws IOException {
         this.game = game;
         this.tex = tex;
         batch = new SpriteBatch();
@@ -31,6 +34,8 @@ public class GoGame implements Screen {
         hpos = game.getLongueur() - tex.getHeight() - tailleBarre;
         vpos = game.getLargeur()/2 - tex.getHeight();
         score = 0;
+        Lecture l=new Lecture();
+        l.lecture("ListeChanson.txt");
     }
 
     public void render(float delta) {

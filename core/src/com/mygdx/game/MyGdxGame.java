@@ -13,6 +13,8 @@ import com.mygdx.game.menu.SecondMenu;
 import com.mygdx.game.menu.SongMenu;
 import com.mygdx.game.menu.ThirdMenu;
 
+import java.io.IOException;
+
 public class MyGdxGame extends Game {
     // Faux jeu pour le moment
 
@@ -60,7 +62,11 @@ public class MyGdxGame extends Game {
         Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
         Texture chat = new Texture(Gdx.files.internal("image/chat.jpg"));
         Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));
-        gogame = new GoGame(this, chat);
+        try {
+            gogame = new GoGame(this, chat);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
