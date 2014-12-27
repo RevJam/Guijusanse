@@ -56,17 +56,18 @@ public class MyGdxGame extends Game {
         typeplayer = -1;
         largeur = Gdx.graphics.getWidth();
         longueur = Gdx.graphics.getHeight();
-
-
-        // Initialisation Screen Jeu
-        Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
-        Texture chat = new Texture(Gdx.files.internal("image/chat.jpg"));
-        Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));
+        Lecture lectur = new Lecture();
         try {
-            gogame = new GoGame(this, chat);
+            lectur.lecture("ListeChanson.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // Initialisation Screen Jeu
+        Texture chien =new Texture(Gdx.files.internal("skin/buttonA.png"));
+        Texture chat = new Texture(Gdx.files.internal("skin/buttonA.png"));
+        Texture panda = new Texture(Gdx.files.internal("skin/buttonA.png"));
+                    gogame = new GoGame(this, chat);
+
 
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
@@ -85,12 +86,7 @@ public class MyGdxGame extends Game {
         setScreen(fm);
 
 
-        Lecture lectur = new Lecture();
-       /* try {
-            lectur.lecture("fichiers/"+"test.srt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
     }
 
     public FirstMenu getFm() {

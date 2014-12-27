@@ -18,7 +18,7 @@ public class AndroidLauncher extends AndroidApplication {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         /*probleme de création de base de donnée aec message d'erreur bizarre...*/
-        //InitDataBase init = new InitDataBase();
+//        InitDataBase init = new InitDataBase();
 		initialize(new MyGdxGame(), config);
 	}
 }

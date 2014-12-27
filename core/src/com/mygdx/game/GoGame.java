@@ -25,7 +25,7 @@ public class GoGame implements Screen {
     int hpos, vpos, diff;
     int tailleBarre, score;
 
-    public GoGame(MyGdxGame game, Texture tex) throws IOException {
+    public GoGame(MyGdxGame game, Texture tex){
         this.game = game;
         this.tex = tex;
         batch = new SpriteBatch();
@@ -34,8 +34,7 @@ public class GoGame implements Screen {
         hpos = game.getLongueur() - tex.getHeight() - tailleBarre;
         vpos = game.getLargeur()/2 - tex.getHeight();
         score = 0;
-        Lecture l=new Lecture();
-        l.lecture("ListeChanson.txt");
+
     }
 
     public void render(float delta) {

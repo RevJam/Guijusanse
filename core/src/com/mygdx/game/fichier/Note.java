@@ -7,8 +7,9 @@ public class Note {
     private int temps;
     private int position;
     private int duree;
-private int idChanson=-1;
-private int idNote=-1;
+    private int idChanson=-1;
+    private int idNote=-1;
+
     public Note() {
         this.temps=-1;
         this.position=-1;
