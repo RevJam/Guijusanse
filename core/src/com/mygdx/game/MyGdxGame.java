@@ -15,46 +15,38 @@ import com.mygdx.game.menu.ThirdMenu;
 
 public class MyGdxGame extends Game {
     // Faux jeu pour le moment
-	SpriteBatch batch;
-	Texture img;
-    //Texture background;
-
-    //Integer hpos = 0;
-    //Integer hspeed = 120;
-    Integer vpos = 0;
-    Integer vspeed = 200;
 
     // Différents menus
-    FirstMenu fm;
-    SecondMenu sm;
-    MultiMenu mm;
-    ThirdMenu tmA;
-    DifficultyMenu dm;
-    SongMenu songm;
+    private FirstMenu fm;
+    private SecondMenu sm;
+    private MultiMenu mm;
+    private ThirdMenu tmA;
+    private DifficultyMenu dm;
+    private SongMenu songm;
 
     // Taille de l'écran
-    int largeur;
-    int longueur;
+    private int largeur;
+    private int longueur;
 
     // Variable pour le Jeu
-    GoGame gogame;
-    String difficulty;
-    String song;
+    private GoGame gogame;
+    private String difficulty;
+    private  String song;
     // 0 = OnePlayer, 1 = Multi
-    int typeplayer;
+    private int typeplayer;
+    private int score = 0;
 
-    Music music;
+    private Music music;
 
     public MyGdxGame() {
         super();
+
     }
 
 
     @Override
-	public void create () {
-        // Faux Jeu
-        batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
+    public void create () {
+
 
         // Initialisation variable Jeu
         difficulty = "";
@@ -65,12 +57,13 @@ public class MyGdxGame extends Game {
 
 
         // Initialisation Screen Jeu
-        gogame = new GoGame(this);
+        Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
+        Texture chat = new Texture(Gdx.files.internal("image/chat.jpg"));
+        Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));
+        gogame = new GoGame(this, chat);
 
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
-
-        setScreen(fm);
         sm = new SecondMenu(this);
         tmA = new ThirdMenu(this);
         dm = new DifficultyMenu(this);
@@ -82,10 +75,8 @@ public class MyGdxGame extends Game {
         music.setVolume(0.5f);
         music.play();
 
-
-        //background = new Texture("skin/sky.jpg");
-
         //Lancer le premier Menu
+        setScreen(fm);
 
 
         Lecture lectur = new Lecture();
@@ -94,7 +85,7 @@ public class MyGdxGame extends Game {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-	}
+    }
 
     public FirstMenu getFm() {
         return fm;
@@ -192,20 +183,16 @@ public class MyGdxGame extends Game {
         this.largeur = largeur;
     }
 
+    public Music getMusic() {
+        return music;
+    }
+
+    public void setMusic(Music music) {
+        this.music = music;
+    }
+
     @Override
     public void dispose() {
         super.dispose();
-        music.dispose();
-        batch.dispose();
-        img.dispose();
-
-        fm.dispose();
-        sm.dispose();
-        mm.dispose();
-        tmA.dispose();
-        dm.dispose();
-        songm.dispose();
-
-        gogame.dispose();
     }
 }

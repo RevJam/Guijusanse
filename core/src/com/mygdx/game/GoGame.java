@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -16,52 +17,51 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 // JEU EN LUI MEME
 public class GoGame implements Screen {
     MyGdxGame game;
-    Stage stage;
-    Texture chute1;
+    Texture tex;
+    SpriteBatch batch;
+    int hpos, vpos, diff;
+    int tailleBarre, score;
 
-    public GoGame(MyGdxGame game) {
+    public GoGame(MyGdxGame game, Texture tex) {
         this.game = game;
-        // Si song OR difficulty == "", => Aleatoire
-        stage = new Stage();
-
-        // Une image qui doit descendre
-        chute1 =  new Texture("skin/chuteA.png");
-        Image chuteImg1 = new Image(chute1);
-        chuteImg1.setPosition(game.getLargeur()/10, game.getLongueur()-50);
-        stage.addActor(chuteImg1);
+        this.tex = tex;
+        batch = new SpriteBatch();
+        diff = 5;
+        tailleBarre = game.getLongueur()/15;
+        hpos = game.getLongueur() - tex.getHeight() - tailleBarre;
+        vpos = game.getLargeur()/2 - tex.getHeight();
+        score = 0;
     }
 
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.act();
-        stage.draw();
+        batch.begin();
 
-        /*game.batch.begin();
+        hpos -= (int) (Gdx.input.getAccelerometerY())*diff;
+        vpos -= (int) (Gdx.input.getAccelerometerX())*diff;
 
-        game.hpos -= (int) (Gdx.input.getAccelerometerY());
-        game.vpos -= (int) (Gdx.input.getAccelerometerX());
+        if (hpos < 0) {
+            hpos = 0;
+        }
 
-        if (game.hpos < 0) game.hpos = 0;
-        if (game.hpos > Gdx.graphics.getHeight() - game.img.getHeight())
-            game.hpos = Gdx.graphics.getHeight() - game.img.getHeight();
-        if (game.vpos < 0) game.vpos = 0;
-        if (game.vpos > Gdx.graphics.getWidth() - game.img.getWidth())
-            game.vpos = Gdx.graphics.getWidth() - game.img.getWidth();*/
+        if (hpos > Gdx.graphics.getHeight() - tex.getHeight() - tailleBarre)
+            hpos = Gdx.graphics.getHeight() - tex.getHeight() - tailleBarre;
 
-        /*hpos += (int)(Gdx.graphics.getDeltaTime() * hspeed);
-        vpos += (int)(Gdx.graphics.getDeltaTime() * vspeed);
-        if (hpos < 0) hspeed *= -1;
-        if (hpos > Gdx.graphics.getHeight() - img.getHeight()) hspeed *= -1;
-        if (vpos < 0) vspeed *= -1;
-        if (vpos > Gdx.graphics.getWidth() - img.getWidth()) vspeed *= -1;*/
+        if (vpos < 0) {
+            vpos=0;
+        }
 
-        /*game.batch.draw(game.img, game.vpos, game.hpos);
-        game.batch.end();*/
+        if (vpos > Gdx.graphics.getWidth() - tex.getWidth()) {
+            vpos = Gdx.graphics.getWidth() - tex.getWidth();
+        }
 
-        if (Gdx.input.justTouched())
-            game.setScreen(game.fm);
+        hpos += (int)(Gdx.graphics.getDeltaTime());
+        vpos += (int)(Gdx.graphics.getDeltaTime());
+
+        batch.draw(tex,vpos,hpos);
+        batch.end();
     }
 
     public void resize(int width, int height) {
@@ -85,7 +85,6 @@ public class GoGame implements Screen {
     }
 
     public void dispose() {
-        chute1.dispose();
-        stage.dispose();
+
     }
 }
