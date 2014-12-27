@@ -16,7 +16,7 @@ public class DaoNote extends DataBaseMaker {
 
     /**
      * Ajout d'une note dans la base de donnee
-     * @param note
+     * @param not
      * @return
      */
     public int add(Note note) {

@@ -1,7 +1,7 @@
 package com.mygdx.game.fichier;
 
 /**
- * Created by juliette on 28/10/14.
+ * Created by juliette on 28/10/14
  */
 public class Note {
     private int temps;
