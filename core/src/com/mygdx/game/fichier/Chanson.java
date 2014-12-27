@@ -12,8 +12,9 @@ public class Chanson {
     private List<Note> listNote = new ArrayList<Note>();
     private TypeDifficultee difficulter;
     private int idChanson=-1;
-private int Score=0;
-    public Chanson(String title, int difficulty, List<Note> listNote) {
+    private int Score=0;
+
+    public Chanson(String title,List<Note> listNote) {
         this.title = title;
         this.listNote = listNote;
     }
@@ -24,8 +25,7 @@ private int Score=0;
         difficulter=null;
     }
 
-    public Chanson(String titre, TypeDifficultee difficulteLue,
-                   List<Note> listNote2) {
+    public Chanson(String titre, TypeDifficultee difficulteLue,List<Note> listNote2) {
         this.title=titre;
         this.listNote = listNote2;
         this.difficulter=difficulteLue;
