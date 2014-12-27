@@ -24,7 +24,7 @@ public class DaoSong extends DataBaseMaker{
     public int add(Chanson chanson) {
         String query = String.format(
                 "INSERT INTO %s (%s,%s,%s) VALUES('%s','%s','%s');",
-                SONG_TABLE, SONG_NAME, SONG_DIFFICULTY, SONG_SCORE, chanson.getTitle(), chanson.getDifficulte().toString(), chanson.getScore());
+                SONG_TABLE, SONG_NAME, SONG_DIFFICULTY, SONG_SCORE, chanson.getTitle(), chanson.getDifficulter().toString(), chanson.getScore());
         return Dao.add(query);
     }
 
@@ -48,7 +48,7 @@ public class DaoSong extends DataBaseMaker{
         String query = String.format("UPDATE %s SET %s='%s',%s='%s',%s='%s' WHERE id=%d;",
                 SONG_TABLE,
                 SONG_NAME, chanson.getTitle(),
-                SONG_DIFFICULTY, chanson.getDifficulte().toString(),
+                SONG_DIFFICULTY, chanson.getDifficulter().toString(),
                 SONG_SCORE, chanson.getScore(),
                 chanson.getIdChanson());
         return Dao.deleteUpdate(query);
@@ -70,7 +70,7 @@ public class DaoSong extends DataBaseMaker{
      */
     public int findId(Chanson chanson){
         String query =String.format("SELECT * FROM %s WHERE %s='%s' AND %s='%s' AND %s='%s';",
-                SONG_TABLE, SONG_NAME,chanson.getTitle(), SONG_DIFFICULTY, chanson.getDifficulte(), SONG_SCORE, chanson.getScore());
+                SONG_TABLE, SONG_NAME,chanson.getTitle(), SONG_DIFFICULTY, chanson.getDifficulter(), SONG_SCORE, chanson.getScore());
         Object[] object = Dao.getUniqueElement(query,NB_COLUMNS_SONG);
         if(object != null){
             return (Integer)object[0];
@@ -89,7 +89,7 @@ public class DaoSong extends DataBaseMaker{
         Object[] object = Dao.getUniqueElement(query, NB_COLUMNS_SONG);
         chanson.setIdChanson((Integer) object[0]);
         chanson.setTitle((String) object[1]);
-        chanson.setDifficulte(TypeDifficultee.valueOf((String) object[2]));
+        chanson.setDifficulter(TypeDifficultee.valueOf((String) object[2]));
         chanson.setScore((Integer) object[3]);
         return chanson;
     }
@@ -109,7 +109,7 @@ public class DaoSong extends DataBaseMaker{
                 chanson =new Chanson();
                 chanson.setIdChanson((Integer) l[0]);
                 chanson.setTitle((String) l[1]);
-                chanson.setDifficulte(TypeDifficultee.valueOf((String) l[2]));
+                chanson.setDifficulter(TypeDifficultee.valueOf((String) l[2]));
                 chanson.setScore((Integer) l[3]);
                 chansons.add(chanson);
 
