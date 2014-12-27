@@ -8,10 +8,23 @@ import java.util.List;
  * Created by juliette on 28/10/14
  */
 public class Chanson {
+    /**
+     * titre de la chanson
+     */
     private String title;
+    /**
+     * liste de note
+     */
     private List<Note> listNote = new ArrayList<Note>();
+    /**
+     * difficultée
+     */
     private TypeDifficultee difficulter;
+    /**
+     * l'id de la chanson en base
+     */
     private int idChanson=-1;
+
     private int Score=0;
 
     public Chanson(String title,List<Note> listNote) {
