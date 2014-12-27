@@ -23,7 +23,7 @@ public class Dao extends DataBaseMaker{
     private static final Logger LOGGER = Logger.getLogger(Dao.class.getName());
     /**
      * Execute a query to create or drop a table in the database
-     * @param query query to execute
+     * @param query query to execut
      */
     protected static void createDrop(String query) {
         LOGGER.finest(Dao.class.getName() + "debut: createDrop.\n");

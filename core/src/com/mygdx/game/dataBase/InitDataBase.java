@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class InitDataBase {
 
     /**
-     * connection
+     * connectio
      */
     private ConnectionFactory co=null;
     private DaoSong daoSong;

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory extends Exception {
     /**
-     * le driver de la bdd
+     * le driver de la bd
      */
     private static final String DRIVER = "SQLite.JDBCDriver";
     /**

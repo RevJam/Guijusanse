@@ -23,7 +23,7 @@ public class DataBaseMaker extends Exception{
             SONG_DIFFICULTY + " INT,"+
             SONG_SCORE  + " INT );";
 
-    /*Table Note*/
+    /*Table Not*/
     protected static final int NB_COLUMNS_NOTE = 5;
 
     protected static final String NOTE_TABLE    = "note";

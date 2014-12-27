@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * Created by juliette on 28/10/14.
+ * Created by juliette on 28/10/14
  */
 public class Lecture {
     private Note note;
