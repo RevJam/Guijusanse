@@ -7,7 +7,8 @@ public class Note {
     private int temps;
     private int position;
     private int duree;
-
+private int idChanson=-1;
+private int idNote=-1;
     public Note() {
         this.temps=-1;
         this.position=-1;
@@ -42,5 +43,21 @@ public class Note {
 
     public void setDuree(int duree) {
         this.duree = duree;
+    }
+
+    public int getIdChanson() {
+        return idChanson;
+    }
+
+    public void setIdChanson(int idChanson) {
+        this.idChanson = idChanson;
+    }
+
+    public int getIdNote() {
+        return idNote;
+    }
+
+    public void setIdNote(int idNote) {
+        this.idNote = idNote;
     }
 }

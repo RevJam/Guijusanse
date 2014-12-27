@@ -18,7 +18,7 @@ public class DaoSong extends DataBaseMaker{
 
     /**
      * Ajout d'une chanson dans la base de donnee
-     * @param chanso
+     * @param chanson
      * @return
      */
     public int add(Chanson chanson) {
