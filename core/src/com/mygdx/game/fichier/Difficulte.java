@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by juliette on 28/10/14
+ * Created by juliette on 28/10/14.
  */
 public class Difficulte {
-
 
     private List<Chanson> listeChanson = null;
     private TypeDifficultee type=null;
@@ -37,4 +36,5 @@ public class Difficulte {
     public void setType(TypeDifficultee type) {
         this.type = type;
     }
+
 }

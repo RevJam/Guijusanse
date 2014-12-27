@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by juliette on 28/10/14
+ * Created by juliette on 28/10/14.
  */
 public class Chanson {
+
     private String title;
     private List<Note> listNote = new ArrayList<Note>();
     private TypeDifficultee difficulter;
