@@ -15,6 +15,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.fichier.Chanson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jamu on 28/10/14.
@@ -24,9 +25,9 @@ public class DifficultyMenu implements Screen{
     Skin skin;
     Table table;
     Stage stage;
-    ArrayList<TextButton> difficulty;
+    List<TextButton> difficulty;
     Label title;
-    ArrayList<String> list;
+    List<String> list;
 
     public DifficultyMenu(MyGdxGame game) {
         this.game = game;

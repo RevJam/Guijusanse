@@ -1,13 +1,23 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by juliette on 28/12/14.
  */
 public class Jeu implements Screen {
     MyGdxGame myGdxGame;
-
+    Skin skin;
+    Table table;
+    Stage stage;
+    List<TextButton> difficulty;
     public Jeu(MyGdxGame game) {
         myGdxGame=game;
 
