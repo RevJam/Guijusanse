@@ -59,8 +59,9 @@ public class SongMenu implements Screen {
         }
         // Crée une liste de boutons
         listeSong= new ArrayList<TextButton>(listChanson.size());
-        for(int i=0; i<listChanson.size(); i++){
-            listeSong.add(new TextButton(listChanson.get(i).getTitle(),skin));
+        for(Chanson chanson : listChanson){
+            //System.out.println(chanson.toString());
+            listeSong.add(new TextButton(chanson.getTitle(),skin));
         }
     }
 
