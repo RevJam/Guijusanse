@@ -26,11 +26,11 @@ public class Lecture {
     private String titre;
 private DaosAccess dao=null;
 
-    public Lecture() {
+    public Lecture(DaosAccess daosAccess) {
         this.difficulteLue = null;
         this.listNote = new ArrayList<Note>();
         this.listeChanson = new ArrayList<Chanson>();
-
+        dao=daosAccess;
     }
 
     public void lecture(InputStream input) throws IOException {
@@ -81,12 +81,11 @@ private DaosAccess dao=null;
         SongDaoInterface songDaoInterface = null;
         NoteDaoInterface noteDaoInterface = null;
 
-        AndroidDaosAccess daosAccess = new AndroidDaosAccess(noteDaoInterface,songDaoInterface);
         for(Chanson c :listeChanson) {
-            daosAccess.getSongDao().add(c);
+            dao.getSongDao().add(c);
            //chercher id chanson l'ajouter dans la note
             for(Note n : listNote){
-                daosAccess.getNoteDao().add(n);
+                dao.getNoteDao().add(n);
             }
         }
     }

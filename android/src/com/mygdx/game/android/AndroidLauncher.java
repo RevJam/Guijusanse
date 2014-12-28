@@ -32,7 +32,7 @@ public class AndroidLauncher extends AndroidApplication {
 
         AndroidDaosAccess daosAccess = new AndroidDaosAccess(noteDaoInterface,songDaoInterface,scoreDaoInterface);
 
-        Lecture lectur = new Lecture();
+        Lecture lectur = new Lecture(daosAccess);
         try {
             InputStream in = getAssets().open("file/ListeChanson.txt");
             lectur.lecture(in);
