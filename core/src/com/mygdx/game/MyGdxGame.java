@@ -31,7 +31,7 @@ public class MyGdxGame extends Game {
     private int longueur;
 
     // Variable pour le Jeu
-    private Jeu EcranJeu;
+    private Jeu ecranJeu;
     private String difficulty;
     private String song;
     // 0 = OnePlayer, 1 = Multi
@@ -63,6 +63,7 @@ public class MyGdxGame extends Game {
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
+        ecranJeu=new Jeu();
         // Music
         music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
         music.setLooping(true);
@@ -125,6 +126,14 @@ public class MyGdxGame extends Game {
 
     public SongMenu getSongm() {
         return songm;
+    }
+
+    public Jeu getEcranJeu() {
+        return ecranJeu;
+    }
+
+    public void setEcranJeu(Jeu ecranJeu) {
+        ecranJeu = ecranJeu;
     }
 
     public void setSongm(SongMenu songm) {
