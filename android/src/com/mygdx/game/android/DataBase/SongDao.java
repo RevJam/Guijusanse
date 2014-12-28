@@ -70,7 +70,7 @@ public class SongDao extends Dao implements SongDaoInterface{
         open();
         Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
                 +  " from " + DataBaseMaker.SONG_TABLE
-                + " where id > ?", new String[]{String.valueOf(id)});
+                + " where id = ?", new String[]{String.valueOf(id)});
         Chanson chanson = new Chanson();
         if(!c.isNull(0) && !c.isNull(1) && !c.isNull(2)) {
             chanson.setIdChanson(c.getInt(0));

@@ -5,12 +5,14 @@ package com.mygdx.game.fichier;
  */
 public class Score {
 
+    private int idScore;
     private String playerName;
     private String songTitle;
     private TypeDifficultee difficultee;
     private int score;
 
     public Score(){
+        idScore = -1;
         playerName = "";
         songTitle = "";
         difficultee = null;
@@ -22,6 +24,14 @@ public class Score {
         this.songTitle = songTitle;
         this.difficultee = difficultee;
         this.score = score;
+    }
+
+    public int getIdScore() {
+        return idScore;
+    }
+
+    public void setIdScore(int idScore) {
+        this.idScore = idScore;
     }
 
     public String getPlayerName() {

@@ -67,7 +67,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
         open();
         Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.NOTE_TIME+", "+DataBaseMaker.NOTE_POSITION
                 +", "+DataBaseMaker.NOTE_DUREE+", "+DataBaseMaker.ID_SONG+  " from " + DataBaseMaker.NOTE_TABLE
-                + " where id > ?", new String[]{String.valueOf(id)});
+                + " where id = ?", new String[]{String.valueOf(id)});
         Note note = new Note();
         note.setIdNote(c.getInt(0));
         note.setTemps(c.getInt(1));
