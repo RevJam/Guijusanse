@@ -56,7 +56,7 @@ public class SongDao extends Dao implements SongDaoInterface{
         ContentValues value = new ContentValues();
         value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
         value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
-        mDb.update(DataBaseMaker.SONG_TABLE, value," id = ?", new String[] {String.valueOf(chanson.getIdChanson())});
+        mDb.update(DataBaseMaker.SONG_TABLE, value," id=?", new String[] {String.valueOf(chanson.getIdChanson())});
     }
 
 
@@ -70,7 +70,7 @@ public class SongDao extends Dao implements SongDaoInterface{
         open();
         Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
                 +  " from " + DataBaseMaker.SONG_TABLE
-                + " where id = ?", new String[]{String.valueOf(id)});
+                + " where id=?", new String[]{String.valueOf(id)});
         Chanson chanson = new Chanson();
         if(!c.isNull(0) && !c.isNull(1) && !c.isNull(2)) {
             chanson.setIdChanson(c.getInt(0));
@@ -89,14 +89,18 @@ public class SongDao extends Dao implements SongDaoInterface{
     @Override
     public int findId(Chanson chanson) {
         open();
+        int id = -1;
         String[] params = new String[]{chanson.getTitle(),String.valueOf(chanson.getDifficulter())};
-        Cursor c = mDb.rawQuery("select id from "+ DataBaseMaker.SONG_TABLE
-                + " where "+ DataBaseMaker.SONG_NAME + " = ? and "
-                + DataBaseMaker.SONG_DIFFICULTY + " = ?", params);
-        if(c.isNull(0)){
-            return -1;
+        System.out.println(chanson.getTitle());
+        System.out.println(chanson.getDifficulter());
+        Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.SONG_TABLE
+                + " where "+ DataBaseMaker.SONG_NAME + "=? and "
+                + DataBaseMaker.SONG_DIFFICULTY + "=?", params);
+        while (c.moveToNext()) {
+            id = c.getInt(c.getColumnIndex("id"));
         }
-        return c.getInt(0);
+        c.close();
+        return id;
     }
 
     /**
