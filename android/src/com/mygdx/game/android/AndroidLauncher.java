@@ -19,6 +19,7 @@ import com.mygdx.game.fichier.Note;
 import com.mygdx.game.fichier.TypeDifficultee;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
@@ -34,8 +35,9 @@ public class AndroidLauncher extends AndroidApplication {
 
         Lecture lectur = new Lecture();
         try {
-            String essai = Uri.parse("file:///android_asset/file/ListeChanson.txt").toString();
-            lectur.lecture(essai);
+            InputStream in = getAssets().open("file/ListeChanson.txt");
+            String essai = "ListeChanson.txt";
+            lectur.lecture(in);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,10 +5,7 @@ import com.mygdx.game.fichier.Difficulte;
 import com.mygdx.game.fichier.Note;
 import com.mygdx.game.fichier.TypeDifficultee;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +29,10 @@ public class Lecture {
 
     }
 
-    public void lecture(String input) throws IOException {
+    public void lecture(InputStream input) throws IOException {
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(input));
+            BufferedReader br = new BufferedReader(new InputStreamReader(input));
             String str;
             while ((str = br.readLine()) != null ){
                 int difficulty = Integer.parseInt(str);
