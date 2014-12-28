@@ -4,25 +4,40 @@ package com.mygdx.game.fichier;
  * Created by juliette on 28/10/14
  */
 public class Note {
+    /**
+     * temps
+     */
     private int temps;
+    /**
+     * position
+     */
     private int position;
+    /**
+     * duree
+     */
     private int duree;
-    private int idChanson;
-    private int idNote;
+    /**
+     * id de la chanson
+     */
+    private int idChanson=-1;
+    /**
+     * id de la note
+     */
+    private int idNote=-1;
 
+    /**
+     * constructeur par défaut
+     */
     public Note() {
-        this.idNote=-1;
         this.temps=-1;
         this.position=-1;
         this.duree = -1;
-        this.idChanson=-1;
     }
 
-    public Note(int temps, int duree, int position, int idChanson) {
+    public Note(int temps, int duree, int position) {
         this.temps = temps;
         this.duree = duree;
         this.position = position;
-        this.idChanson = idChanson;
     }
 
     public int getTemps() {
@@ -63,9 +78,5 @@ public class Note {
 
     public void setIdNote(int idNote) {
         this.idNote = idNote;
-    }
-
-    public boolean isEmpty(){
-        return temps == -1 && duree == -1 && position == -1 && idChanson == -1;
     }
 }
