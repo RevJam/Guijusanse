@@ -34,8 +34,6 @@ public class GoGame implements Screen {
         hpos = game.getLongueur() - tex.getHeight() - tailleBarre;
         vpos = game.getLargeur()/2 - tex.getHeight();
         score = 0;
-        Lecture l=new Lecture();
-        l.lecture("ListeChanson.txt");
     }
 
     public void render(float delta) {

@@ -1,27 +1,26 @@
-package com.mygdx.game.dataBase;
+package com.mygdx.game.android.DataBase;
 
 /**
- * Created by sebastien on 26/12/14.
+ * Created by sebastien on 28/12/14.
  */
-public class DataBaseMaker extends Exception{
+public class DataBaseMaker extends Exception {
 
     /*Table Song guijusanse*/
-    protected static final int NB_COLUMNS_SONG = 4;
+    protected static final int NB_COLUMNS_SONG = 3;
 
     protected static final String SONG_TABLE    = "song";
     protected static final String SONG_NAME = "intitule";
     protected static final String SONG_DIFFICULTY = "diffculte";
-    protected static final String SONG_SCORE = "score";
 
     private static final String CREATETABLEIFNOTEXIST = "CREATE TABLE IF NOT EXISTS ";
-    private static final String IDINTPRIMARYKEYAUTOINCREMENTNOTNULL = "id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,";
+    private static final String IDINTPRIMARYKEYAUTOINCREMENTNOTNULL = "id INTEGER PRIMARY KEY AUTOINCREMENT,";
 
     protected static final String CREATE_SONG_TABLE = CREATETABLEIFNOTEXIST + SONG_TABLE + "(" +
             IDINTPRIMARYKEYAUTOINCREMENTNOTNULL +
             SONG_NAME + " VARCHAR(255)," +
-            SONG_NAME + " VARCHAR(255)," +
-            SONG_DIFFICULTY + " INT,"+
-            SONG_SCORE  + " INT );";
+            SONG_DIFFICULTY + " INT );";
+
+    protected static final String SONG_TABLE_DROP = "DROP TABLE IF EXISTS " + SONG_TABLE + ";";
 
     /*Table Not*/
     protected static final int NB_COLUMNS_NOTE = 5;
@@ -37,10 +36,7 @@ public class DataBaseMaker extends Exception{
             NOTE_TIME + " INT," +
             NOTE_POSITION + " INT," +
             NOTE_DUREE + " INT,"+
+            ID_SONG+" INT,"+
             "FOREIGN KEY("+ID_SONG+") " + "REFERENCES "+SONG_TABLE+ "(id)" +
             " ON DELETE CASCADE );";
-
-
-
-
 }

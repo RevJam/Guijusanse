@@ -25,10 +25,9 @@ public class Chanson {
      */
     private int idChanson=-1;
 
-    private int Score=0;
-
-    public Chanson(String title,List<Note> listNote) {
+    public Chanson(String title,TypeDifficultee difficulte,List<Note> listNote) {
         this.title = title;
+        this.difficulter = difficulte;
         this.listNote = listNote;
     }
 
@@ -36,12 +35,6 @@ public class Chanson {
         title=null;
         listNote=null;
         difficulter=null;
-    }
-
-    public Chanson(String titre, TypeDifficultee difficulteLue,List<Note> listNote2) {
-        this.title=titre;
-        this.listNote = listNote2;
-        this.difficulter=difficulteLue;
     }
 
     public String getTitle() {
@@ -76,11 +69,13 @@ public class Chanson {
         this.idChanson = idChanson;
     }
 
-    public int getScore() {
-        return Score;
-    }
-
-    public void setScore(int score) {
-        Score = score;
+    @Override
+    public String toString() {
+        return "Chanson{" +
+                "title='" + title + '\'' +
+                ", listNote=" + listNote +
+                ", difficulter=" + difficulter +
+                ", idChanson=" + idChanson +
+                '}';
     }
 }
