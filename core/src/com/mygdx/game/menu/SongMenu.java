@@ -30,6 +30,8 @@ public class SongMenu implements Screen {
     List<Chanson> listChanson;
 
     public SongMenu(MyGdxGame game) {
+        TextButton button;
+
         this.game = game;
 
         // Crée la scene
@@ -58,10 +60,11 @@ public class SongMenu implements Screen {
             e.printStackTrace();
         }
         // Crée une liste de boutons
-        listeSong= new ArrayList<TextButton>(listChanson.size());
+        listeSong= new ArrayList<TextButton>();
         for(Chanson chanson : listChanson){
-            //System.out.println(chanson.toString());
-            listeSong.add(new TextButton(chanson.getTitle(),skin));
+            button = new TextButton(chanson.getTitle(), skin);
+            listeSong.add(button);
+            table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         }
     }
 
