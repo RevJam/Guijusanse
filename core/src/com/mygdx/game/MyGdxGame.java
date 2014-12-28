@@ -31,12 +31,11 @@ public class MyGdxGame extends Game {
     private int longueur;
 
     // Variable pour le Jeu
-    private GoGame gogame;
+    private Jeu EcranJeu;
     private String difficulty;
     private String song;
     // 0 = OnePlayer, 1 = Multi
     private int typeplayer;
-    private int score = 0;
 
     private Music music;
 
@@ -107,13 +106,6 @@ public class MyGdxGame extends Game {
         this.dm = dm;
     }
 
-    public GoGame getGogame() {
-        return gogame;
-    }
-
-    public void setGogame(GoGame gogame) {
-        this.gogame = gogame;
-    }
 
     public String getDifficulty() {
         return difficulty;
