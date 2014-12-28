@@ -4,7 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import com.mygdx.game.DataBase.DaosAccess;
 import com.mygdx.game.fichier.Lecture;
 import com.mygdx.game.menu.DifficultyMenu;
 import com.mygdx.game.menu.FirstMenu;
@@ -40,15 +41,16 @@ public class MyGdxGame extends Game {
 
     private Music music;
 
-    public MyGdxGame() {
-        super();
+    private final DaosAccess daosAccess;
 
+    public MyGdxGame(DaosAccess daosAccess) {
+        super();
+        this.daosAccess = daosAccess;
     }
 
 
     @Override
     public void create () {
-
 
         // Initialisation variable Jeu
         difficulty = "";
@@ -56,18 +58,17 @@ public class MyGdxGame extends Game {
         typeplayer = -1;
         largeur = Gdx.graphics.getWidth();
         longueur = Gdx.graphics.getHeight();
-        Lecture lectur = new Lecture();
+
+
+        // Initialisation Screen Jeu
+        //Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
+        Texture chat = new Texture(Gdx.files.internal("badlogic.jpg"));
+       // Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));
         try {
-            lectur.lecture("ListeChanson.txt");
+            gogame = new GoGame(this, chat);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Initialisation Screen Jeu
-        Texture chien =new Texture(Gdx.files.internal("skin/buttonA.png"));
-        Texture chat = new Texture(Gdx.files.internal("skin/buttonA.png"));
-        Texture panda = new Texture(Gdx.files.internal("skin/buttonA.png"));
-                    gogame = new GoGame(this, chat);
-
 
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
@@ -84,8 +85,6 @@ public class MyGdxGame extends Game {
 
         //Lancer le premier Menu
         setScreen(fm);
-
-
 
     }
 
