@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.mygdx.game.DataBase.DaosAccess;
 import com.mygdx.game.fichier.Lecture;
 import com.mygdx.game.menu.DifficultyMenu;

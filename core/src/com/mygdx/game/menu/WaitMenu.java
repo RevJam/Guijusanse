@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -21,7 +18,7 @@ public class WaitMenu implements Screen {
     Stage stage;
     TextButton buttonGo, buttonCancel;
     Label title;
-
+ScrollPane scroll = new ScrollPane(table);
     public WaitMenu(MyGdxGame game) {
         this.game = game;
 
@@ -45,6 +42,7 @@ public class WaitMenu implements Screen {
 
         // On ajoute les elements a la trame
         table.add(title).padBottom((game.getLongueur()/5)).row();
+        scroll = new ScrollPane(table);
     }
 
     @Override
