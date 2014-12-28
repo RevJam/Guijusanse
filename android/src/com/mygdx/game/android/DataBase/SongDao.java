@@ -111,8 +111,7 @@ public class SongDao extends Dao implements SongDaoInterface{
         open();
         List<Chanson> liste = new ArrayList<Chanson>();
         Chanson chanson = new Chanson();
-        Cursor c = mDb.query(DataBaseMaker.SONG_TABLE, new String[]{"id",
-                DataBaseMaker.SONG_NAME,DataBaseMaker.SONG_DIFFICULTY},"*", null, null, null, null);
+        Cursor c = mDb.rawQuery("select id, "+DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+" from "+ DataBaseMaker.SONG_TABLE+" ",null);
         while (c.moveToNext()) {
             chanson.setIdChanson(c.getInt(0));
             chanson.setTitle(c.getString(1));

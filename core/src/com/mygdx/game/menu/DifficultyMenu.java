@@ -104,6 +104,7 @@ public class DifficultyMenu implements Screen{
                     try {
                         game.getSongm().listChanson = game.getDaosAccess().getSongDao().getSongByDifficulty(t.getText().toString());
                         for (Chanson c : game.getSongm().listChanson) {
+                            System.out.print(c.getTitle());
                             TextButton button = new TextButton(c.getTitle(), skin);
                             game.getSongm().listeSong.add(button);
                             game.getSongm().table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
