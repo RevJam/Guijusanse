@@ -24,6 +24,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
      * @param note
      * @return
      */
+    @Override
     public void add(Note note) {
         open();
         ContentValues value = new ContentValues();
@@ -39,6 +40,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
      * @param id
      * @return
      */
+    @Override
     public void delete(int id) {
         open();
         mDb.delete(DataBaseMaker.NOTE_TABLE," id = ?", new String[] {String.valueOf(id)});
@@ -49,6 +51,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
      * @param note
      * @return
      */
+    @Override
     public void update(Note note) {
         open();
         ContentValues value = new ContentValues();
@@ -63,17 +66,20 @@ public class NoteDao extends Dao implements NoteDaoInterface {
      * @param id
      * @return
      */
+    @Override
     public Note get(int id) {
         open();
         Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.NOTE_TIME+", "+DataBaseMaker.NOTE_POSITION
                 +", "+DataBaseMaker.NOTE_DUREE+", "+DataBaseMaker.ID_SONG+  " from " + DataBaseMaker.NOTE_TABLE
                 + " where id = ?", new String[]{String.valueOf(id)});
         Note note = new Note();
-        note.setIdNote(c.getInt(0));
-        note.setTemps(c.getInt(1));
-        note.setPosition(c.getInt(2));
-        note.setDuree(c.getInt(3));
-        note.setIdChanson(c.getInt(4));
+        while(c.moveToNext()) {
+            note.setIdNote(c.getInt(0));
+            note.setTemps(c.getInt(1));
+            note.setPosition(c.getInt(2));
+            note.setDuree(c.getInt(3));
+            note.setIdChanson(c.getInt(4));
+        }
         return note;
     }
 
@@ -82,6 +88,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
      * @return
      * @throws Exception
      */
+    @Override
     public List<Note> getAll() throws Exception{
         open();
         List<Note> liste = new ArrayList<Note>();

@@ -72,7 +72,7 @@ public class SongDao extends Dao implements SongDaoInterface{
                 +  " from " + DataBaseMaker.SONG_TABLE
                 + " where id=?", new String[]{String.valueOf(id)});
         Chanson chanson = new Chanson();
-        if(!c.isNull(0) && !c.isNull(1) && !c.isNull(2)) {
+       while(c.moveToNext()){
             chanson.setIdChanson(c.getInt(0));
             chanson.setTitle(c.getString(1));
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(2)));
