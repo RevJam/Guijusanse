@@ -63,7 +63,7 @@ public class MyGdxGame extends Game {
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
-        ecranJeu=new Jeu();
+        ecranJeu=new Jeu(this);
         // Music
         music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
         music.setLooping(true);

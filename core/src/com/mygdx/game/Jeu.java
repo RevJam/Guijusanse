@@ -6,6 +6,13 @@ import com.badlogic.gdx.Screen;
  * Created by juliette on 28/12/14.
  */
 public class Jeu implements Screen {
+    MyGdxGame myGdxGame;
+
+    public Jeu(MyGdxGame game) {
+        myGdxGame=game;
+
+    }
+
     /**
      * Called when the screen should render itself.
      *
