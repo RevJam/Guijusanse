@@ -84,7 +84,9 @@ private DaosAccess dao=null;
         for(Chanson c :listeChanson) {
             dao.getSongDao().add(c);
            //chercher id chanson l'ajouter dans la note
+            c.setIdChanson(dao.getSongDao().findId(c));
             for(Note n : listNote){
+                n.setIdChanson(c.getIdChanson());
                 dao.getNoteDao().add(n);
             }
         }
