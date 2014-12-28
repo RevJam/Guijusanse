@@ -101,7 +101,7 @@ public class ThirdMenu implements Screen {
                 if(game.getTypeplayer() == 1){
                     // game.setScreen(game.Waitgame());
                 }else {
-                    game.setScreen(game.getGogame());
+                    game.setScreen(game.getEcranJeu());
                 }
             }
         });
