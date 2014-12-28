@@ -48,4 +48,12 @@ public interface SongDaoInterface{
      */
     public List<Chanson> getAll() throws Exception;
 
+    /**
+     *
+     * @param difficulte
+     * @return
+     * @throws Exception
+     */
+    public List<Chanson> getSongByDifficulty(String difficulte) throws Exception;
+
 }
