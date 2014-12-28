@@ -1,28 +1,29 @@
 {
     com.badlogic.gdx.graphics.Color: {
         white: { r: 1, g: 1, b: 1, a: 1 },
+        black: { r: 0, g: 0, b: 0, a: 1 },
         red: { r: 1, g: 0, b: 0, a: 1 },
         yellow: { r: 0.5, g: 0.5, b: 0, a: 1 }
     },
     com.badlogic.gdx.graphics.g2d.BitmapFont: {
-        medium: { file: skin/font.fnt },
-        title: { file: skin/title.fnt }
+        medium: { file: skin/defFont.fnt },
+        title: { file: skin/titleFont.fnt }
     },
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
         default: {
-            font: medium, fontColor: white, up: buttonD, down: buttonD, pressedOffsetY: -2
+            font: medium, fontColor: black, up: bD, down: bD, pressedOffsetY: -2
         },
         buttontwo: {
-            font: medium, fontColor: white, up: buttonB, down: buttonB, pressedOffsetY: -2
+            font: medium, fontColor: black, up: bB, down: bB, pressedOffsetY: -2
         },
         buttonthree: {
-            font: medium, fontColor: white, up: buttonE, down: buttonE, pressedOffsetY: -2
+            font: medium, fontColor: black, up: bA, down: bA, pressedOffsetY: -2
         },
         buttonfour: {
-            font: medium, fontColor: white, up: buttonC, down: buttonC, pressedOffsetY: -2
+            font: medium, fontColor: black, up: bC, down: bC, pressedOffsetY: -2
         },
     },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
          default: { font: title, fontColor: red}
-    }
+	}
 }

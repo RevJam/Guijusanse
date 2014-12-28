@@ -59,10 +59,11 @@ public class MyGdxGame extends Game {
 
 
         // Initialisation Screen Jeu
-        Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
+         /*Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
         Texture chat = new Texture(Gdx.files.internal("image/chat.jpg"));
-        Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));
-        try {
+        Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));*/
+        Texture chat = new Texture(Gdx.files.internal("skin/coffee.png"));
+       try {
             gogame = new GoGame(this, chat);
         } catch (IOException e) {
             e.printStackTrace();
