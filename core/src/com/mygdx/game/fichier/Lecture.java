@@ -3,11 +3,6 @@ package com.mygdx.game.fichier;
 import com.mygdx.game.DataBase.DaosAccess;
 import com.mygdx.game.DataBase.NoteDaoInterface;
 import com.mygdx.game.DataBase.SongDaoInterface;
-import com.mygdx.game.android.DataBase.AndroidDaosAccess;
-import com.mygdx.game.fichier.Chanson;
-import com.mygdx.game.fichier.Difficulte;
-import com.mygdx.game.fichier.Note;
-import com.mygdx.game.fichier.TypeDifficultee;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,7 +19,7 @@ public class Lecture {
     private TypeDifficultee difficulteLue;
     int duree,position,temps;
     private String titre;
-private DaosAccess dao=null;
+    private DaosAccess dao=null;
 
     public Lecture(DaosAccess daosAccess) {
         this.difficulteLue = null;
@@ -83,8 +78,8 @@ private DaosAccess dao=null;
 
         for(Chanson c :listeChanson) {
             dao.getSongDao().add(c);
-           //chercher id chanson l'ajouter dans la note
             c.setIdChanson(dao.getSongDao().findId(c));
+            System.out.println(dao.getSongDao().findId(c));
             for(Note n : listNote){
                 n.setIdChanson(c.getIdChanson());
                 dao.getNoteDao().add(n);
