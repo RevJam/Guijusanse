@@ -17,7 +17,6 @@ import com.mygdx.game.menu.ThirdMenu;
 import java.io.IOException;
 
 public class MyGdxGame extends Game {
-    // Faux jeu pour le moment
 
     // Différents menus
     private FirstMenu fm;
@@ -34,7 +33,7 @@ public class MyGdxGame extends Game {
     // Variable pour le Jeu
     private GoGame gogame;
     private String difficulty;
-    private  String song;
+    private String song;
     // 0 = OnePlayer, 1 = Multi
     private int typeplayer;
     private int score = 0;
@@ -51,24 +50,12 @@ public class MyGdxGame extends Game {
 
     @Override
     public void create () {
-
         // Initialisation variable Jeu
         difficulty = "";
         song = "";
         typeplayer = -1;
         largeur = Gdx.graphics.getWidth();
         longueur = Gdx.graphics.getHeight();
-
-
-        // Initialisation Screen Jeu
-        //Texture chien =new Texture(Gdx.files.internal("image/chien.jpg"));
-        Texture chat = new Texture(Gdx.files.internal("badlogic.jpg"));
-       // Texture panda = new Texture(Gdx.files.internal("image/panda.gif"));
-        try {
-            gogame = new GoGame(this, chat);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         // Initialisation Screen Menus
         fm = new FirstMenu(this);
@@ -190,6 +177,10 @@ public class MyGdxGame extends Game {
 
     public void setMusic(Music music) {
         this.music = music;
+    }
+
+    public DaosAccess getDaosAccess() {
+        return daosAccess;
     }
 
     @Override
