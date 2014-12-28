@@ -84,12 +84,12 @@ public class ThirdMenu implements Screen {
         buttonSong.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.getSongm().list.size() == 0){
-                    game.getSongm().song.clear();
+                if (game.getSongm().listChanson.size() == 0){
+                    game.getSongm().listeSong.clear();
                     game.getSongm().table.clear();
                     game.getSongm().table.add(game.getSongm().title).padBottom((game.getLongueur()/5)).row();
                     TextButton button = new TextButton("Retour Precedent", skin);
-                    game.getSongm().song.add(button);
+                    game.getSongm().listeSong.add(button);
                     game.getSongm().table.add(button).size( game.getLargeur(),(game.getLongueur()/10)).padBottom(20).row();
                 }
                 game.setScreen(game.getSongm());
