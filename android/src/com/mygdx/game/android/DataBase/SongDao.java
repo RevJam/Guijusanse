@@ -28,6 +28,7 @@ public class SongDao extends Dao implements SongDaoInterface{
     @Override
     public void add(Chanson chanson) {
         open();
+        System.out.println(chanson.toString());
         ContentValues value = new ContentValues();
         value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
         value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
@@ -110,12 +111,13 @@ public class SongDao extends Dao implements SongDaoInterface{
     public List<Chanson> getAll() throws Exception{
         open();
         List<Chanson> liste = new ArrayList<Chanson>();
-        Chanson chanson = new Chanson();
+        Chanson chanson;
         Cursor c = mDb.rawQuery("select id, "+DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+" from "+ DataBaseMaker.SONG_TABLE+" ",null);
         while (c.moveToNext()) {
-            chanson.setIdChanson(c.getInt(0));
-            chanson.setTitle(c.getString(1));
-            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(2)));
+            chanson = new Chanson();
+            chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
+            chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
+            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             liste.add(chanson);
         }
         c.close();
