@@ -12,8 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.fichier.Chanson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jamu on 28/10/14.
@@ -23,9 +25,9 @@ public class SongMenu implements Screen {
     Skin skin;
     Table table;
     Stage stage;
-    ArrayList<TextButton> song;
+    List<TextButton> song;
     Label title;
-    ArrayList<String> list;
+    List<Chanson> list;
 
     public SongMenu(MyGdxGame game) {
         this.game = game;
@@ -49,7 +51,11 @@ public class SongMenu implements Screen {
         table.add(title).padBottom((game.getLongueur()/5)).row();
 
         // On crée une liste pour les chansons OK
-        list = new ArrayList<String>();
+        try {
+            list = game.getDaosAccess().getSongDao().getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Crée une liste de boutons
         song = new ArrayList<TextButton>();
@@ -72,7 +78,6 @@ public class SongMenu implements Screen {
     }
 
     public void show() {
-
         //On active nos boutons
         // Liste des chansons selon la difficulté.
         for (final TextButton button : song) {

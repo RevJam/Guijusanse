@@ -3,7 +3,7 @@ package com.mygdx.game.android.DataBase;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
 import com.mygdx.game.DataBase.SongDaoInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.TypeDifficultee;
