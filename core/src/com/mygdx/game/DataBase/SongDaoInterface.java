@@ -36,6 +36,12 @@ public interface SongDaoInterface{
     public Chanson get(int id);
 
     /**
+     * Renvoi l'id de la chanson voulue
+     * @param chanson
+     * @return
+     */
+    public int findId(Chanson chanson);
+    /**
      * Renvoie toute les chansons contenu dans la base de donnee
      * @return
      * @throws Exception

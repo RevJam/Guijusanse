@@ -14,7 +14,7 @@ public class Chanson {
     /**
      * liste de note
      */
-    private List<Note> listNote = new ArrayList<Note>();
+    private List<Note> listNote;
     /**
      * difficultée
      */
@@ -22,7 +22,7 @@ public class Chanson {
     /**
      * l'id de la chanson en base
      */
-    private int idChanson=-1;
+    private int idChanson;
 
     public Chanson(String title,TypeDifficultee difficulte,List<Note> listNote) {
         this.title = title;
@@ -31,9 +31,10 @@ public class Chanson {
     }
 
     public Chanson() {
-        title=null;
-        listNote=null;
-        difficulter=null;
+        idChanson = -1;
+        title = "";
+        listNote = new ArrayList<Note>();
+        difficulter = null;
     }
 
     public String getTitle() {
@@ -76,5 +77,9 @@ public class Chanson {
                 ", difficulter=" + difficulter +
                 ", idChanson=" + idChanson +
                 '}';
+    }
+
+    public boolean isEmpty(){
+        return title.isEmpty() && listNote.isEmpty() && difficulter == null && idChanson == -1;
     }
 }

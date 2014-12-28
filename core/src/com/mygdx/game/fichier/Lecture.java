@@ -1,10 +1,5 @@
 package com.mygdx.game.fichier;
 
-import com.mygdx.game.fichier.Chanson;
-import com.mygdx.game.fichier.Difficulte;
-import com.mygdx.game.fichier.Note;
-import com.mygdx.game.fichier.TypeDifficultee;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +21,6 @@ public class Lecture {
         this.difficulteLue = null;
         this.listNote = new ArrayList<Note>();
         this.listeChanson = new ArrayList<Chanson>();
-
     }
 
     public void lecture(InputStream input) throws IOException {

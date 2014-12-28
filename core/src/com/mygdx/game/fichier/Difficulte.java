@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class Difficulte {
 
-    private List<Chanson> listeChanson = null;
-    private TypeDifficultee type=null;
+    private List<Chanson> listeChanson;
+    private TypeDifficultee type;
 
     public Difficulte(){
         type=null;
@@ -35,6 +35,10 @@ public class Difficulte {
 
     public void setType(TypeDifficultee type) {
         this.type = type;
+    }
+
+    public boolean isEmpty(){
+        return type == null && listeChanson.isEmpty();
     }
 
 }

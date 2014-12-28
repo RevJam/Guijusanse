@@ -9,4 +9,6 @@ public interface DaosAccess {
 
     public SongDaoInterface getSongDao();
 
+    public ScoreDaoInterface getScoreDao();
+
 }

@@ -25,6 +25,7 @@ public class SongDao extends Dao implements SongDaoInterface{
      * @param chanson
      * @return
      */
+    @Override
     public void add(Chanson chanson) {
         open();
         ContentValues value = new ContentValues();
@@ -39,6 +40,7 @@ public class SongDao extends Dao implements SongDaoInterface{
      * @param id
      * @return
      */
+    @Override
     public void delete(int id) {
         open();
         mDb.delete(DataBaseMaker.SONG_TABLE," id = ?", new String[] {String.valueOf(id)});
@@ -49,6 +51,7 @@ public class SongDao extends Dao implements SongDaoInterface{
      * @param chanson
      * @return
      */
+    @Override
     public void update(Chanson chanson) {
         open();
         ContentValues value = new ContentValues();
@@ -57,21 +60,44 @@ public class SongDao extends Dao implements SongDaoInterface{
         mDb.update(DataBaseMaker.SONG_TABLE, value," id = ?", new String[] {String.valueOf(chanson.getIdChanson())});
     }
 
+
     /**
      * Renvoi une chanson en fonction de son id
      * @param id
      * @return
      */
+    @Override
     public Chanson get(int id) {
         open();
         Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
                 +  " from " + DataBaseMaker.SONG_TABLE
                 + " where id > ?", new String[]{String.valueOf(id)});
         Chanson chanson = new Chanson();
-        chanson.setIdChanson(c.getInt(0));
-        chanson.setTitle(c.getString(1));
-        chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(2)));
+        if(!c.isNull(0) && !c.isNull(1) && !c.isNull(2)) {
+            chanson.setIdChanson(c.getInt(0));
+            chanson.setTitle(c.getString(1));
+            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(2)));
+        }
         return chanson;
+    }
+
+    /**
+     * Renvoi l'id de la chanson voulue
+     *
+     * @param chanson
+     * @return
+     */
+    @Override
+    public int findId(Chanson chanson) {
+        open();
+        String[] params = new String[]{chanson.getTitle(),String.valueOf(chanson.getDifficulter())};
+        Cursor c = mDb.rawQuery("select id from "+ DataBaseMaker.SONG_TABLE
+                + " where "+ DataBaseMaker.SONG_NAME + " = ? and "
+                + DataBaseMaker.SONG_DIFFICULTY + " = ?", params);
+        if(c.isNull(0)){
+            return -1;
+        }
+        return c.getInt(0);
     }
 
     /**
@@ -79,6 +105,7 @@ public class SongDao extends Dao implements SongDaoInterface{
      * @return
      * @throws Exception
      */
+    @Override
     public List<Chanson> getAll() throws Exception{
         open();
         List<Chanson> liste = new ArrayList<Chanson>();

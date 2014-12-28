@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DataBaseHandler extends SQLiteOpenHelper {
 
-
     /**
      * Create a helper object to create, open, and/or manage a database.
      * This method always returns very quickly.  The database is not actually
@@ -38,6 +37,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         System.out.println("créations des tables");
         db.execSQL(DataBaseMaker.CREATE_SONG_TABLE);
         db.execSQL(DataBaseMaker.CREATE_NOTE_TABLE);
+        db.execSQL(DataBaseMaker.CREATE_SCORE_TABLE);
     }
 
     /**
@@ -63,6 +63,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DataBaseMaker.SONG_TABLE_DROP);
+        db.execSQL(DataBaseMaker.NOTE_TABLE_DROP);
+        db.execSQL(DataBaseMaker.SCORE_TABLE_DROP);
         onCreate(db);
     }
 }
