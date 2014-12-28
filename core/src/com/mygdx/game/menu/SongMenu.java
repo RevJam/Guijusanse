@@ -25,9 +25,9 @@ public class SongMenu implements Screen {
     Skin skin;
     Table table;
     Stage stage;
-    List<TextButton> song;
+    List<TextButton> listeSong;
     Label title;
-    List<Chanson> list;
+    List<Chanson> listChanson;
 
     public SongMenu(MyGdxGame game) {
         this.game = game;
@@ -51,15 +51,17 @@ public class SongMenu implements Screen {
         table.add(title).padBottom((game.getLongueur()/5)).row();
 
         // On crée une liste pour les chansons OK
+        listChanson = new ArrayList<Chanson>();
         try {
-            list = game.getDaosAccess().getSongDao().getAll();
+            listChanson=game.getDaosAccess().getSongDao().getAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         // Crée une liste de boutons
-        song = new ArrayList<TextButton>();
-
+        listeSong= new ArrayList<TextButton>(listChanson.size());
+        for(int i=0; i<listChanson.size(); i++){
+            listeSong.get(i).setText(listChanson.get(i).getTitle());
+        }
     }
 
     public void render(float delta) {
@@ -78,9 +80,10 @@ public class SongMenu implements Screen {
     }
 
     public void show() {
+
         //On active nos boutons
         // Liste des chansons selon la difficulté.
-        for (final TextButton button : song) {
+        for (final TextButton button : listeSong) {
             button.addListener(new ClickListener() {
                 TextButton t=button;
                 @Override
