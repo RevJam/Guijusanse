@@ -28,8 +28,9 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
         ContentValues value = new ContentValues();
         value.put(DataBaseMaker.SCORE_PLAYER, score.getPlayerName());
         value.put(DataBaseMaker.SCORE_SONGTITLE, score.getSongTitle());
-        System.out.println(value.size());
-        mDb.insert(DataBaseMaker.SONG_TABLE, null, value);
+        value.put(DataBaseMaker.SCORE_DIFFICULTY, String.valueOf(score.getDifficultee()));
+        value.put(DataBaseMaker.SCORE_SCORE, score.getScore());
+        mDb.insert(DataBaseMaker.SCORE_TABLE, null, value);
     }
 
     /**

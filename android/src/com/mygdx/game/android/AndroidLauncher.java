@@ -30,7 +30,7 @@ public class AndroidLauncher extends AndroidApplication {
         NoteDaoInterface noteDaoInterface = new NoteDao(this);
         ScoreDaoInterface scoreDaoInterface = new ScoreDao(this);
 
-        AndroidDaosAccess daosAccess = new AndroidDaosAccess(noteDaoInterface,songDaoInterface);
+        AndroidDaosAccess daosAccess = new AndroidDaosAccess(noteDaoInterface,songDaoInterface,scoreDaoInterface);
 
         Lecture lectur = new Lecture();
         try {

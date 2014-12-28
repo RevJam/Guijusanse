@@ -31,7 +31,6 @@ public class SongDao extends Dao implements SongDaoInterface{
         ContentValues value = new ContentValues();
         value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
         value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
-        System.out.println(value.size());
         mDb.insert(DataBaseMaker.SONG_TABLE, null, value);
     }
 
