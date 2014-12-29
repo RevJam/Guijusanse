@@ -28,11 +28,12 @@ public class SongDao extends Dao implements SongDaoInterface{
     @Override
     public void add(Chanson chanson) {
         open();
-        System.out.println(chanson.toString());
-        ContentValues value = new ContentValues();
-        value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
-        value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
-        mDb.insert(DataBaseMaker.SONG_TABLE, null, value);
+        if(findId(chanson) == -1) {
+            ContentValues value = new ContentValues();
+            value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
+            value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
+            mDb.insert(DataBaseMaker.SONG_TABLE, null, value);
+        }
     }
 
     /**

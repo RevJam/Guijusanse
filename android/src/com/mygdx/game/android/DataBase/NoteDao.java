@@ -27,12 +27,14 @@ public class NoteDao extends Dao implements NoteDaoInterface {
     @Override
     public void add(Note note) {
         open();
-        ContentValues value = new ContentValues();
-        value.put(DataBaseMaker.NOTE_TIME, note.getTemps());
-        value.put(DataBaseMaker.NOTE_POSITION, note.getPosition());
-        value.put(DataBaseMaker.NOTE_DUREE, note.getDuree());
-        value.put(DataBaseMaker.ID_SONG, note.getIdChanson());
-        mDb.insert(DataBaseMaker.NOTE_TABLE, null, value);
+        if(findId(note) == -1) {
+            ContentValues value = new ContentValues();
+            value.put(DataBaseMaker.NOTE_TIME, note.getTemps());
+            value.put(DataBaseMaker.NOTE_POSITION, note.getPosition());
+            value.put(DataBaseMaker.NOTE_DUREE, note.getDuree());
+            value.put(DataBaseMaker.ID_SONG, note.getIdChanson());
+            mDb.insert(DataBaseMaker.NOTE_TABLE, null, value);
+        }
     }
 
     /**
@@ -81,6 +83,29 @@ public class NoteDao extends Dao implements NoteDaoInterface {
             note.setIdChanson(c.getInt(4));
         }
         return note;
+    }
+
+    /**
+     * Renvoi l'id d'une note
+     *
+     * @param note
+     * @return
+     */
+    @Override
+    public int findId(Note note) {
+        open();
+        int id = -1;
+        String[] params = new String[]{String.valueOf(note.getTemps()),String.valueOf(note.getPosition()),String.valueOf(note.getDuree()),String.valueOf(note.getIdChanson())};
+        Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.NOTE_TABLE
+                + " where "+ DataBaseMaker.NOTE_TIME + "=? and "
+                + DataBaseMaker.NOTE_POSITION + "=? and "
+                + DataBaseMaker.NOTE_DUREE + "=? and "
+                + DataBaseMaker.ID_SONG + "=?", params);
+        while (c.moveToNext()) {
+            id = c.getInt(c.getColumnIndex("id"));
+        }
+        c.close();
+        return id;
     }
 
     /**

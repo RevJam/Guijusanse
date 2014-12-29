@@ -38,6 +38,13 @@ public interface NoteDaoInterface {
     public Note get(int id);
 
     /**
+     * Renvoi l'id d'une note
+     * @param note
+     * @return
+     */
+    public int findId(Note note);
+
+    /**
      * Renvoie toute les notes contenu dans la base de donnee
      * @return
      * @throws Exception
