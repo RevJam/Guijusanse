@@ -31,7 +31,7 @@ public class Jeu implements Screen {
     List<TextButton> difficulty;
     Chanson chanson;
     float vitesse;
-
+    Thread t;
     TextButton button1,button2,button3;
     public Jeu(MyGdxGame game) {
 
@@ -47,8 +47,6 @@ public class Jeu implements Screen {
         listNote.add(n1); listNote.add(n2); listNote.add(n3);
         chanson = new Chanson("ChansonA", TypeDifficultee.FACILE, listNote);
         vitesse = 1f;
-        System.out.println(game.getDifficulty()+"   <____________>  " +
-                ""+game.getSong());
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
@@ -93,11 +91,12 @@ public class Jeu implements Screen {
         button3.setSize(150,150);
         button3.setPosition(750, 100);
         stage.addActor(button3);
-        Thread t = new Thread() {
+       t= new Thread() {
             public void run() {
                 stage.addListener(new ClickListener(){
-                    @Override
+                  @Override
                     public void clicked(InputEvent event, float x, float y) {
+
                         if(button1.isPressed())
                             System.out.println("1");
                         if(button2.isPressed())
@@ -106,6 +105,7 @@ public class Jeu implements Screen {
                             System.out.println("3");
                     }
                 });
+
             }
         };
         t.start();
