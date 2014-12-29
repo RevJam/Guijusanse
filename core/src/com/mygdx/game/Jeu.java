@@ -76,6 +76,7 @@ public class Jeu implements Screen {
             stage.addActor(img);
         }
 
+
         button1 = new TextButton(null,skin,"buttontwo");
         button1.setSize(150, 150);
         button1.setPosition(150, 100);
