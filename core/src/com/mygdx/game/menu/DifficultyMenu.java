@@ -48,8 +48,8 @@ public class DifficultyMenu implements Screen{
         scroll = new ScrollPane(table);
         // Crée les différentes difficultés
         list = new ArrayList<String>();
-        list.add("Facile");
-        list.add("Normal");
+        list.add("FACILE");
+        list.add("NORMAL");
         //list.add("Difficult");
 
         // Crée les boutons des difficultés
@@ -77,7 +77,6 @@ public class DifficultyMenu implements Screen{
     }
 
     public void show() {
-
         //On active nos boutons
         for (final TextButton button : difficulty) {
             button.addListener(new ClickListener() {
@@ -100,6 +99,7 @@ public class DifficultyMenu implements Screen{
 
                     // Ajout des chansons OK dans le menu Song
                     try {
+                        System.out.println(t.getText().toString());
                         game.getSongm().listChanson = game.getDaosAccess().getSongDao().getSongByDifficulty(t.getText().toString());
                         for (Chanson c : game.getSongm().listChanson) {
                             System.out.print(c.getTitle());

@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.fichier.Chanson;
@@ -25,6 +22,7 @@ public class SongMenu implements Screen {
     Skin skin;
     Table table;
     Stage stage;
+    ScrollPane scrollPane;
     List<TextButton> listeSong;
     Label title;
     List<Chanson> listChanson;
@@ -66,6 +64,8 @@ public class SongMenu implements Screen {
             listeSong.add(button);
             table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         }
+
+
     }
 
     public void render(float delta) {
@@ -84,7 +84,6 @@ public class SongMenu implements Screen {
     }
 
     public void show() {
-
         //On active nos boutons
         // Liste des chansons selon la difficulté.
         for (final TextButton button : listeSong) {
