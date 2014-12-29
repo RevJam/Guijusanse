@@ -64,8 +64,6 @@ public class SongMenu implements Screen {
             listeSong.add(button);
             table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         }
-
-
     }
 
     public void render(float delta) {
