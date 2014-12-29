@@ -22,7 +22,7 @@ public class SongMenu implements Screen {
     Skin skin;
     Table table;
     Stage stage;
-    ScrollPane scrollPane;
+
     List<TextButton> listeSong;
     Label title;
     List<Chanson> listChanson;
@@ -77,6 +77,12 @@ public class SongMenu implements Screen {
 
     }
 
+    /**
+     * @param width
+     * @param height
+     * @see com.badlogic.gdx.ApplicationListener#resize(int, int)
+     */
+    @Override
     public void resize(int width, int height) {
 
     }
@@ -102,9 +108,8 @@ public class SongMenu implements Screen {
 
                 }
             });
+
         }
-
-
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
@@ -130,4 +135,5 @@ public class SongMenu implements Screen {
         skin.dispose();
         stage.dispose();
     }
+
 }
