@@ -98,14 +98,14 @@ public class SongMenu implements Screen {
                     if (game.getDifficulty().equals("")){
                         game.setScreen(game.getTmA());
                     }else{
+
                         // On enregistre la chanson selectionnée
-                        game.setSong(t.getText().toString());
+                        game.setSong(listeSong.get(event.getButton()).getText().toString());
                         //On l'affiche sur le menu
                         game.getTmA().buttonSong.setText(t.getText().toString());
                         //On retourne a l'ecran precedent
                         game.setScreen(game.getTmA());
                     }
-
                 }
             });
 

@@ -78,20 +78,21 @@ public class ThirdMenu implements Screen {
                 game.setScreen(game.getDm());
             }
         });
-        buttonSong.addListener(new ClickListener(){
+        buttonSong.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.getSongm().listChanson.size() == 0){
+                if (game.getSongm().listChanson.size() == 0) {
                     game.getSongm().listeSong.clear();
                     game.getSongm().table.clear();
-                    game.getSongm().table.add(game.getSongm().title).padBottom((game.getLongueur()/5)).row();
+                    game.getSongm().table.add(game.getSongm().title).padBottom((game.getLongueur() / 5)).row();
                     TextButton button = new TextButton("Retour Precedent", skin);
                     game.getSongm().listeSong.add(button);
-                    game.getSongm().table.add(button).size( game.getLargeur(),(game.getLongueur()/10)).padBottom(20).row();
+                    game.getSongm().table.add(button).size(game.getLargeur(), (game.getLongueur() / 10)).padBottom(20).row();
                 }
                 game.setScreen(game.getSongm());
             }
         });
+
         buttonPlay.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
