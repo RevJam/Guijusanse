@@ -4,11 +4,30 @@ package com.mygdx.game.fichier;
  * Created by juliette on 28/10/14
  */
 public class Note {
+    /**
+     * temps
+     */
     private int temps;
+    /**
+     * position
+     */
     private int position;
+    /**
+     * duree
+     */
     private int duree;
-private int idChanson=-1;
-private int idNote=-1;
+    /**
+     * id de la chanson
+     */
+    private int idChanson=-1;
+    /**
+     * id de la note
+     */
+    private int idNote=-1;
+
+    /**
+     * constructeur par défaut
+     */
     public Note() {
         this.temps=-1;
         this.position=-1;

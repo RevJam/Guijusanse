@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 
@@ -24,7 +21,7 @@ public class ThirdMenu implements Screen {
     Stage stage;
     TextButton buttonPlay, buttonReturn, buttonDifficulty, buttonSong;
     Label title;
-
+    ScrollPane scroll;
     public ThirdMenu(MyGdxGame game) {
         this.game = game;
 
@@ -55,7 +52,7 @@ public class ThirdMenu implements Screen {
         table.add(buttonSong).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         table.add(buttonPlay).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         table.add(buttonReturn).size( game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
-
+        scroll = new ScrollPane(table);
     }
 
     public void render(float delta) {
@@ -84,12 +81,12 @@ public class ThirdMenu implements Screen {
         buttonSong.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.getSongm().list.size() == 0){
-                    game.getSongm().song.clear();
+                if (game.getSongm().listChanson.size() == 0){
+                    game.getSongm().listeSong.clear();
                     game.getSongm().table.clear();
                     game.getSongm().table.add(game.getSongm().title).padBottom((game.getLongueur()/5)).row();
                     TextButton button = new TextButton("Retour Precedent", skin);
-                    game.getSongm().song.add(button);
+                    game.getSongm().listeSong.add(button);
                     game.getSongm().table.add(button).size( game.getLargeur(),(game.getLongueur()/10)).padBottom(20).row();
                 }
                 game.setScreen(game.getSongm());
@@ -101,7 +98,7 @@ public class ThirdMenu implements Screen {
                 if(game.getTypeplayer() == 1){
                     // game.setScreen(game.Waitgame());
                 }else {
-                    game.setScreen(game.getGogame());
+                    game.setScreen(game.getEcranJeu());
                 }
             }
         });

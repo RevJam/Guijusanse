@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.fichier.Chanson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jamu on 28/10/14.
@@ -23,10 +22,10 @@ public class DifficultyMenu implements Screen{
     Skin skin;
     Table table;
     Stage stage;
-    ArrayList<TextButton> difficulty;
+    List<TextButton> difficulty;
     Label title;
-    ArrayList<String> list;
-
+    List<String> list;
+    ScrollPane scroll;
     public DifficultyMenu(MyGdxGame game) {
         this.game = game;
 
@@ -46,12 +45,12 @@ public class DifficultyMenu implements Screen{
         // Ajout du titre
         title = new Label("GuiJuSanSe",skin);
         table.add(title).padBottom((game.getLongueur()/5)).row();
-
+        scroll = new ScrollPane(table);
         // Crée les différentes difficultés
         list = new ArrayList<String>();
-        list.add("Easy");
-        list.add("Normal");
-        list.add("Difficult");
+        list.add("FACILE");
+        list.add("NORMAL");
+        //list.add("Difficult");
 
         // Crée les boutons des difficultés
         difficulty = new ArrayList<TextButton>();
@@ -60,7 +59,6 @@ public class DifficultyMenu implements Screen{
             difficulty.add(button);
             table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         }
-
     }
 
     public void render(float delta) {
@@ -79,7 +77,6 @@ public class DifficultyMenu implements Screen{
     }
 
     public void show() {
-
         //On active nos boutons
         for (final TextButton button : difficulty) {
             button.addListener(new ClickListener() {
@@ -88,9 +85,9 @@ public class DifficultyMenu implements Screen{
                 public void clicked(InputEvent event, float x, float y) {
                     // On remet le menu Song à plat (Si on fait un new, ca lag un peu. Donc mieux ainsi)
                     game.setSong("");
-                    game.getSongm().list.clear();
+                    game.getSongm().listChanson.clear();
                     game.getSongm().table.clear();
-                    game.getSongm().song.clear();
+                    game.getSongm().listeSong.clear();
                     game.getSongm().table.add(title).padBottom((game.getLongueur()/5)).row();
                     game.getTmA().buttonSong.setText("Choix Chanson");
 
@@ -101,14 +98,19 @@ public class DifficultyMenu implements Screen{
                     game.getTmA().buttonDifficulty.setText(t.getText().toString());
 
                     // Ajout des chansons OK dans le menu Song
-                    game.getSongm().list.add("Song1");
-                    game.getSongm().list.add("Song2");
-                    game.getSongm().list.add("Song3");
-                    for (String s : game.getSongm().list) {
-                        TextButton button = new TextButton(s, skin);
-                        game.getSongm().song.add(button);
-                        game.getSongm().table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+                    try {
+                        System.out.println(t.getText().toString());
+                        game.getSongm().listChanson = game.getDaosAccess().getSongDao().getSongByDifficulty(t.getText().toString());
+                        for (Chanson c : game.getSongm().listChanson) {
+                            System.out.print(c.getTitle());
+                            TextButton button = new TextButton(c.getTitle(), skin);
+                            game.getSongm().listeSong.add(button);
+                            game.getSongm().table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+
 
                     // On retourne a l'écran précédent
                     game.setScreen(game.getTmA());

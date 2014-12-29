@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.mygdx.game.MyGdxGame;
@@ -24,7 +21,7 @@ public class FirstMenu implements Screen {
     Stage stage;
     TextButton buttonPlay, buttonExit, buttonOption;
     Label title;
-
+ScrollPane scroll;
     public FirstMenu(MyGdxGame game) {
         this.game = game;
 
@@ -53,7 +50,7 @@ public class FirstMenu implements Screen {
         table.add(buttonPlay).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         table.add(buttonOption).size( game.getLargeur(),(game.getLongueur()/10)).padBottom(20).row();
         table.add(buttonExit).size( game.getLargeur(),(game.getLongueur()/10)).padBottom(20).row();
-
+        scroll = new ScrollPane(table);
     }
 
     public void render(float delta) {

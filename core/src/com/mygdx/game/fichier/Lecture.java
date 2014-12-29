@@ -1,14 +1,10 @@
 package com.mygdx.game.fichier;
 
-import com.mygdx.game.fichier.Chanson;
-import com.mygdx.game.fichier.Difficulte;
-import com.mygdx.game.fichier.Note;
-import com.mygdx.game.fichier.TypeDifficultee;
+import com.mygdx.game.DataBase.DaosAccess;
+import com.mygdx.game.DataBase.NoteDaoInterface;
+import com.mygdx.game.DataBase.SongDaoInterface;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +19,19 @@ public class Lecture {
     private TypeDifficultee difficulteLue;
     int duree,position,temps;
     private String titre;
+    private DaosAccess dao=null;
 
-
-    public Lecture() {
+    public Lecture(DaosAccess daosAccess) {
         this.difficulteLue = null;
         this.listNote = new ArrayList<Note>();
         this.listeChanson = new ArrayList<Chanson>();
-
+        dao=daosAccess;
     }
 
-    public void lecture(String input) throws IOException {
+    public void lecture(InputStream input) throws IOException {
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(input));
+            BufferedReader br = new BufferedReader(new InputStreamReader(input));
             String str;
             while ((str = br.readLine()) != null ){
                 int difficulty = Integer.parseInt(str);
@@ -76,6 +72,18 @@ public class Lecture {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        SongDaoInterface songDaoInterface = null;
+        NoteDaoInterface noteDaoInterface = null;
+
+        for(Chanson c :listeChanson) {
+            dao.getSongDao().add(c);
+            c.setIdChanson(dao.getSongDao().findId(c));
+            System.out.println(dao.getSongDao().findId(c));
+            for(Note n : listNote){
+                n.setIdChanson(c.getIdChanson());
+                dao.getNoteDao().add(n);
+            }
         }
     }
 }
