@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.Note;
-import com.mygdx.game.fichier.TypeDifficultee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +28,12 @@ public class Jeu implements Screen {
     Skin skin;
     Table table;
     Stage stage;
-    List<TextButton> difficulty;
     Chanson chanson;
     float vitesse;
     Thread t;
     private Music music;
     TextButton button1,button2,button3;
+    List<Note> listNote;
     public Jeu(MyGdxGame game) {
 
         myGdxGame=game;
@@ -48,15 +47,20 @@ public class Jeu implements Screen {
         //Va chercher la chanson dans la base: Pour le moment, une liste de test
         chanson=myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong(),myGdxGame.getDifficulty());
 
-        List<Note> listNote = new ArrayList<Note>();
+        listNote= new ArrayList<Note>();
         try {
             listNote=myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
      chanson.setListNote(listNote);
-
-
+if(chanson.getListNote().isEmpty()) {
+    System.out.println();
+    System.out.println("la   liste de note est vide !!!!!   ");
+}else{
+    System.out.println("la liste n'st pas vide");
+}
         vitesse = 1f;
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
@@ -166,6 +170,7 @@ public class Jeu implements Screen {
         music.setLooping(true);
         music.setVolume(0.5f);
         music.play();
+
     }
 
     /**
@@ -174,6 +179,7 @@ public class Jeu implements Screen {
     @Override
     public void hide() {
         t.interrupt();
+        music.pause();
     }
 
     /**
@@ -182,6 +188,7 @@ public class Jeu implements Screen {
     @Override
     public void pause() {
         t.interrupt();
+        music.pause();
     }
 
     /**
@@ -190,6 +197,7 @@ public class Jeu implements Screen {
     @Override
     public void resume() {
         t.interrupt();
+        music.pause();
     }
 
     /**

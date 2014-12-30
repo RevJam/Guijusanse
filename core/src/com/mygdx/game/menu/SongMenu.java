@@ -96,8 +96,14 @@ public class SongMenu implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (game.getDifficulty().equals("")){
+                        game.setSong("");
+
+                        // On enregistre la chanson selectionnée
+                        game.setSong(button.getText().toString());
                         game.setScreen(game.getTmA());
+
                     }else{
+                        game.setSong("");
                         // On enregistre la chanson selectionnée
                         game.setSong(button.getText().toString());
                         //On l'affiche sur le menu
