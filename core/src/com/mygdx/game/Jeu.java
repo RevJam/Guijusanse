@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -32,6 +33,7 @@ public class Jeu implements Screen {
     Chanson chanson;
     float vitesse;
     Thread t;
+    private Music music;
     TextButton button1,button2,button3;
     public Jeu(MyGdxGame game) {
 
@@ -39,6 +41,10 @@ public class Jeu implements Screen {
         table=new Table();
         stage = new Stage();
 
+        //Va chercher la chanson dans la base
+        //recuperer la chanson avec le titre et la difficlutée en base,
+        //recuperer la liste de note
+        //lancer de décompte des notes ( le faite que ça descende)
         //Va chercher la chanson dans la base: Pour le moment, une liste de test
         final List<Note> listNote = new ArrayList<Note>();
         Note n1 = new Note(3, 0, 0);
@@ -46,12 +52,14 @@ public class Jeu implements Screen {
         Note n3 = new Note(10, 0, 2);
         listNote.add(n1); listNote.add(n2); listNote.add(n3);
         chanson = new Chanson("ChansonA", TypeDifficultee.FACILE, listNote);
+
+
         vitesse = 1f;
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
         //Crée la liste d'image correspondant au note.
-        MoveToAction moveAction;
+       MoveToAction moveAction;
         Image img;
         for(Note n: chanson.getListNote()){
             img = null;
@@ -91,12 +99,11 @@ public class Jeu implements Screen {
         button3.setSize(150,150);
         button3.setPosition(750, 100);
         stage.addActor(button3);
-       t= new Thread() {
+        t= new Thread() {
             public void run() {
                 stage.addListener(new ClickListener(){
-                  @Override
+                    @Override
                     public void clicked(InputEvent event, float x, float y) {
-
                         if(button1.isPressed())
                             System.out.println("1");
                         if(button2.isPressed())
@@ -109,9 +116,6 @@ public class Jeu implements Screen {
             }
         };
         t.start();
-
-
-
     }
 
     /**
@@ -127,6 +131,7 @@ public class Jeu implements Screen {
 
         //Couper la musique
         myGdxGame.getMusic().stop();
+
         // On lance la scene et la met en visible
         stage.act();
         stage.draw();
@@ -153,6 +158,11 @@ public class Jeu implements Screen {
 
         // On place la scène
         Gdx.input.setInputProcessor(stage);
+        String s=myGdxGame.getSong().replaceAll("[\\W]","");
+        music=Gdx.audio.newMusic(Gdx.files.internal("sound/"+ s+".mp3"));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+        music.play();
     }
 
     /**
@@ -160,7 +170,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void hide() {
-
+        t.interrupt();
     }
 
     /**
@@ -168,7 +178,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void pause() {
-
+        t.interrupt();
     }
 
     /**
@@ -176,7 +186,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void resume() {
-
+        t.interrupt();
     }
 
     /**
