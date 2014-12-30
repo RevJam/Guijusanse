@@ -79,12 +79,12 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
                 + ", " + DataBaseMaker.SCORE_SCORE
                 + " where id = ?", new String[]{String.valueOf(id)});
         Score score = new Score();
-        if(!c.isNull(0) && !c.isNull(1) && !c.isNull(2) && !c.isNull(3) && !c.isNull(4)) {
-            score.setIdScore(c.getInt(0));
-            score.setPlayerName(c.getString(1));
-            score.setSongTitle(c.getString(2));
-            score.setDifficultee(TypeDifficultee.valueOf(c.getString(3)));
-            score.setScore(c.getInt(4));
+       while(c.moveToNext()){
+            score.setIdScore(c.getInt(c.getColumnIndex("id")));
+            score.setPlayerName(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_PLAYER)));
+            score.setSongTitle(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_SONGTITLE)));
+            score.setDifficultee(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_DIFFICULTY))));
+            score.setScore(c.getInt(c.getColumnIndex(DataBaseMaker.SCORE_SCORE)));
         }
         return score;
     }
@@ -103,11 +103,11 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
                 DataBaseMaker.SCORE_PLAYER,DataBaseMaker.SCORE_SONGTITLE,
                 DataBaseMaker.SCORE_DIFFICULTY,DataBaseMaker.SCORE_SCORE},"*", null, null, null, null);
         while (c.moveToNext()) {
-            score.setIdScore(c.getInt(0));
-            score.setPlayerName(c.getString(1));
-            score.setSongTitle(c.getString(2));
-            score.setDifficultee(TypeDifficultee.valueOf(c.getString(3)));
-            score.setScore(c.getInt(4));
+            score.setIdScore(c.getInt(c.getColumnIndex("id")));
+            score.setPlayerName(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_PLAYER)));
+            score.setSongTitle(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_SONGTITLE)));
+            score.setDifficultee(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_DIFFICULTY))));
+            score.setScore(c.getInt(c.getColumnIndex(DataBaseMaker.SCORE_SCORE)));
             liste.add(score);
         }
         c.close();
