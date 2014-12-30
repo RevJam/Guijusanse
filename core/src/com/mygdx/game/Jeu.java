@@ -132,7 +132,7 @@ public class Jeu implements Screen {
         Gdx.input.setInputProcessor(stage);
         String s = chanson.getTitle().replaceAll("[\\W]", "");
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/" + s + ".mp3"));
-        music.setLooping(true);
+        music.setLooping(false);
         music.setVolume(0.5f);
         music.play();
 
@@ -149,18 +149,18 @@ public class Jeu implements Screen {
 
             if (note.getPosition() == 0) {
                 img = new Image(new Texture("skin/bB.png"));
-                img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
-                moveAction.setPosition(150f, -300f);
+                img.setPosition(150, myGdxGame.getLongueur() + vitesse * note.getDuree() + note.getTemps());
+                moveAction.setPosition(150f, -300f-note.getTemps());
 
             } else if (note.getPosition() == 1) {
                 img = new Image(new Texture("skin/bA.png"));
-                img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
-                moveAction.setPosition(450f, -300f);
+                img.setPosition(450, myGdxGame.getLongueur() + vitesse * note.getDuree() + note.getTemps());
+                moveAction.setPosition(450f, -300f-note.getTemps());
 
             } else if (note.getPosition() == 2) {
                 img = new Image(new Texture("skin/bC.png"));
-                img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
-                moveAction.setPosition(750f, -300f);
+                img.setPosition(750, myGdxGame.getLongueur() + vitesse *note.getDuree() + note.getTemps());
+                moveAction.setPosition(750f, -300f-note.getTemps());
             }
             img.setSize(150, 150);
             img.addListener(new ClickListener() {
@@ -181,7 +181,6 @@ public class Jeu implements Screen {
             img.addAction(moveAction);
             stage.addActor(img);
         }
-
     }
 
     /**
