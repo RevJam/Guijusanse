@@ -37,7 +37,6 @@ public class Lecture {
                 listNote = new ArrayList<Note>();
                 int difficulty = Integer.parseInt(str);
                 titre =br.readLine();
-                System.out.println(titre);
                 int nombreNoteALire = Integer.parseInt(br.readLine());
                 for(int i = 0; i< nombreNoteALire; i++ ){
                     String [] notes = br.readLine().split("\\| ");

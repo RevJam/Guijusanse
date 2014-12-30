@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.mygdx.game.DataBase.NoteDaoInterface;
 import com.mygdx.game.DataBase.SongDaoInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.TypeDifficultee;

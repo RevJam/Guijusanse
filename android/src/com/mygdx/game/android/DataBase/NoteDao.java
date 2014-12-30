@@ -28,6 +28,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
     public void add(Note note) {
         open();
         if(findId(note) == -1) {
+            System.out.println(note.toString());
             ContentValues value = new ContentValues();
             value.put(DataBaseMaker.NOTE_TIME, note.getTemps());
             value.put(DataBaseMaker.NOTE_POSITION, note.getPosition());
@@ -76,11 +77,11 @@ public class NoteDao extends Dao implements NoteDaoInterface {
                 + " where id = ?", new String[]{String.valueOf(id)});
         Note note = new Note();
         while(c.moveToNext()) {
-            note.setIdNote(c.getInt(0));
-            note.setTemps(c.getInt(1));
-            note.setPosition(c.getInt(2));
-            note.setDuree(c.getInt(3));
-            note.setIdChanson(c.getInt(4));
+            note.setIdNote(c.getInt(c.getColumnIndex("id")));
+            note.setTemps(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_TIME)));
+            note.setPosition(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_POSITION)));
+            note.setDuree(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_DUREE)));
+            note.setIdChanson(c.getInt(c.getColumnIndex(DataBaseMaker.ID_SONG)));
         }
         return note;
     }
@@ -117,15 +118,16 @@ public class NoteDao extends Dao implements NoteDaoInterface {
     public List<Note> getAll() throws Exception{
         open();
         List<Note> liste = new ArrayList<Note>();
-        Note note = new Note();
+        Note note;
         Cursor c = mDb.query(DataBaseMaker.NOTE_TABLE, new String[]{"id",
                 DataBaseMaker.NOTE_TIME,DataBaseMaker.NOTE_POSITION,DataBaseMaker.NOTE_DUREE,DataBaseMaker.ID_SONG},"*", null, null, null, null);
         while (c.moveToNext()) {
-            note.setIdNote(c.getInt(0));
-            note.setTemps(c.getInt(1));
-            note.setPosition(c.getInt(2));
-            note.setDuree(c.getInt(3));
-            note.setIdChanson(c.getInt(4));
+            note = new Note();
+            note.setIdNote(c.getInt(c.getColumnIndex("id")));
+            note.setTemps(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_TIME)));
+            note.setPosition(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_POSITION)));
+            note.setDuree(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_DUREE)));
+            note.setIdChanson(c.getInt(c.getColumnIndex(DataBaseMaker.ID_SONG)));
            liste.add(note);
         }
         c.close();
@@ -142,15 +144,16 @@ public class NoteDao extends Dao implements NoteDaoInterface {
     public List<Note> getAllBySongId(int idSong) throws Exception {
         open();
         List<Note> liste = new ArrayList<Note>();
-        Note note = new Note();
+        Note note;
         Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.NOTE_TABLE
                 + " where " + DataBaseMaker.ID_SONG + "=?", new String[]{String.valueOf(idSong)});
         while (c.moveToNext()) {
-            note.setIdNote(c.getInt(0));
-            note.setTemps(c.getInt(1));
-            note.setPosition(c.getInt(2));
-            note.setDuree(c.getInt(3));
-            note.setIdChanson(c.getInt(4));
+            note = new Note();
+            note.setIdNote(c.getInt(c.getColumnIndex("id")));
+            note.setTemps(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_TIME)));
+            note.setPosition(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_POSITION)));
+            note.setDuree(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_DUREE)));
+            note.setIdChanson(c.getInt(c.getColumnIndex(DataBaseMaker.ID_SONG)));
             liste.add(note);
         }
         c.close();
