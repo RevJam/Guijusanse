@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.mygdx.game.DataBase.NoteDaoInterface;
 import com.mygdx.game.DataBase.SongDaoInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.TypeDifficultee;
@@ -28,7 +29,6 @@ public class SongDao extends Dao implements SongDaoInterface{
     @Override
     public void add(Chanson chanson) {
         open();
-        System.out.println(chanson.toString());
         if(findId(chanson) == -1) {
             ContentValues value = new ContentValues();
             value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
@@ -76,9 +76,33 @@ public class SongDao extends Dao implements SongDaoInterface{
                 + " where id=?", new String[]{String.valueOf(id)});
         Chanson chanson = new Chanson();
        while(c.moveToNext()){
-            chanson.setIdChanson(c.getInt(0));
-            chanson.setTitle(c.getString(1));
-            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(2)));
+            chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
+            chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
+            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+        }
+        return chanson;
+    }
+
+    /**
+     * recupere une chanson par rapport a un titre et une difficulte
+     *
+     * @param titre
+     * @param difficulte
+     * @return
+     */
+    @Override
+    public Chanson getByTitle(String titre, String difficulte) {
+        open();
+        Chanson chanson = new Chanson();
+        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
+                +  " from " + DataBaseMaker.SONG_TABLE
+                + " where " + DataBaseMaker.SONG_NAME
+                + "=? and " + DataBaseMaker.SONG_DIFFICULTY
+                + "=?", new String[]{titre,difficulte});
+        while(c.moveToNext()){
+            chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
+            chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
+            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
         }
         return chanson;
     }

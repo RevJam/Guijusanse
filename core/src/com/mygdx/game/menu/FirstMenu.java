@@ -21,7 +21,8 @@ public class FirstMenu implements Screen {
     Stage stage;
     TextButton buttonPlay, buttonExit, buttonOption;
     Label title;
-ScrollPane scroll;
+    ScrollPane scroll;
+
     public FirstMenu(MyGdxGame game) {
         this.game = game;
 

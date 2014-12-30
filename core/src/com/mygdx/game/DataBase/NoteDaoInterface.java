@@ -50,4 +50,11 @@ public interface NoteDaoInterface {
      * @throws Exception
      */
     public List<Note> getAll() throws Exception;
+
+    /**
+     * renvoi une liste de note par rapport à l'id d'une chanson
+     * @return
+     * @throws Exception
+     */
+    public List<Note> getAllBySongId(int idSong) throws Exception;
 }

@@ -131,4 +131,31 @@ public class NoteDao extends Dao implements NoteDaoInterface {
         c.close();
         return liste;
     }
+
+    /**
+     * renvoi une liste de note par rapport à l'id d'une chanson
+     *
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Note> getAllBySongId(int idSong) throws Exception {
+        open();
+        List<Note> liste = new ArrayList<Note>();
+        Note note = new Note();
+        Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.NOTE_TABLE
+                + " where " + DataBaseMaker.ID_SONG + "=?", new String[]{String.valueOf(idSong)});
+        while (c.moveToNext()) {
+            note.setIdNote(c.getInt(0));
+            note.setTemps(c.getInt(1));
+            note.setPosition(c.getInt(2));
+            note.setDuree(c.getInt(3));
+            note.setIdChanson(c.getInt(4));
+            liste.add(note);
+        }
+        c.close();
+        return liste;
+    }
+
+
 }
