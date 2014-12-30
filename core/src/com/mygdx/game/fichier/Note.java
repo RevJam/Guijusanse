@@ -79,4 +79,15 @@ public class Note {
     public void setIdNote(int idNote) {
         this.idNote = idNote;
     }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "temps=" + temps +
+                ", position=" + position +
+                ", duree=" + duree +
+                ", idChanson=" + idChanson +
+                ", idNote=" + idNote +
+                '}';
+    }
 }

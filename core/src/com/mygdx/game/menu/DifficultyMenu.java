@@ -26,6 +26,7 @@ public class DifficultyMenu implements Screen{
     Label title;
     List<String> list;
     ScrollPane scroll;
+
     public DifficultyMenu(MyGdxGame game) {
         this.game = game;
 
@@ -46,6 +47,7 @@ public class DifficultyMenu implements Screen{
         title = new Label("GuiJuSanSe",skin);
         table.add(title).padBottom((game.getLongueur()/5)).row();
         scroll = new ScrollPane(table);
+
         // Crée les différentes difficultés
         list = new ArrayList<String>();
         list.add("FACILE");
@@ -83,6 +85,7 @@ public class DifficultyMenu implements Screen{
                 TextButton t=button;
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+
                     // On remet le menu Song à plat (Si on fait un new, ca lag un peu. Donc mieux ainsi)
                     game.setSong("");
                     game.getSongm().listChanson.clear();
@@ -99,10 +102,8 @@ public class DifficultyMenu implements Screen{
 
                     // Ajout des chansons OK dans le menu Song
                     try {
-                        System.out.println(t.getText().toString());
                         game.getSongm().listChanson = game.getDaosAccess().getSongDao().getSongByDifficulty(t.getText().toString());
                         for (Chanson c : game.getSongm().listChanson) {
-                            System.out.print(c.getTitle());
                             TextButton button = new TextButton(c.getTitle(), skin);
                             game.getSongm().listeSong.add(button);
                             game.getSongm().table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
@@ -110,8 +111,6 @@ public class DifficultyMenu implements Screen{
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
                     // On retourne a l'écran précédent
                     game.setScreen(game.getTmA());
                 }

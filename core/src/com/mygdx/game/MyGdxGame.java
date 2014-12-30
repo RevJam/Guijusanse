@@ -3,11 +3,9 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Texture;
 
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.mygdx.game.DataBase.DaosAccess;
-import com.mygdx.game.fichier.Lecture;
+
 import com.mygdx.game.menu.DifficultyMenu;
 import com.mygdx.game.menu.FirstMenu;
 import com.mygdx.game.menu.MultiMenu;
@@ -15,7 +13,6 @@ import com.mygdx.game.menu.SecondMenu;
 import com.mygdx.game.menu.SongMenu;
 import com.mygdx.game.menu.ThirdMenu;
 
-import java.io.IOException;
 
 public class MyGdxGame extends Game {
 
@@ -35,6 +32,7 @@ public class MyGdxGame extends Game {
     private Jeu ecranJeu;
     private String difficulty;
     private String song;
+
     // 0 = OnePlayer, 1 = Multi
     private int typeplayer;
 
@@ -65,6 +63,7 @@ public class MyGdxGame extends Game {
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
         ecranJeu=new Jeu(this);
+
         // Music
         music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
         music.setLooping(true);
@@ -73,7 +72,6 @@ public class MyGdxGame extends Game {
 
         //Lancer le premier Menu
         setScreen(fm);
-
     }
 
     public FirstMenu getFm() {

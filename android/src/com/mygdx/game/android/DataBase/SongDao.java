@@ -84,6 +84,27 @@ public class SongDao extends Dao implements SongDaoInterface{
     }
 
     /**
+     * recupere une chanson par rapport a un titre
+     *
+     * @param title
+     * @return
+     */
+    @Override
+    public Chanson getByTitle(String title) {
+        open();
+        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
+                +  " from " + DataBaseMaker.SONG_TABLE
+                + " where " + DataBaseMaker.SONG_NAME + "=?", new String[]{title});
+        Chanson chanson = new Chanson();
+        while(c.moveToNext()){
+            chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
+            chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
+            chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+        }
+        return chanson;
+    }
+
+    /**
      * recupere une chanson par rapport a un titre et une difficulte
      *
      * @param titre
@@ -91,7 +112,7 @@ public class SongDao extends Dao implements SongDaoInterface{
      * @return
      */
     @Override
-    public Chanson getByTitle(String titre, String difficulte) {
+    public Chanson getByTitleAndDifficulty(String titre, String difficulte) {
         open();
         Chanson chanson = new Chanson();
         Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY

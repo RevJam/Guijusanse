@@ -34,24 +34,29 @@ public class Lecture {
             BufferedReader br = new BufferedReader(new InputStreamReader(input));
             String str;
             while ((str = br.readLine()) != null ){
+                listNote = new ArrayList<Note>();
                 int difficulty = Integer.parseInt(str);
                 titre =br.readLine();
+                System.out.println(titre);
                 int nombreNoteALire = Integer.parseInt(br.readLine());
                 for(int i = 0; i< nombreNoteALire; i++ ){
                     String [] notes = br.readLine().split("\\| ");
                     try{
                         // any positive or negative integer or not!
-                        if(notes[0].matches("-?\\d+"))
-                            temps = Integer.parseInt(notes[0]);
-                        if(notes[1].matches("-?\\d+"))
-                            position = Integer.parseInt(notes[1]);
-                        if(notes[2].matches("-?\\d+"))
-                            duree = Integer.parseInt(notes[2]);
+                        if(notes[0].matches("-?\\d+ ")) {
+                            temps = Integer.parseInt(notes[0].substring(0,notes[0].length()-1));
+                        }
+                        if(notes[1].matches("-?\\d+ ")) {
+                            position = Integer.parseInt(notes[1].substring(0,notes[1].length()-1));
+                        }
+
+                        if(notes[2].matches("-?\\d+")){
+                            duree = Integer.parseInt(notes[2].substring(0,notes[2].length()-1));
+                        }
                     }catch(NumberFormatException nfe){
                         nfe.printStackTrace();
                     }
                     listNote.add(new Note(temps, duree, position));
-
                 }
                 switch (difficulty) {
                     case 0:
@@ -79,8 +84,7 @@ public class Lecture {
         for(Chanson c :listeChanson) {
             dao.getSongDao().add(c);
             c.setIdChanson(dao.getSongDao().findId(c));
-            System.out.println(dao.getSongDao().findId(c));
-            for(Note n : listNote){
+            for(Note n : c.getListNote()){
                 n.setIdChanson(c.getIdChanson());
                 dao.getNoteDao().add(n);
             }

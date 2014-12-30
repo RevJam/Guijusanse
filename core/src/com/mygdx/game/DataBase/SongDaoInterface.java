@@ -35,6 +35,12 @@ public interface SongDaoInterface{
      */
     public Chanson get(int id);
 
+    /**
+     * recupere une chanson par rapport a un titre
+     * @param title
+     * @return
+     */
+    public Chanson getByTitle(String title);
 
     /**
      * recupere une chanson par rapport a un titre et une difficulte
@@ -42,7 +48,7 @@ public interface SongDaoInterface{
      * @param difficulte
      * @return
      */
-    public Chanson getByTitle(String titre, String difficulte);
+    public Chanson getByTitleAndDifficulty(String titre, String difficulte);
 
     /**
      * Renvoi l'id de la chanson voulue

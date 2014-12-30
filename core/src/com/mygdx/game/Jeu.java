@@ -24,6 +24,7 @@ import java.util.List;
  * Created by juliette on 28/12/14.
  */
 public class Jeu implements Screen {
+
     MyGdxGame myGdxGame;
     Skin skin;
     Table table;
@@ -34,62 +35,15 @@ public class Jeu implements Screen {
     private Music music;
     TextButton button1,button2,button3;
     List<Note> listNote;
+
     public Jeu(MyGdxGame game) {
 
         myGdxGame=game;
         table=new Table();
         stage = new Stage();
-
-        //Va chercher la chanson dans la base
-        //recuperer la chanson avec le titre et la difficlutée en base,
-        //recuperer la liste de note
-        //lancer de décompte des notes ( le faite que ça descende)
-        //Va chercher la chanson dans la base: Pour le moment, une liste de test
-        chanson=myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong(),myGdxGame.getDifficulty());
-
-        listNote= new ArrayList<Note>();
-        try {
-            listNote=myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-     chanson.setListNote(listNote);
-if(chanson.getListNote().isEmpty()) {
-    System.out.println();
-    System.out.println("la   liste de note est vide !!!!!   ");
-}else{
-    System.out.println("la liste n'st pas vide");
-}
         vitesse = 1f;
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
-
-        //Crée la liste d'image correspondant au note.
-       MoveToAction moveAction;
-        Image img;
-        for(Note n: chanson.getListNote()){
-            img = null;
-            moveAction = new MoveToAction();
-            moveAction.setDuration(vitesse);
-            if (n.getPosition() == 0) {
-                img = new Image(new Texture("skin/bB.png"));
-                img.setPosition(150, myGdxGame.getLongueur()+ n.getTemps()*vitesse*50);
-                moveAction.setPosition(150f, 100f);
-            }else if (n.getPosition() == 1) {
-                img = new Image(new Texture("skin/bA.png"));
-                img.setPosition(450,myGdxGame.getLongueur()+ n.getTemps()*vitesse*50);
-                moveAction.setPosition(450f, 100f);
-            }else if (n.getPosition() == 2) {
-                img = new Image(new Texture("skin/bC.png"));
-                img.setPosition(750, myGdxGame.getLongueur()+ n.getTemps()*vitesse*50);
-                moveAction.setPosition(750f, 100f);
-            }
-            img.setSize(150, 150);
-            img.addAction(moveAction);
-            stage.addActor(img);
-        }
-
 
         button1 = new TextButton(null,skin,"buttontwo");
         button1.setSize(150, 150);
@@ -160,12 +114,44 @@ if(chanson.getListNote().isEmpty()) {
     @Override
     public void show() {
         table.setFillParent(true);
+
         //On ajoute les acteurs a la scène
         stage.addActor(table);
 
+        try {
+            chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Crée la liste d'image correspondant au note.
+        MoveToAction moveAction;
+        Image img;
+        for(Note n: chanson.getListNote()){
+            img = null;
+            moveAction = new MoveToAction();
+            moveAction.setDuration(vitesse);
+            if (n.getPosition() == 0) {
+                img = new Image(new Texture("skin/bB.png"));
+                img.setPosition(150, myGdxGame.getLongueur()+ n.getTemps()*vitesse*50);
+                moveAction.setPosition(150f, 100f);
+            }else if (n.getPosition() == 1) {
+                img = new Image(new Texture("skin/bA.png"));
+                img.setPosition(450,myGdxGame.getLongueur()+ n.getTemps()*vitesse*50);
+                moveAction.setPosition(450f, 100f);
+            }else if (n.getPosition() == 2) {
+                img = new Image(new Texture("skin/bC.png"));
+                img.setPosition(750, myGdxGame.getLongueur()+ n.getTemps()*vitesse*50);
+                moveAction.setPosition(750f, 100f);
+            }
+            img.setSize(150, 150);
+            img.addAction(moveAction);
+            stage.addActor(img);
+        }
+
         // On place la scène
         Gdx.input.setInputProcessor(stage);
-        String s=myGdxGame.getSong().replaceAll("[\\W]","");
+        String s=chanson.getTitle().replaceAll("[\\W]", "");
         music=Gdx.audio.newMusic(Gdx.files.internal("sound/"+ s+".mp3"));
         music.setLooping(true);
         music.setVolume(0.5f);
@@ -206,5 +192,13 @@ if(chanson.getListNote().isEmpty()) {
     @Override
     public void dispose() {
 
+    }
+
+    public Chanson getChanson() {
+        return chanson;
+    }
+
+    public void setChanson(Chanson chanson) {
+        this.chanson = chanson;
     }
 }

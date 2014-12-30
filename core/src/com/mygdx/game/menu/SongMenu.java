@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.fichier.Chanson;
+import com.mygdx.game.fichier.Note;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,11 +98,12 @@ public class SongMenu implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     if (game.getDifficulty().equals("")){
                         game.setSong("");
-
                         // On enregistre la chanson selectionnée
+                        Chanson chanson = game.getDaosAccess().getSongDao().getByTitle(button.getText().toString());
+                        game.getEcranJeu().setChanson(chanson);
+
                         game.setSong(button.getText().toString());
                         game.setScreen(game.getTmA());
-
                     }else{
                         game.setSong("");
                         // On enregistre la chanson selectionnée
