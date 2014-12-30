@@ -46,12 +46,15 @@ public class Jeu implements Screen {
         //recuperer la liste de note
         //lancer de décompte des notes ( le faite que ça descende)
         //Va chercher la chanson dans la base: Pour le moment, une liste de test
-        final List<Note> listNote = new ArrayList<Note>();
-        Note n1 = new Note(3, 0, 0);
-        Note n2 = new Note(5, 0, 1);
-        Note n3 = new Note(10, 0, 2);
-        listNote.add(n1); listNote.add(n2); listNote.add(n3);
-        chanson = new Chanson("ChansonA", TypeDifficultee.FACILE, listNote);
+        chanson=myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong(),myGdxGame.getDifficulty());
+
+        List<Note> listNote = new ArrayList<Note>();
+        try {
+            listNote=myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+     chanson.setListNote(listNote);
 
 
         vitesse = 1f;

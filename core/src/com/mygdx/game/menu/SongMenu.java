@@ -92,16 +92,16 @@ public class SongMenu implements Screen {
         // Liste des chansons selon la difficulté.
         for (final TextButton button : listeSong) {
             button.addListener(new ClickListener() {
-                TextButton t=button;
+
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (game.getDifficulty().equals("")){
                         game.setScreen(game.getTmA());
                     }else{
                         // On enregistre la chanson selectionnée
-                        game.setSong(listeSong.get(event.getButton()).getText().toString());
+                        game.setSong(button.getText().toString());
                         //On l'affiche sur le menu
-                        game.getTmA().buttonSong.setText(t.getText().toString());
+                        game.getTmA().buttonSong.setText(button.getText().toString());
                         //On retourne a l'ecran precedent
                         game.setScreen(game.getTmA());
                     }
