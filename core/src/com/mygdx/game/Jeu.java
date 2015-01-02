@@ -76,6 +76,17 @@ public class Jeu implements Screen {
                     System.out.println("2");
                 if(button3.isPressed())
                     System.out.println("3");
+                if(img!=null && !button1.isPressed()&& !button2.isPressed()&& !button3.isPressed()){
+                    if (img.getCenterX() == button1.getCenterX()) {
+                        System.out.print(" image 1 11  1 1 1");
+                    }
+                    if (img.getCenterX() == button2.getCenterX()) {
+                        System.out.print(" image 2222222222222");
+                    }
+                    if (img.getCenterX() == button3.getCenterX()) {
+                        System.out.print(" image333333333333333333333");
+                    }
+                }
             }
         });
 
@@ -120,6 +131,8 @@ public class Jeu implements Screen {
                     moveAction.setPosition(750f, -300f);
                 }
                 img.setSize(150, 150);
+
+                img.addAction(moveAction);
                 img.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -133,13 +146,11 @@ public class Jeu implements Screen {
                             System.out.print(" image333333333333333333333");
                         }
                     }
-
                 });
-                img.addAction(moveAction);
                 stage.addActor(img);
                 i++;
             }
-            //System.out.println("render ::: "+t);
+
             t=timeInterface.startTime();
         }
 
