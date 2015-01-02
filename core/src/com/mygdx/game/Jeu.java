@@ -50,7 +50,7 @@ public class Jeu implements Screen {
         t = 0;
         i = 0;
         vitesse = 5f;
-        tailleRond = myGdxGame.getLargeur() / 8;
+        tailleRond = myGdxGame.getLargeur() / 9;
         pos1 = (myGdxGame.getLargeur() / 6) - (tailleRond/2);
         pos2 = (myGdxGame.getLargeur() / 2) - (tailleRond/2);
         pos3 = (myGdxGame.getLargeur()*5 / 6) - (tailleRond/2);
