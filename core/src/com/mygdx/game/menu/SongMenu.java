@@ -107,6 +107,8 @@ public class SongMenu implements Screen {
                     }else{
                         game.setSong("");
                         // On enregistre la chanson selectionnée
+                        Chanson chanson = game.getDaosAccess().getSongDao().getByTitle(button.getText().toString());
+                        game.getEcranJeu().setChanson(chanson);
                         game.setSong(button.getText().toString());
                         //On l'affiche sur le menu
                         game.getTmA().buttonSong.setText(button.getText().toString());
