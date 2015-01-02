@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 
 import com.mygdx.game.DataBase.DaosAccess;
 
+import com.mygdx.game.Game.TimeInterface;
 import com.mygdx.game.menu.DifficultyMenu;
 import com.mygdx.game.menu.FirstMenu;
 import com.mygdx.game.menu.MultiMenu;
@@ -39,10 +40,11 @@ public class MyGdxGame extends Game {
     private Music music;
 
     private final DaosAccess daosAccess;
-
-    public MyGdxGame(DaosAccess daosAccess) {
+private TimeInterface timeInterface;
+    public MyGdxGame(DaosAccess daosAccess, TimeInterface t) {
         super();
         this.daosAccess = daosAccess;
+        timeInterface=t;
     }
 
 
@@ -181,6 +183,10 @@ public class MyGdxGame extends Game {
 
     public DaosAccess getDaosAccess() {
         return daosAccess;
+    }
+
+    public TimeInterface getTimeInterface() {
+        return timeInterface;
     }
 
     @Override

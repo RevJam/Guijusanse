@@ -14,11 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.Game.TimeInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.Note;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,16 +37,12 @@ public class Jeu implements Screen {
     Image img;
     Note note;
     MoveToAction moveAction;
-
-    int count;
-    long timeCount;
-
+    TimeInterface timeInterface;
     public Jeu(MyGdxGame game) {
         myGdxGame=game;
+        timeInterface=game.getTimeInterface();
         table=new Table();
         stage = new Stage();
-        count = 0;
-        timeCount = 0;
         vitesse = 5f;
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
@@ -59,7 +54,7 @@ public class Jeu implements Screen {
 
         button2 = new TextButton(null,skin,"buttonthree");
         button2.setSize(150,150);
-        button2.setPosition(450,100);
+        button2.setPosition(450, 100);
         stage.addActor(button2);
 
 
@@ -93,51 +88,14 @@ public class Jeu implements Screen {
         // On colore le fond
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        note = listNote.get(count);
-        //  System.out.println(delta);
 
-        if(timeCount == note.getTemps()) {
-            img = null;
-            moveAction = new MoveToAction();
-            moveAction.setDuration(vitesse);
+        //Couper la musique
+        myGdxGame.getMusic().stop();
 
-            if (note.getPosition() == 0) {
-                img = new Image(new Texture("skin/bB.png"));
-                img.setPosition(150, myGdxGame.getLongueur() + vitesse * note.getDuree() + note.getTemps());
-                moveAction.setPosition(150f, -300f + note.getTemps());
-            } else if (note.getPosition() == 1) {
-                img = new Image(new Texture("skin/bA.png"));
-                img.setPosition(450, myGdxGame.getLongueur() + vitesse * note.getDuree() + note.getTemps());
-                moveAction.setPosition(450f, -300f + note.getTemps());
-            } else if (note.getPosition() == 2) {
-                img = new Image(new Texture("skin/bC.png"));
-                img.setPosition(750, myGdxGame.getLongueur() + vitesse * note.getDuree() + note.getTemps());
-                moveAction.setPosition(750f, -300f + note.getTemps());
-            }
-            img.setSize(150, 150);
-            img.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (img.getCenterX() == button1.getCenterX()) {
-                        System.out.print(" image 1 11  1 1 1");
-                    }
-                    if (img.getCenterX() == button2.getCenterX()) {
-                        System.out.print(" image 2222222222222");
-                    }
-                    if (img.getCenterX() == button3.getCenterX()) {
-                        System.out.print(" image333333333333333333333");
-                    }
-                }
-
-            });
-            img.addAction(moveAction);
-            stage.addActor(img);
-            count++;
-        }
-        //System.out.println("toto");
         // On lance la scene et la met en visible
         stage.act();
         stage.draw();
+        timeInterface.getTime();
     }
 
     /**
@@ -155,11 +113,6 @@ public class Jeu implements Screen {
      */
     @Override
     public void show() {
-
-
-        //Couper la musique
-        myGdxGame.getMusic().stop();
-
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
@@ -180,13 +133,48 @@ public class Jeu implements Screen {
 
         //Crée la liste d'image correspondant au note.
 
-        listNote = chanson.getListNote();
 
+        for(Note n: chanson.getListNote()){
+            note = n;
+            System.out.println(note.toString());
 
-        //lancer la prochaine note lorsque le timet
+            img = null;
+            moveAction = new MoveToAction();
+            moveAction.setDuration(vitesse);
 
+            if (note.getPosition() == 0) {
+                img = new Image(new Texture("skin/bB.png"));
+                img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
+                moveAction.setPosition(150f, -300f);
+            } else if (note.getPosition() == 1) {
+                img = new Image(new Texture("skin/bA.png"));
+                img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
+                moveAction.setPosition(450f, -300f);
+            } else if (note.getPosition() == 2) {
+                img = new Image(new Texture("skin/bC.png"));
+                img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
+                moveAction.setPosition(750f, -300f);
+            }
+            img.setSize(150, 150);
+            img.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (img.getCenterX() == button1.getCenterX()) {
+                        System.out.print(" image 1 11  1 1 1");
+                    }
+                    if (img.getCenterX() == button2.getCenterX()) {
+                        System.out.print(" image 2222222222222");
+                    }
+                    if (img.getCenterX() == button3.getCenterX()) {
+                        System.out.print(" image333333333333333333333");
+                    }
+                }
 
-
+            });
+            img.addAction(moveAction);
+            stage.addActor(img);
+        }
+        timeInterface.startTime();
     }
 
     /**
@@ -210,7 +198,6 @@ public class Jeu implements Screen {
      */
     @Override
     public void resume() {
-
         music.pause();
     }
 
