@@ -9,6 +9,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.mygdx.game.DataBase.NoteDaoInterface;
 import com.mygdx.game.DataBase.ScoreDaoInterface;
 import com.mygdx.game.DataBase.SongDaoInterface;
+import com.mygdx.game.Game.TimeInterface;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.android.DataBase.AndroidDaosAccess;
 import com.mygdx.game.android.DataBase.NoteDao;
@@ -31,7 +32,7 @@ public class AndroidLauncher extends AndroidApplication {
         ScoreDaoInterface scoreDaoInterface = new ScoreDao(this);
 
         AndroidDaosAccess daosAccess = new AndroidDaosAccess(noteDaoInterface,songDaoInterface,scoreDaoInterface);
-
+        TimeInterface timeInterface = new TimeImpl();
         Lecture lectur = new Lecture(daosAccess);
         try {
             InputStream in = getAssets().open("file/ListeChanson.txt");
@@ -40,6 +41,6 @@ public class AndroidLauncher extends AndroidApplication {
             e.printStackTrace();
         }
 
-		initialize(new MyGdxGame(daosAccess), config);
+		initialize(new MyGdxGame(daosAccess, timeInterface), config);
 	}
 }
