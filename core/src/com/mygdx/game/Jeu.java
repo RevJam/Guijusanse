@@ -18,7 +18,7 @@ import com.mygdx.game.Game.TimeInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.Note;
 
-import java.util.List;
+
 
 /**
  * Created by juliette on 28/12/14.
@@ -39,7 +39,6 @@ public class Jeu implements Screen {
     TimeInterface timeInterface;
     long t;
     int i;
-    int tailleRond, pos1, pos2, pos3;
 
 
     public Jeu(MyGdxGame game) {
@@ -50,26 +49,22 @@ public class Jeu implements Screen {
         t = 0;
         i = 0;
         vitesse = 5f;
-        tailleRond = myGdxGame.getLargeur() / 9;
-        pos1 = (myGdxGame.getLargeur() / 6) - (tailleRond/2);
-        pos2 = (myGdxGame.getLargeur() / 2) - (tailleRond/2);
-        pos3 = (myGdxGame.getLargeur()*5 / 6) - (tailleRond/2);
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
         button1 = new TextButton(null,skin,"buttontwo");
-        button1.setSize(tailleRond, tailleRond);
-        button1.setPosition(pos1, tailleRond);
+        button1.setSize(150, 150);
+        button1.setPosition(150, 100);
         stage.addActor(button1);
 
         button2 = new TextButton(null,skin,"buttonthree");
-        button2.setSize(tailleRond,tailleRond);
-        button2.setPosition(pos2, tailleRond);
+        button2.setSize(150,150);
+        button2.setPosition(450, 100);
         stage.addActor(button2);
 
         button3 = new TextButton(null,skin,"buttonfour");
-        button3.setSize(tailleRond,tailleRond);
-        button3.setPosition(pos3, tailleRond);
+        button3.setSize(150,150);
+        button3.setPosition(750, 100);
         stage.addActor(button3);
 
         stage.addListener(new ClickListener(){
@@ -124,21 +119,23 @@ public class Jeu implements Screen {
 
                 if (note.getPosition() == 0) {
                     img = new Image(new Texture("skin/bB.png"));
-                    img.setPosition(pos1, myGdxGame.getLongueur() + vitesse * 50);
-                    moveAction.setPosition((float)pos1, -300f);
+                    img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50);
+                    moveAction.setPosition(150f, -300f);
                 } else if (note.getPosition() == 1) {
                     img = new Image(new Texture("skin/bA.png"));
-                    img.setPosition(pos2, myGdxGame.getLongueur() + vitesse * 50);
-                    moveAction.setPosition((float)pos2, -300f);
+                    img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50);
+                    moveAction.setPosition(450f, -300f);
                 } else if (note.getPosition() == 2) {
                     img = new Image(new Texture("skin/bC.png"));
-                    img.setPosition(pos3, myGdxGame.getLongueur() + vitesse * 50);
-                    moveAction.setPosition((float)pos3, -300f);
+                    img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50);
+                    moveAction.setPosition(750f, -300f);
                 }
-                img.setSize(tailleRond, tailleRond);
+                img.setSize(150, 150);
 
                 img.addAction(moveAction);
-                img.addListener(new ClickListener() {
+
+                stage.addActor(img);
+                stage.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         if (img.getCenterX() == button1.getCenterX()) {
@@ -152,7 +149,7 @@ public class Jeu implements Screen {
                         }
                     }
                 });
-                stage.addActor(img);
+
                 i++;
             }
 
