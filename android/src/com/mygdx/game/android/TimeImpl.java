@@ -19,17 +19,9 @@ public class TimeImpl implements TimeInterface {
     }
 
     @Override
-    public void startTime() {
-    time=currentThreadTimeMillis()-currentTimeSystem;
-    d =new Thread(new Runnable() {
-        @Override
-        public void run() {
-            time+=currentThreadTimeMillis();
-            System.out.println(time);
-
-        }
-    });
-        d.start();
+    public long startTime() {
+        time=currentThreadTimeMillis()-currentTimeSystem;
+        return time;
     }
 
     @Override
