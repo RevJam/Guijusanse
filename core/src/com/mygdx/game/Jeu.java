@@ -62,7 +62,6 @@ public class Jeu implements Screen {
         button2.setPosition(450, 100);
         stage.addActor(button2);
 
-
         button3 = new TextButton(null,skin,"buttonfour");
         button3.setSize(150,150);
         button3.setPosition(750, 100);
@@ -100,54 +99,52 @@ public class Jeu implements Screen {
         //pour eviter le nullpointerException (temporaire)
         if(i<chanson.getListNote().size()) {
             note = chanson.getListNote().get(i);
-            System.out.println(note.toString());
-        }
 
-        if(t/1000 == note.getTemps()/1000) {
-            img = null;
-            moveAction = new MoveToAction();
-            moveAction.setDuration(vitesse);
+            if(t/1000 == note.getTemps()/1000) {
+                img = null;
+                moveAction = new MoveToAction();
+                moveAction.setDuration(vitesse);
 
-            if (note.getPosition() == 0) {
-                img = new Image(new Texture("skin/bB.png"));
-                img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50);
-                moveAction.setPosition(150f, -300f);
-            } else if (note.getPosition() == 1) {
-                img = new Image(new Texture("skin/bA.png"));
-                img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50);
-                moveAction.setPosition(450f, -300f);
-            } else if (note.getPosition() == 2) {
-                img = new Image(new Texture("skin/bC.png"));
-                img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50);
-                moveAction.setPosition(750f, -300f);
-            }
-            img.setSize(150, 150);
-            img.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (img.getCenterX() == button1.getCenterX()) {
-                        System.out.print(" image 1 11  1 1 1");
-                    }
-                    if (img.getCenterX() == button2.getCenterX()) {
-                        System.out.print(" image 2222222222222");
-                    }
-                    if (img.getCenterX() == button3.getCenterX()) {
-                        System.out.print(" image333333333333333333333");
-                    }
+                if (note.getPosition() == 0) {
+                    img = new Image(new Texture("skin/bB.png"));
+                    img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50);
+                    moveAction.setPosition(150f, -300f);
+                } else if (note.getPosition() == 1) {
+                    img = new Image(new Texture("skin/bA.png"));
+                    img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50);
+                    moveAction.setPosition(450f, -300f);
+                } else if (note.getPosition() == 2) {
+                    img = new Image(new Texture("skin/bC.png"));
+                    img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50);
+                    moveAction.setPosition(750f, -300f);
                 }
+                img.setSize(150, 150);
+                img.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        if (img.getCenterX() == button1.getCenterX()) {
+                            System.out.print(" image 1 11  1 1 1");
+                        }
+                        if (img.getCenterX() == button2.getCenterX()) {
+                            System.out.print(" image 2222222222222");
+                        }
+                        if (img.getCenterX() == button3.getCenterX()) {
+                            System.out.print(" image333333333333333333333");
+                        }
+                    }
 
-            });
-            img.addAction(moveAction);
-            stage.addActor(img);
-            i++;
+                });
+                img.addAction(moveAction);
+                stage.addActor(img);
+                i++;
+            }
+            //System.out.println("render ::: "+t);
+            t=timeInterface.startTime();
         }
-        //System.out.println("render ::: "+t);
-        t=timeInterface.startTime();
 
         // On lance la scene et la met en visible
         stage.act();
         stage.draw();
-
     }
 
     /**
@@ -185,7 +182,6 @@ public class Jeu implements Screen {
         music.setLooping(true);
         music.setVolume(0.5f);
         music.play();
-
     }
 
     /**
