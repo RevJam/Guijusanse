@@ -20,7 +20,7 @@ public class TimeImpl implements TimeInterface {
 
     @Override
     public long startTime() {
-        time=currentThreadTimeMillis()-currentTimeSystem;
+        time+=currentThreadTimeMillis()-currentTimeSystem;
         return time;
     }
 
