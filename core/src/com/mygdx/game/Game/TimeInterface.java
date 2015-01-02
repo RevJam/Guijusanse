@@ -6,7 +6,7 @@ package com.mygdx.game.Game;
 public interface TimeInterface {
 
 
-    public void startTime();
+    public long startTime();
 
     public long getTime();
 
