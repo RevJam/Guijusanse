@@ -130,7 +130,7 @@ public class Jeu implements Screen {
                 img.addAction(moveAction);
 
                 stage.addActor(img);
-                stage.addListener(new ClickListener() {
+                img.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         if (img.getCenterX() == button1.getCenterX()) {
