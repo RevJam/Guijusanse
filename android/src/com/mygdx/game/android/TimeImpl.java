@@ -29,6 +29,7 @@ public class TimeImpl implements TimeInterface {
 
         }
     });
+        d.start();
     }
 
     @Override
