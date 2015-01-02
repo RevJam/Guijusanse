@@ -15,6 +15,7 @@ import com.mygdx.game.android.DataBase.AndroidDaosAccess;
 import com.mygdx.game.android.DataBase.NoteDao;
 import com.mygdx.game.android.DataBase.ScoreDao;
 import com.mygdx.game.android.DataBase.SongDao;
+import com.mygdx.game.android.GameTimer.TimeImpl;
 import com.mygdx.game.fichier.Lecture;
 
 import java.io.IOException;

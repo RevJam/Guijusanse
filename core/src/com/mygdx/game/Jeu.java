@@ -96,7 +96,8 @@ public class Jeu implements Screen {
         //Couper la musique
         myGdxGame.getMusic().stop();
 
-        //pour eviter le nullpointerException (temporaire)
+        //pour eviter le nullpointerException
+        //a rajouter une condition pour si la musique est finie, affichage d'une fenetre de score
         if(i<chanson.getListNote().size()) {
             note = chanson.getListNote().get(i);
 

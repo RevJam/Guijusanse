@@ -1,4 +1,4 @@
-package com.mygdx.game.android;
+package com.mygdx.game.android.GameTimer;
 
 import com.mygdx.game.Game.TimeInterface;
 
