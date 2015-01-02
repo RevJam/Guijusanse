@@ -8,7 +8,6 @@ public interface TimeInterface {
 
     public long startTime();
 
-    public long getTime();
-
+    public void setCurrentTimeSystem();
 
 }

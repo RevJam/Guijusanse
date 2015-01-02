@@ -33,12 +33,12 @@ public class Jeu implements Screen {
     float vitesse;
     private Music music;
     TextButton button1,button2,button3;
-    List<Note> listNote;
     Image img;
     Note note;
     MoveToAction moveAction;
     TimeInterface timeInterface;
     long t;
+    int i;
 
 
     public Jeu(MyGdxGame game) {
@@ -46,6 +46,8 @@ public class Jeu implements Screen {
         timeInterface=game.getTimeInterface();
         table=new Table();
         stage = new Stage();
+        t = 0;
+        i = 0;
         vitesse = 5f;
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
@@ -95,68 +97,28 @@ public class Jeu implements Screen {
         //Couper la musique
         myGdxGame.getMusic().stop();
 
-        // On lance la scene et la met en visible
-        stage.act();
-        stage.draw();
-        t=timeInterface.startTime();
-        System.out.println("render ::: "+t);
-    }
-
-    /**
-     * @param width
-     * @param height
-     * @see com.badlogic.gdx.ApplicationListener#resize(int, int)
-     */
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    /**
-     * Called when this screen becomes the current screen for a {@link com.badlogic.gdx.Game}.
-     */
-    @Override
-    public void show() {
-        table.setFillParent(true);
-        //On ajoute les acteurs a la scène
-        stage.addActor(table);
-
-        try {
-            chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
-        } catch (Exception e) {
-            e.printStackTrace();
+        //pour eviter le nullpointerException (temporaire)
+        if(i<chanson.getListNote().size()) {
+            note = chanson.getListNote().get(i);
+            System.out.println(note.toString());
         }
 
-        // On place la scène
-        Gdx.input.setInputProcessor(stage);
-        String s=chanson.getTitle().replaceAll("[\\W]", "");
-        music=Gdx.audio.newMusic(Gdx.files.internal("sound/"+ s+".mp3"));
-        music.setLooping(true);
-        music.setVolume(0.5f);
-        music.play();
-
-        //Crée la liste d'image correspondant au note.
-
-
-        for(Note n: chanson.getListNote()){
-            note = n;
-            System.out.println(note.toString());
-
+        if(t/1000 == note.getTemps()/1000) {
             img = null;
             moveAction = new MoveToAction();
             moveAction.setDuration(vitesse);
 
             if (note.getPosition() == 0) {
                 img = new Image(new Texture("skin/bB.png"));
-                img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
+                img.setPosition(150, myGdxGame.getLongueur() + vitesse * 50);
                 moveAction.setPosition(150f, -300f);
             } else if (note.getPosition() == 1) {
                 img = new Image(new Texture("skin/bA.png"));
-                img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
+                img.setPosition(450, myGdxGame.getLongueur() + vitesse * 50);
                 moveAction.setPosition(450f, -300f);
             } else if (note.getPosition() == 2) {
                 img = new Image(new Texture("skin/bC.png"));
-                img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50 + note.getTemps());
+                img.setPosition(750, myGdxGame.getLongueur() + vitesse * 50);
                 moveAction.setPosition(750f, -300f);
             }
             img.setSize(150, 150);
@@ -177,7 +139,53 @@ public class Jeu implements Screen {
             });
             img.addAction(moveAction);
             stage.addActor(img);
+            i++;
         }
+        //System.out.println("render ::: "+t);
+        t=timeInterface.startTime();
+
+        // On lance la scene et la met en visible
+        stage.act();
+        stage.draw();
+
+    }
+
+    /**
+     * @param width
+     * @param height
+     * @see com.badlogic.gdx.ApplicationListener#resize(int, int)
+     */
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    /**
+     * Called when this screen becomes the current screen for a {@link com.badlogic.gdx.Game}.
+     */
+    @Override
+    public void show() {
+
+        timeInterface.setCurrentTimeSystem();
+
+        table.setFillParent(true);
+        //On ajoute les acteurs a la scène
+        stage.addActor(table);
+
+        try {
+            chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // On place la scène
+        Gdx.input.setInputProcessor(stage);
+        String s=chanson.getTitle().replaceAll("[\\W]", "");
+        music=Gdx.audio.newMusic(Gdx.files.internal("sound/"+ s+".mp3"));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+        music.play();
+
     }
 
     /**
