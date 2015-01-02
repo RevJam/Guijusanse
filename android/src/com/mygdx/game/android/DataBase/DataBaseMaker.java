@@ -6,19 +6,20 @@ package com.mygdx.game.android.DataBase;
 public class DataBaseMaker extends Exception {
 
     /*Table Song guijusanse*/
-    protected static final int NB_COLUMNS_SONG = 3;
+    protected static final int NB_COLUMNS_SONG = 4;
 
     protected static final String SONG_TABLE    = "song";
     protected static final String SONG_NAME = "intitule";
     protected static final String SONG_DIFFICULTY = "diffculte";
-
+    protected static final String TEMPS_CHANSON = "tempsChanson";
     private static final String CREATETABLEIFNOTEXIST = "CREATE TABLE IF NOT EXISTS ";
     private static final String IDINTPRIMARYKEYAUTOINCREMENTNOTNULL = "id INTEGER PRIMARY KEY AUTOINCREMENT,";
 
     protected static final String CREATE_SONG_TABLE = CREATETABLEIFNOTEXIST + SONG_TABLE + "(" +
             IDINTPRIMARYKEYAUTOINCREMENTNOTNULL +
             SONG_NAME + " VARCHAR(255)," +
-            SONG_DIFFICULTY + " INT );";
+            SONG_DIFFICULTY + " INT,"+
+            TEMPS_CHANSON + " INT );";
 
     protected static final String SONG_TABLE_DROP = "DROP TABLE IF EXISTS " + SONG_TABLE + ";";
 

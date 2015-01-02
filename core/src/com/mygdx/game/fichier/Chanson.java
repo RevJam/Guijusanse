@@ -23,6 +23,11 @@ public class Chanson {
      * l'id de la chanson en base
      */
     private int idChanson;
+    /**
+     * temps total de la chanson
+     */
+    private long tempsChansonTotal;
+
 
     public Chanson(String title,TypeDifficultee difficulte,List<Note> listNote) {
         this.title = title;
@@ -30,11 +35,19 @@ public class Chanson {
         this.listNote = listNote;
     }
 
+    public Chanson(String title, List<Note> listNote, TypeDifficultee difficulter, long tempsChansonTotal) {
+        this.title = title;
+        this.listNote = listNote;
+        this.difficulter = difficulter;
+        this.tempsChansonTotal = tempsChansonTotal;
+    }
+
     public Chanson() {
         idChanson = -1;
         title = "";
         listNote = new ArrayList<Note>();
         difficulter = null;
+        tempsChansonTotal=0;
     }
 
     public String getTitle() {
@@ -69,6 +82,14 @@ public class Chanson {
         this.idChanson = idChanson;
     }
 
+    public long getTempsChansonTotal() {
+        return tempsChansonTotal;
+    }
+
+    public void setTempsChansonTotal(long tempsChansonTotal) {
+        this.tempsChansonTotal = tempsChansonTotal;
+    }
+
     @Override
     public String toString() {
         return "Chanson{" +
@@ -76,6 +97,7 @@ public class Chanson {
                 ", listNote=" + listNote +
                 ", difficulter=" + difficulter +
                 ", idChanson=" + idChanson +
+                ", tempsChansonTotal=" + tempsChansonTotal +
                 '}';
     }
 

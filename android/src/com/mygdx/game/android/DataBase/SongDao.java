@@ -32,6 +32,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             ContentValues value = new ContentValues();
             value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
             value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
+            value.put(DataBaseMaker.TEMPS_CHANSON, chanson.getTempsChansonTotal());
             mDb.insert(DataBaseMaker.SONG_TABLE, null, value);
         }
     }
@@ -58,6 +59,7 @@ public class SongDao extends Dao implements SongDaoInterface{
         ContentValues value = new ContentValues();
         value.put(DataBaseMaker.SONG_NAME, chanson.getTitle());
         value.put(DataBaseMaker.SONG_DIFFICULTY, String.valueOf(chanson.getDifficulter()));
+        value.put(DataBaseMaker.TEMPS_CHANSON, chanson.getTempsChansonTotal());
         mDb.update(DataBaseMaker.SONG_TABLE, value," id=?", new String[] {String.valueOf(chanson.getIdChanson())});
     }
 
@@ -70,7 +72,7 @@ public class SongDao extends Dao implements SongDaoInterface{
     @Override
     public Chanson get(int id) {
         open();
-        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
+        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+", "+DataBaseMaker.TEMPS_CHANSON
                 +  " from " + DataBaseMaker.SONG_TABLE
                 + " where id=?", new String[]{String.valueOf(id)});
         Chanson chanson = new Chanson();
@@ -78,6 +80,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
             chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+            chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
         return chanson;
     }
@@ -91,7 +94,7 @@ public class SongDao extends Dao implements SongDaoInterface{
     @Override
     public Chanson getByTitle(String title) {
         open();
-        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
+        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+", "+DataBaseMaker.TEMPS_CHANSON
                 +  " from " + DataBaseMaker.SONG_TABLE
                 + " where " + DataBaseMaker.SONG_NAME + "=?", new String[]{title});
         Chanson chanson = new Chanson();
@@ -99,6 +102,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
             chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+            chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
         return chanson;
     }
@@ -114,7 +118,7 @@ public class SongDao extends Dao implements SongDaoInterface{
     public Chanson getByTitleAndDifficulty(String titre, String difficulte) {
         open();
         Chanson chanson = new Chanson();
-        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY
+        Cursor c = mDb.rawQuery("select id, " + DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+", "+DataBaseMaker.TEMPS_CHANSON
                 +  " from " + DataBaseMaker.SONG_TABLE
                 + " where " + DataBaseMaker.SONG_NAME
                 + "=? and " + DataBaseMaker.SONG_DIFFICULTY
@@ -123,6 +127,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
             chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+            chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
         return chanson;
     }
@@ -158,12 +163,13 @@ public class SongDao extends Dao implements SongDaoInterface{
         open();
         List<Chanson> liste = new ArrayList<Chanson>();
         Chanson chanson;
-        Cursor c = mDb.rawQuery("select id, "+DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+" from "+ DataBaseMaker.SONG_TABLE+" ",null);
+        Cursor c = mDb.rawQuery("select id, "+DataBaseMaker.SONG_NAME+", "+DataBaseMaker.SONG_DIFFICULTY+", "+DataBaseMaker.TEMPS_CHANSON+" from "+ DataBaseMaker.SONG_TABLE+" ",null);
         while (c.moveToNext()) {
             chanson = new Chanson();
             chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
             chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+            chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
             liste.add(chanson);
         }
         c.close();
@@ -188,6 +194,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setIdChanson(c.getInt(c.getColumnIndex("id")));
             chanson.setTitle(c.getString(c.getColumnIndex(DataBaseMaker.SONG_NAME)));
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
+            chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
             liste.add(chanson);
         }
         c.close();

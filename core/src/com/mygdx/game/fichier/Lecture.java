@@ -18,6 +18,7 @@ public class Lecture {
     private List<Chanson> listeChanson;
     private TypeDifficultee difficulteLue;
     int duree,position,temps;
+    private long tempsTotalChanson;
     private String titre;
     private DaosAccess dao=null;
 
@@ -38,6 +39,7 @@ public class Lecture {
                 int difficulty = Integer.parseInt(str);
                 titre =br.readLine();
                 int nombreNoteALire = Integer.parseInt(br.readLine());
+                long tempsTotalChanson = Integer.parseInt(br.readLine());
                 for(int i = 0; i< nombreNoteALire; i++ ){
                     String [] notes = br.readLine().split("\\| ");
                     try{
@@ -68,7 +70,7 @@ public class Lecture {
                     default:
                         break;
                 }
-                listeChanson.add(new Chanson(titre,difficulteLue,listNote));
+                listeChanson.add(new Chanson(titre,listNote,difficulteLue,tempsTotalChanson));
             }
 
             br.close();
