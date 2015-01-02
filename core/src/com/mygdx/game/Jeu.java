@@ -38,6 +38,7 @@ public class Jeu implements Screen {
     Note note;
     MoveToAction moveAction;
     TimeInterface timeInterface;
+    long t;
     public Jeu(MyGdxGame game) {
         myGdxGame=game;
         timeInterface=game.getTimeInterface();
@@ -95,7 +96,8 @@ public class Jeu implements Screen {
         // On lance la scene et la met en visible
         stage.act();
         stage.draw();
-        timeInterface.getTime();
+        t=timeInterface.getTime();
+        System.out.println("render ::: "+t);
     }
 
     /**
