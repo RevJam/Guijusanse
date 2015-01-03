@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.DataBase.DaosAccess;
 
 import com.mygdx.game.Game.TimeInterface;
+import com.mygdx.game.fichier.Score;
 import com.mygdx.game.menu.*;
 
 
@@ -34,7 +35,7 @@ public class MyGdxGame extends Game {
     private int typeplayer;
 
     private Music music;
-
+    private Score score;
     private final DaosAccess daosAccess;
     private TimeInterface timeInterface;
 
@@ -193,6 +194,14 @@ public class MyGdxGame extends Game {
 
     public void setScoreMenu(ScoreMenu scoreMenu) {
         this.scoreMenu = scoreMenu;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
 
     @Override

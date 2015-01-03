@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.fichier.Score;
 
 /**
  * Created by juliette on 03/01/15.
@@ -23,7 +24,7 @@ public class ScoreMenu implements Screen {
     Stage stage;
     TextButton buttonReturn;
     Label title, affScore;
-    long score=0;
+    Score score;
     public ScoreMenu(MyGdxGame game) {
         this.game = game;
 
@@ -37,18 +38,18 @@ public class ScoreMenu implements Screen {
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
         // On crée un bouton, un titre et afficher le score
-
+        score=new Score();
         buttonReturn = new TextButton("Retour", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
-        affScore = new Label("Votre Score est de : "+score,skin);
+        affScore = new Label("Votre Score est de : "+score.getScore(),skin);
         // On change la taille de la police
         skin.getFont("title").setScale((game.getLargeur()/300), 5f);
-        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
+        skin.getFont("small").setScale((game.getLargeur()/400), 2.5f);
 
         // On ajoute les elements a la trame
         table.add(title).padBottom((game.getLongueur()/5)).row();
-
-        table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+        table.add(affScore).padBottom((game.getLongueur()/10)).row();
+        table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur()/20)).padBottom(20).row();
 
     }
     /**
@@ -90,7 +91,7 @@ public class ScoreMenu implements Screen {
         });
 
 
-
+        score=game.getScore();
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
