@@ -44,6 +44,7 @@ public class Jeu implements Screen {
     int scoreCourant=0;
 
     public Jeu(MyGdxGame game) {
+
         myGdxGame=game;
         timeInterface=game.getTimeInterface();
         table=new Table();
@@ -86,8 +87,10 @@ public class Jeu implements Screen {
                             } else {
                                 if (stage.getActors().get(j).getX() == pos1 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     System.out.println("OH YEAH 1");
-                                    scoreCourant+=50;
+                                    scoreCourant+=100;
                                     break;
+                                }else {
+                                    scoreCourant-=10;
                                 }
                             }
                         }
@@ -100,8 +103,10 @@ public class Jeu implements Screen {
                             } else {
                                 if (stage.getActors().get(j).getX() == pos2 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     System.out.println("OH YEAH 2");
-                                    scoreCourant+=50;
+                                    scoreCourant+=100;
                                     break;
+                                }else {
+                                    scoreCourant-=10;
                                 }
                             }
                         }
@@ -112,11 +117,14 @@ public class Jeu implements Screen {
                         for (int j = cpt; j < stage.getActors().size; j++) {
                             if (stage.getActors().get(j).getY() == -300) {
                                 cpt++;
+                                scoreCourant+=1000;
                             } else {
                                 if (stage.getActors().get(j).getX() == pos3 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     System.out.println("OH YEAH 3");
-                                    scoreCourant+=50;
+                                    scoreCourant+=100;
                                     break;
+                                }else {
+                                    scoreCourant-=10;
                                 }
                             }
                         }
@@ -175,8 +183,9 @@ public class Jeu implements Screen {
             }
 
             t=timeInterface.startTime();
-            if(t>=chanson.getTempsChansonTotal()*1000){
-                System.out.println();
+            System.out.println("Score cournat " +scoreCourant);
+            if(t>=chanson.getTempsChansonTotal()){
+                System.out.println(t);
                 Score score = new Score("user",chanson.getTitle(), chanson.getDifficulter(), scoreCourant);
                 myGdxGame.getDaosAccess().getScoreDao().add(score);
                 myGdxGame.setScreen(myGdxGame.getScoreMenu());
@@ -220,7 +229,7 @@ public class Jeu implements Screen {
         Gdx.input.setInputProcessor(stage);
         String s=chanson.getTitle().replaceAll("[\\W]", "");
         music=Gdx.audio.newMusic(Gdx.files.internal("sound/"+ s+".mp3"));
-        music.setLooping(true);
+        music.setLooping(false);
         music.setVolume(0.5f);
         music.play();
     }
@@ -246,7 +255,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void resume() {
-        music.pause();
+        music.play();
     }
 
     /**
@@ -254,7 +263,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void dispose() {
-
+        music.dispose();
     }
 
     public Chanson getChanson() {
