@@ -187,6 +187,9 @@ public class Jeu implements Screen {
             }
 
         }
+System.out.println("le  timer "+t);
+System.out.println("tps chansons "+chanson.getTempsChansonTotal());
+
 
         if(t>=chanson.getTempsChansonTotal()){
             Score score = new Score("user",chanson.getTitle(), chanson.getDifficulter(), scoreCourant);
