@@ -92,6 +92,12 @@ public class ScoreMenu implements Screen {
 
 
         score=game.getScore();
+
+        game.setMusic(Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3")));
+        game.getMusic().setLooping(true);
+        game.getMusic().setVolume(0.5f);
+        game.getMusic().play();
+
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);

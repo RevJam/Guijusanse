@@ -84,8 +84,6 @@ public class FirstMenu implements Screen {
             }
         });
 
-
-
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
