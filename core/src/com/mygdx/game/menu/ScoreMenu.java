@@ -96,7 +96,7 @@ public class ScoreMenu implements Screen {
 
 
         nomJoueur=new TextField("",skin);
-        table.add(nomJoueur).padBottom((game.getLongueur()/7)).row();
+        table.add(nomJoueur).padBottom((game.getLongueur()/7)).size(game.getLargeur()/2, (game.getLongueur()/15)).row();
         table.add(affScore).padBottom((game.getLongueur()/10)).row();
         //
         table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur()/20)).padBottom(20).row();
