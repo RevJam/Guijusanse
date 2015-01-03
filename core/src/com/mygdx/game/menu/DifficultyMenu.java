@@ -40,8 +40,8 @@ public class DifficultyMenu implements Screen{
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
         // On change la taille de la police
-        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
-        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
+        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
 
         // Ajout du titre
         title = new Label("GuiJuSanSe",skin);

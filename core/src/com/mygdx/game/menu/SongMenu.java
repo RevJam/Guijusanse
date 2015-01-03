@@ -46,8 +46,8 @@ public class SongMenu implements Screen {
         buttonReturn = new TextButton("Retour", skin, "buttonfour");
 
         // On change la taille de la police
-        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
-        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
+        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
 
         // On ajoute le titre a la trame
         title = new Label("GuiJuSanSe",skin);

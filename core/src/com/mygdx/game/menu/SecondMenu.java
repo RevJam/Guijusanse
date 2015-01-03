@@ -43,8 +43,8 @@ public class SecondMenu implements Screen {
         title = new Label("GuiJuSanSe",skin);
 
         // On change la taille de la police
-        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
-        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
+        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
 
         // On ajoute les elements a la trame
         table.add(title).padBottom((game.getLongueur()/5)).row();

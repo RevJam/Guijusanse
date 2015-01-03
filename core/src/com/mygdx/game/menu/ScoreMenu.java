@@ -40,9 +40,10 @@ public class ScoreMenu implements Screen {
         // On crée un bouton, un titre et afficher le score
         score=new Score();
 
+
         // On change la taille de la police
-        skin.getFont("title").setScale((game.getLargeur()/300), 5f);
-        skin.getFont("medium").setScale((game.getLargeur()/500), 1.5f);
+        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
         buttonReturn = new TextButton("Retour", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
         // On ajoute les elements a la trame
