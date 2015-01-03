@@ -23,7 +23,7 @@ public class ScoreMenu implements Screen {
     Stage stage;
     TextButton buttonReturn;
     Label title, affScore;
-long score=0;
+    long score=0;
     public ScoreMenu(MyGdxGame game) {
         this.game = game;
 

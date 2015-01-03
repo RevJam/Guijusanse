@@ -6,8 +6,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
@@ -182,16 +180,16 @@ public class Jeu implements Screen {
                 i++;
             }
 
-            t=timeInterface.startTime();
-            System.out.println("Score cournat " +scoreCourant);
-            if(t>=chanson.getTempsChansonTotal()){
-                System.out.println(t);
-                Score score = new Score("user",chanson.getTitle(), chanson.getDifficulter(), scoreCourant);
-                myGdxGame.getDaosAccess().getScoreDao().add(score);
-                myGdxGame.setScreen(myGdxGame.getScoreMenu());
-            }
         }
 
+        if(t>=chanson.getTempsChansonTotal()){
+            System.out.println("in the if "+t);
+            Score score = new Score("user",chanson.getTitle(), chanson.getDifficulter(), scoreCourant);
+            myGdxGame.getDaosAccess().getScoreDao().add(score);
+            myGdxGame.setScreen(myGdxGame.getScoreMenu());
+        }
+
+        t=timeInterface.startTime();
         // On lance la scene et la met en visible
         stage.act();
         stage.draw();
