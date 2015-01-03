@@ -6,6 +6,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
@@ -39,7 +41,7 @@ public class Jeu implements Screen {
     TimeInterface timeInterface;
     long t;
     int i;
-    int tailleRond, pos1, pos2, pos3;
+    int tailleRond, pos1, pos2, pos3, cpt;
 
 
     public Jeu(MyGdxGame game) {
@@ -49,8 +51,9 @@ public class Jeu implements Screen {
         stage = new Stage();
         t = 0;
         i = 0;
+        cpt = 4;
         vitesse = 5f;
-        tailleRond = myGdxGame.getLargeur() / 9;
+        tailleRond = myGdxGame.getLargeur() / 7;
         pos1 = (myGdxGame.getLargeur() / 6) - (tailleRond/2);
         pos2 = (myGdxGame.getLargeur() / 2) - (tailleRond/2);
         pos3 = (myGdxGame.getLargeur()*5 / 6) - (tailleRond/2);
@@ -72,15 +75,51 @@ public class Jeu implements Screen {
         button3.setPosition(pos3, tailleRond);
         stage.addActor(button3);
 
-        stage.addListener(new ClickListener(){
+        stage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(button1.isPressed())
-                    System.out.println("1");
-                if(button2.isPressed())
-                    System.out.println("2");
-                if(button3.isPressed())
-                    System.out.println("3");
+                if (y> tailleRond && y < tailleRond*2) {
+                    if (x > pos1 - tailleRond && x < pos1 + tailleRond) {
+                        //if (button1.isPressed()) {
+                        for (int j = cpt; j < stage.getActors().size; j++) {
+                            if (stage.getActors().get(j).getY() == -300) {
+                                cpt++;
+                            } else {
+                                if (stage.getActors().get(j).getX() == pos1 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
+                                    System.out.println("OH YEAH 1");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (x > pos2 - tailleRond && x < pos2 + tailleRond) {
+                        //if (button2.isPressed()){
+                        for (int j = cpt; j < stage.getActors().size; j++) {
+                            if (stage.getActors().get(j).getY() == -300) {
+                                cpt++;
+                            } else {
+                                if (stage.getActors().get(j).getX() == pos2 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
+                                    System.out.println("OH YEAH 2");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (x > pos3 - tailleRond && x < pos3 + tailleRond) {
+                        //if (button3.isPressed()){
+                        for (int j = cpt; j < stage.getActors().size; j++) {
+                            if (stage.getActors().get(j).getY() == -300) {
+                                cpt++;
+                            } else {
+                                if (stage.getActors().get(j).getX() == pos3 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
+                                    System.out.println("OH YEAH 3");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
 
             }
         });
@@ -130,21 +169,6 @@ public class Jeu implements Screen {
                 img.addAction(moveAction);
 
                 stage.addActor(img);
-                img.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        if (img.getCenterX() == button1.getCenterX()) {
-                            System.out.print(" image 1 11  1 1 1");
-                        }
-                        if (img.getCenterX() == button2.getCenterX()) {
-                            System.out.print(" image 2222222222222");
-                        }
-                        if (img.getCenterX() == button3.getCenterX()) {
-                            System.out.print(" image333333333333333333333");
-                        }
-                    }
-                });
-
                 i++;
             }
 
