@@ -10,4 +10,6 @@ public interface TimeInterface {
 
     public void setCurrentTimeSystem();
 
+    public void resetTime();
+
 }

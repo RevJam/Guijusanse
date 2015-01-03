@@ -282,4 +282,22 @@ public class Jeu implements Screen {
     public void setChanson(Chanson chanson) {
         this.chanson = chanson;
     }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+
 }

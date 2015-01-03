@@ -28,4 +28,12 @@ public class TimeImpl implements TimeInterface {
     public void setCurrentTimeSystem() {
         currentTimeSystem = elapsedRealtime();
     }
+
+    @Override
+    public void resetTime() {
+        time = 0;
+        currentTimeSystem = 0;
+    }
+
+
 }

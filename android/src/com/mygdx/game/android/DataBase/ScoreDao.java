@@ -124,11 +124,12 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
     @Override
     public List<Score> getAllBySong(String songTitle) throws Exception {
         List<Score> liste = new ArrayList<Score>();
-        Score score = new Score();
+        Score score;
         String[] params = new String[]{songTitle};
         Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.SCORE_TABLE
                 + " where " + DataBaseMaker.SCORE_SONGTITLE + "=? order by " + DataBaseMaker.SCORE_SCORE + " desc", params);
         while (c.moveToNext()) {
+            score = new Score();
             score.setIdScore(c.getInt(c.getColumnIndex("id")));
             score.setPlayerName(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_PLAYER)));
             score.setSongTitle(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_SONGTITLE)));
