@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.fichier.Score;
@@ -25,6 +22,7 @@ public class ScoreMenu implements Screen {
     TextButton buttonReturn;
     Label title, affScore;
     Score score;
+    TextField nomJoueur;
     public ScoreMenu(MyGdxGame game) {
         this.game = game;
 
@@ -46,8 +44,10 @@ public class ScoreMenu implements Screen {
         skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
         buttonReturn = new TextButton("Retour", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
+
         // On ajoute les elements a la trame
         table.add(title).padBottom((game.getLongueur()/5)).row();
+        //table.add(nomJoueur).padBottom((game.getLongueur()/5)).row();
 
     }
     /**
@@ -92,7 +92,13 @@ public class ScoreMenu implements Screen {
 
         score=game.getScore();
         affScore = new Label("Votre Score est de : "+score.getScore(),skin, "score");
+
+
+
+        nomJoueur=new TextField("",skin);
+        table.add(nomJoueur).padBottom((game.getLongueur()/7)).row();
         table.add(affScore).padBottom((game.getLongueur()/10)).row();
+        //
         table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur()/20)).padBottom(20).row();
 
         game.setMusic(Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3")));
