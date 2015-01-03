@@ -24,7 +24,7 @@
         },
     },
     com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
-        default: { selection: coffee, background: coffee, font: medium, fontColor: white, cursor: coffee }
+        default: { selection: selection, background: bB, font: medium, fontColor: white, cursor: cursor }
     },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
         default: { font: title, fontColor: red},
