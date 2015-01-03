@@ -23,8 +23,11 @@
             font: medium, fontColor: black, up: bC, down: bC, pressedOffsetY: -2
         },
     },
+    com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+        default: { selection: selection, background: textfield, font: medium, fontColor: white, cursor: cursor }
+    },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-         default: { font: title, fontColor: red},
-         score: { font: medium, fontColor: white}
-	}
+        default: { font: title, fontColor: red},
+        score: { font: medium, fontColor: white}
+    }
 }
