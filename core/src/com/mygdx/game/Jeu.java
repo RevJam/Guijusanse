@@ -3,12 +3,15 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -84,7 +87,8 @@ public class Jeu implements Screen {
                                 cpt++;
                             } else {
                                 if (stage.getActors().get(j).getX() == pos1 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
-                                    System.out.println("OH YEAH 1");
+                                    stage.getActors().get(j).addAction(Actions.fadeOut(0.3f));
+                                    Gdx.input.vibrate(150);
                                     scoreCourant+=100;
                                     break;
                                 }else {
@@ -100,7 +104,8 @@ public class Jeu implements Screen {
                                 cpt++;
                             } else {
                                 if (stage.getActors().get(j).getX() == pos2 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
-                                    System.out.println("OH YEAH 2");
+                                    stage.getActors().get(j).addAction(Actions.fadeOut(0.3f));
+                                    Gdx.input.vibrate(150);
                                     scoreCourant+=100;
                                     break;
                                 }else {
@@ -118,7 +123,8 @@ public class Jeu implements Screen {
                                 scoreCourant+=1000;
                             } else {
                                 if (stage.getActors().get(j).getX() == pos3 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
-                                    System.out.println("OH YEAH 3");
+                                    stage.getActors().get(j).addAction(Actions.fadeOut(0.3f));
+                                    Gdx.input.vibrate(150);
                                     scoreCourant+=100;
                                     break;
                                 }else {
