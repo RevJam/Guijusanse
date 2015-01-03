@@ -45,11 +45,8 @@ public class ScoreMenu implements Screen {
         skin.getFont("medium").setScale((game.getLargeur()/500), 1.5f);
         buttonReturn = new TextButton("Retour", skin, "buttonthree");
         title = new Label("GuiJuSanSe",skin);
-        affScore = new Label("Votre Score est de : "+score.getScore(),skin, "score");
         // On ajoute les elements a la trame
         table.add(title).padBottom((game.getLongueur()/5)).row();
-        table.add(affScore).padBottom((game.getLongueur()/10)).row();
-        table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur()/20)).padBottom(20).row();
 
     }
     /**
@@ -92,6 +89,9 @@ public class ScoreMenu implements Screen {
 
 
         score=game.getScore();
+        affScore = new Label("Votre Score est de : "+score.getScore(),skin, "score");
+        table.add(affScore).padBottom((game.getLongueur()/10)).row();
+        table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur()/20)).padBottom(20).row();
 
         game.setMusic(Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3")));
         game.getMusic().setLooping(true);
