@@ -17,9 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Game.TimeInterface;
-import com.mygdx.game.fichier.Chanson;
-import com.mygdx.game.fichier.Note;
-
+import com.mygdx.game.fichier.*;
+import com.mygdx.game.menu.ScoreMenu;
 
 
 /**
@@ -42,7 +41,7 @@ public class Jeu implements Screen {
     long t;
     int i;
     int tailleRond, pos1, pos2, pos3, cpt;
-
+    int scoreCourant=0;
 
     public Jeu(MyGdxGame game) {
         myGdxGame=game;
@@ -87,6 +86,7 @@ public class Jeu implements Screen {
                             } else {
                                 if (stage.getActors().get(j).getX() == pos1 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     System.out.println("OH YEAH 1");
+                                    scoreCourant+=50;
                                     break;
                                 }
                             }
@@ -100,6 +100,7 @@ public class Jeu implements Screen {
                             } else {
                                 if (stage.getActors().get(j).getX() == pos2 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     System.out.println("OH YEAH 2");
+                                    scoreCourant+=50;
                                     break;
                                 }
                             }
@@ -114,6 +115,7 @@ public class Jeu implements Screen {
                             } else {
                                 if (stage.getActors().get(j).getX() == pos3 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     System.out.println("OH YEAH 3");
+                                    scoreCourant+=50;
                                     break;
                                 }
                             }
@@ -173,6 +175,11 @@ public class Jeu implements Screen {
             }
 
             t=timeInterface.startTime();
+            if(t>=chanson.getTempsChansonTotal()){
+                Score score = new Score("user",myGdxGame.getSong(), TypeDifficultee.valueOf(myGdxGame.getDifficulty()), scoreCourant);
+                myGdxGame.getDaosAccess().getScoreDao().add(score);
+                myGdxGame.setScreen(myGdxGame.getScoreMenu());
+            }
         }
 
         // On lance la scene et la met en visible

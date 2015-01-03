@@ -7,12 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.DataBase.DaosAccess;
 
 import com.mygdx.game.Game.TimeInterface;
-import com.mygdx.game.menu.DifficultyMenu;
-import com.mygdx.game.menu.FirstMenu;
-import com.mygdx.game.menu.MultiMenu;
-import com.mygdx.game.menu.SecondMenu;
-import com.mygdx.game.menu.SongMenu;
-import com.mygdx.game.menu.ThirdMenu;
+import com.mygdx.game.menu.*;
 
 
 public class MyGdxGame extends Game {
@@ -24,6 +19,7 @@ public class MyGdxGame extends Game {
     private ThirdMenu tmA;
     private DifficultyMenu dm;
     private SongMenu songm;
+    private ScoreMenu scoreMenu;
 
     // Taille de l'écran
     private int largeur;
@@ -40,16 +36,17 @@ public class MyGdxGame extends Game {
     private Music music;
 
     private final DaosAccess daosAccess;
-private TimeInterface timeInterface;
+    private TimeInterface timeInterface;
+
     public MyGdxGame(DaosAccess daosAccess, TimeInterface t) {
         super();
         this.daosAccess = daosAccess;
-        timeInterface=t;
+        timeInterface = t;
     }
 
 
     @Override
-    public void create () {
+    public void create() {
         // Initialisation variable Jeu
         difficulty = "";
         song = "";
@@ -64,10 +61,11 @@ private TimeInterface timeInterface;
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
-        ecranJeu=new Jeu(this);
+        ecranJeu = new Jeu(this);
+        scoreMenu=new ScoreMenu(this);
 
         // Music
-        music=Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
         music.setLooping(true);
         music.setVolume(0.5f);
         music.play();
@@ -187,6 +185,14 @@ private TimeInterface timeInterface;
 
     public TimeInterface getTimeInterface() {
         return timeInterface;
+    }
+
+    public ScoreMenu getScoreMenu() {
+        return scoreMenu;
+    }
+
+    public void setScoreMenu(ScoreMenu scoreMenu) {
+        this.scoreMenu = scoreMenu;
     }
 
     @Override
