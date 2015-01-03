@@ -84,9 +84,7 @@ public class ScoreMenu implements Screen {
         buttonReturn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScore(new Score());
-                game.setSong("");
-                game.setDifficulty("");
+                game.resetAll();
                 game.setScreen(game.getFm());
             }
         });

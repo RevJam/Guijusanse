@@ -212,7 +212,12 @@ public class MyGdxGame extends Game {
     public void setScore(Score score) {
         this.score = score;
     }
-
+public void resetAll(){
+    difficulty = "";
+    song = "";
+    typeplayer = -1;
+    score=null;
+}
     @Override
     public void dispose() {
         super.dispose();
