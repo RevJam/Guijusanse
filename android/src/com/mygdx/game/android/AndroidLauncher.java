@@ -22,18 +22,24 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class AndroidLauncher extends AndroidApplication {
-	@Override
-	protected void onCreate (Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+    @Override
+    protected void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //declaration des interfaces pour la dao
         SongDaoInterface songDaoInterface = new SongDao(this);
         NoteDaoInterface noteDaoInterface = new NoteDao(this);
         ScoreDaoInterface scoreDaoInterface = new ScoreDao(this);
 
+        //declaration et initialisation de la dao
         AndroidDaosAccess daosAccess = new AndroidDaosAccess(noteDaoInterface,songDaoInterface,scoreDaoInterface);
+
+        //utilisation du temps
         TimeInterface timeInterface = new TimeImpl();
+
+        //lecture de fichier pour la premiere installation
         Lecture lectur = new Lecture(daosAccess);
         try {
             InputStream in = getAssets().open("file/ListeChanson.txt");
@@ -42,6 +48,7 @@ public class AndroidLauncher extends AndroidApplication {
             e.printStackTrace();
         }
 
-		initialize(new MyGdxGame(daosAccess, timeInterface), config);
-	}
+        //lancement du jeu
+        initialize(new MyGdxGame(daosAccess, timeInterface), config);
+    }
 }

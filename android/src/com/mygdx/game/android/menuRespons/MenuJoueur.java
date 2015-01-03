@@ -7,6 +7,9 @@ import com.mygdx.game.Game.MenuJoueurInterface;
  */
 public class MenuJoueur implements MenuJoueurInterface {
 
+    public MenuJoueur() {
+
+    }
 
     @Override
     public void getScreenMenuJoueur() {
