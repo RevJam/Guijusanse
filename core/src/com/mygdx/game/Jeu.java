@@ -216,9 +216,10 @@ public class Jeu implements Screen {
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
-        chanson = myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong());
 
         try {
+            chanson = myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong());
+            System.out.println(chanson.getTitle());
             chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
         } catch (Exception e) {
             e.printStackTrace();

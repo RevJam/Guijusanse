@@ -22,8 +22,8 @@ public class ThirdMenu implements Screen {
     TextButton buttonPlay, buttonReturn, buttonDifficulty, buttonSong;
     Label title;
     ScrollPane scroll;
-    public ThirdMenu(MyGdxGame game) {
-        this.game = game;
+    public ThirdMenu(MyGdxGame ggame) {
+        this.game = ggame;
 
         // Crée la scene
         stage = new Stage();
@@ -53,24 +53,7 @@ public class ThirdMenu implements Screen {
         table.add(buttonPlay).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         table.add(buttonReturn).size( game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
         scroll = new ScrollPane(table);
-    }
 
-    public void render(float delta) {
-        // On colore le fond
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // On lance la scene et la met en visible
-        stage.act();
-        stage.draw();
-
-    }
-
-    public void resize(int width, int height) {
-
-    }
-
-    public void show() {
         //On active nos boutons
         buttonDifficulty.addListener(new ClickListener(){
             @Override
@@ -105,12 +88,32 @@ public class ThirdMenu implements Screen {
                 }
             }
         });
+
         buttonReturn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(game.getSm());
             }
         });
+    }
+
+    public void render(float delta) {
+        // On colore le fond
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // On lance la scene et la met en visible
+        stage.act();
+        stage.draw();
+
+    }
+
+    public void resize(int width, int height) {
+
+    }
+
+    public void show() {
+
 
         table.setFillParent(true);
         //On ajoute les acteurs a la scène

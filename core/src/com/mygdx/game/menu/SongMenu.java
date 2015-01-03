@@ -105,6 +105,7 @@ public class SongMenu implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     game.setSong("");
                     game.setSong(but.getText().toString());
+
                     if (!game.getDifficulty().equals("")) {
                         game.getTmA().buttonSong.setText(but.getText().toString());
                     }
