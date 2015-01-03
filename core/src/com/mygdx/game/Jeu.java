@@ -12,10 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Game.TimeInterface;
 import com.mygdx.game.fichier.*;
@@ -44,6 +41,8 @@ public class Jeu implements Screen {
     int tailleRond, pos1, pos2, pos3, cpt;
     int scoreCourant=0;
 
+    Label affScore;
+
     public Jeu(MyGdxGame game) {
 
         myGdxGame=game;
@@ -60,6 +59,8 @@ public class Jeu implements Screen {
         pos3 = (myGdxGame.getLargeur()*5 / 6) - (tailleRond/2);
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
+
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
 
         button1 = new TextButton(null,skin,"buttontwo");
         button1.setSize(tailleRond, tailleRond);
@@ -155,6 +156,8 @@ public class Jeu implements Screen {
         //Couper la musique
         myGdxGame.getMusic().stop();
 
+        affScore.setText("Score: "+ String.valueOf(scoreCourant));
+
         //pour eviter le nullpointerException
         //a rajouter une condition pour si la musique est finie, affichage d'une fenetre de score
         if(i<chanson.getListNote().size()) {
@@ -221,6 +224,8 @@ public class Jeu implements Screen {
 
         timeInterface.setCurrentTimeSystem();
 
+        affScore = new Label("Score: "+scoreCourant,skin, "score");
+        table.add(affScore).padBottom((myGdxGame.getLongueur()-100)).row();
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
