@@ -21,6 +21,7 @@ public class MyGdxGame extends Game {
     private DifficultyMenu dm;
     private SongMenu songm;
     private ScoreMenu scoreMenu;
+    private HighScoreMenu hsmenu;
 
     // Taille de l'écran
     private int largeur;
@@ -64,6 +65,7 @@ public class MyGdxGame extends Game {
         mm = new MultiMenu(this);
         ecranJeu = new Jeu(this);
         scoreMenu=new ScoreMenu(this);
+        hsmenu = new HighScoreMenu(this);
 
         // Music
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/songMenu.mp3"));
@@ -107,6 +109,13 @@ public class MyGdxGame extends Game {
         this.dm = dm;
     }
 
+    public HighScoreMenu getHsmenu() {
+        return hsmenu;
+    }
+
+    public void setHsmenu(HighScoreMenu hsmenu) {
+        this.hsmenu = hsmenu;
+    }
 
     public String getDifficulty() {
         return difficulty;

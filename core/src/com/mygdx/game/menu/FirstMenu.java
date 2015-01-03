@@ -77,6 +77,12 @@ public class FirstMenu implements Screen {
                 game.setScreen(game.getSm());
             }
         });
+        buttonOption.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(game.getHsmenu());
+            }
+        });
         buttonExit.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
