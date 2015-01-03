@@ -79,7 +79,7 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
                 + ", " + DataBaseMaker.SCORE_SCORE
                 + " where id = ?", new String[]{String.valueOf(id)});
         Score score = new Score();
-       while(c.moveToNext()){
+        while(c.moveToNext()){
             score.setIdScore(c.getInt(c.getColumnIndex("id")));
             score.setPlayerName(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_PLAYER)));
             score.setSongTitle(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_SONGTITLE)));
@@ -113,4 +113,32 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
         c.close();
         return liste;
     }
+
+    /**
+     * Renvoie tout les scores d'une chanson donnée
+     *
+     * @param songTitle
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Score> getAllBySong(String songTitle) throws Exception {
+        List<Score> liste = new ArrayList<Score>();
+        Score score = new Score();
+        String[] params = new String[]{songTitle};
+        Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.SCORE_TABLE
+                + " where " + DataBaseMaker.SCORE_SONGTITLE + "=? order by " + DataBaseMaker.SCORE_SCORE + " desc", params);
+        while (c.moveToNext()) {
+            score.setIdScore(c.getInt(c.getColumnIndex("id")));
+            score.setPlayerName(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_PLAYER)));
+            score.setSongTitle(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_SONGTITLE)));
+            score.setDifficultee(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_DIFFICULTY))));
+            score.setScore(c.getInt(c.getColumnIndex(DataBaseMaker.SCORE_SCORE)));
+            liste.add(score);
+        }
+        c.close();
+        return liste;
+    }
+
+
 }

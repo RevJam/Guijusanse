@@ -43,4 +43,12 @@ public interface ScoreDaoInterface {
      * @throws Exception
      */
     public List<Score> getAll() throws Exception;
+
+    /**
+     * Renvoie tout les scores d'une chanson donnée
+     * @param songTitle
+     * @return
+     * @throws Exception
+     */
+    public List<Score>getAllBySong(String songTitle) throws Exception;
 }
