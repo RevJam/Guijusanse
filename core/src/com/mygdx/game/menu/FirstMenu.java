@@ -38,7 +38,7 @@ public class FirstMenu implements Screen {
         // On crée trois boutons et un titre
         buttonPlay = new TextButton("Jouer", skin);
         buttonExit = new TextButton("Exit", skin, "buttonthree");
-        buttonOption = new TextButton("Option", skin, "buttontwo");
+        buttonOption = new TextButton("Liste des Scores", skin, "buttontwo");
         title = new Label("GuiJuSanSe",skin);
 
 
