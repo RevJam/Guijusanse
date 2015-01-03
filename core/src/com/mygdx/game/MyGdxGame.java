@@ -216,7 +216,6 @@ public void resetAll(){
     difficulty = "";
     song = "";
     typeplayer = -1;
-    score=null;
 }
     @Override
     public void dispose() {
