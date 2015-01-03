@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.Score;
+import com.mygdx.game.fichier.TypeDifficultee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,12 @@ public class HighScoreMenu implements Screen {
     Table table;
     Skin skin;
     TextButton buttonReturn, buttonReturn2;
-    Label title;
+    Label title, label;
     ScrollPane scroll;
     List<Score> listScore;
     List<Chanson> listChanson;
     List<TextButton> listButton;
+    List<TypeDifficultee> listDif;
 
     public HighScoreMenu(MyGdxGame ggame){
         game = ggame;
@@ -58,12 +60,8 @@ public class HighScoreMenu implements Screen {
 
         table.add(title).padBottom((game.getLongueur()/5)).row();
 
+        listDif = new ArrayList<TypeDifficultee>();
         listScore = new ArrayList<Score>();
-        try {
-            listScore=game.getDaosAccess().getScoreDao().getAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         // On crée une liste pour les chansons OK
         listChanson = new ArrayList<Chanson>();
         try {
@@ -101,17 +99,38 @@ public class HighScoreMenu implements Screen {
 
     @Override
     public void show() {
-        for(TextButton button: listButton){
+        for(final TextButton button: listButton){
             button.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    int i=0;
+                    try {
+                        System.out.println(button.getText().toString());
+                        listScore=game.getDaosAccess().getScoreDao().getAllBySong(button.getText().toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     game.getHsmenu().table.clear();
                     game.getHsmenu().table.add(title).padBottom((game.getLongueur()/5)).row();
                     for(Score score: listScore){
-                        Label label = new Label(score.getPlayerName()+": "+String.valueOf(score.getScore()),skin,"score");
-                        game.getHsmenu().table.add(label).size( game.getLargeur(), (game.getLongueur()/10)).padBottom(5).row();
+                        if (!listDif.contains(score.getDifficultee()))
+                            listDif.add(score.getDifficultee());
                     }
-
+                    for(TypeDifficultee td: listDif) {
+                        label = new Label(td.toString(), skin);
+                        game.getHsmenu().table.add(label).row();
+                        for (Score score : listScore) {
+                            if (i > 3) {
+                                break;
+                            }
+                            if (score.getDifficultee().toString().equals(td.toString())) {
+                                label = new Label(score.getPlayerName() + ": " + String.valueOf(score.getScore()), skin, "score");
+                                game.getHsmenu().table.add(label).row();
+                                i++;
+                            }
+                        }
+                        i=0;
+                    }
                     game.getHsmenu().table.add(buttonReturn2).size( game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
                     scroll = new ScrollPane(game.getHsmenu().table);
                     game.setScreen(game.getHsmenu());
@@ -129,6 +148,8 @@ public class HighScoreMenu implements Screen {
         buttonReturn2.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                listDif = new ArrayList<TypeDifficultee>();
+                listScore = new ArrayList<Score>();
                 game.getHsmenu().table.clear();
                 game.getHsmenu().table.add(title).padBottom((game.getLongueur()/5)).row();
                 for (TextButton chanson : listButton) {
