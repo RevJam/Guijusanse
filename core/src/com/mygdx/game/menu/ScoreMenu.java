@@ -44,7 +44,7 @@ public class ScoreMenu implements Screen {
         affScore = new Label("Votre Score est de : "+score.getScore(),skin);
         // On change la taille de la police
         skin.getFont("title").setScale((game.getLargeur()/300), 5f);
-        skin.getFont("small").setScale((game.getLargeur()/400), 2.5f);
+        skin.getFont("medium").setScale((game.getLargeur()/400), 2.5f);
 
         // On ajoute les elements a la trame
         table.add(title).padBottom((game.getLongueur()/5)).row();
@@ -95,7 +95,7 @@ public class ScoreMenu implements Screen {
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
-
+        System.out.println("score: " + score);
         // On place la scène
         Gdx.input.setInputProcessor(stage);
     }

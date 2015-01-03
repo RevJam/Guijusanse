@@ -183,7 +183,6 @@ public class Jeu implements Screen {
         }
 
         if(t>=chanson.getTempsChansonTotal()){
-            System.out.println("in the if "+t);
             Score score = new Score("user",chanson.getTitle(), chanson.getDifficulter(), scoreCourant);
             myGdxGame.getDaosAccess().getScoreDao().add(score);
             myGdxGame.setScore(score);
