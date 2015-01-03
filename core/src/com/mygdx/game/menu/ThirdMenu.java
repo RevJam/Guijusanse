@@ -99,7 +99,9 @@ public class ThirdMenu implements Screen {
                 if(game.getTypeplayer() == 1){
                     // game.setScreen(game.Waitgame());
                 }else {
-                    game.setScreen(game.getEcranJeu());
+                    if(!game.getDifficulty().equals("") && !game.getSong().equals("")){
+                        game.setScreen(game.getEcranJeu());
+                    }
                 }
             }
         });

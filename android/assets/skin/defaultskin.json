@@ -24,6 +24,7 @@
         },
     },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-         default: { font: title, fontColor: red}
+         default: { font: title, fontColor: red},
+         score: { font: medium, fontColor: white}
 	}
 }

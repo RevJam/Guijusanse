@@ -216,6 +216,7 @@ public class Jeu implements Screen {
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
+        chanson = myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong());
 
         try {
             chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
@@ -225,6 +226,7 @@ public class Jeu implements Screen {
 
         // On place la scène
         Gdx.input.setInputProcessor(stage);
+
         String s=chanson.getTitle().replaceAll("[\\W]", "");
         music=Gdx.audio.newMusic(Gdx.files.internal("sound/"+ s+".mp3"));
         music.setLooping(false);

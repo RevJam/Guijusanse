@@ -28,8 +28,9 @@ public class SongMenu implements Screen {
     Label title;
     List<Chanson> listChanson;
 
+    TextButton buttonReturn;
+
     public SongMenu(MyGdxGame game) {
-        TextButton button;
 
         this.game = game;
 
@@ -42,6 +43,7 @@ public class SongMenu implements Screen {
 
         // Charge le skin de l'appli
         skin =new Skin(Gdx.files.internal("skin/defaultskin.json"),new TextureAtlas(Gdx.files.internal("skin/default.pack")));
+        buttonReturn = new TextButton("Retour", skin, "buttonfour");
 
         // On change la taille de la police
         skin.getFont("title").setScale((game.getLargeur()/300), 5f);
@@ -60,10 +62,16 @@ public class SongMenu implements Screen {
         }
         // Crée une liste de boutons
         listeSong= new ArrayList<TextButton>();
-        for(Chanson chanson : listChanson){
-            button = new TextButton(chanson.getTitle(), skin);
-            listeSong.add(button);
-            table.add(button).size(game.getLargeur(), (game.getLongueur()/10)).padBottom(20).row();
+
+        TextButton but;
+        if(!game.getDifficulty().equals("")) {
+            for (Chanson chanson : listChanson) {
+                but = new TextButton(chanson.getTitle(), skin);
+                listeSong.add(but);
+                table.add(but).size(game.getLargeur(), (game.getLongueur() / 10)).padBottom(20).row();
+            }
+        }else{
+            table.add(buttonReturn).size(game.getLargeur(), (game.getLongueur() / 10)).padBottom(20).row();
         }
     }
 
@@ -91,34 +99,28 @@ public class SongMenu implements Screen {
     public void show() {
         //On active nos boutons
         // Liste des chansons selon la difficulté.
-        for (final TextButton button : listeSong) {
-            button.addListener(new ClickListener() {
-
+        for(final TextButton but: listeSong) {
+            but.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (game.getDifficulty().equals("")){
-                        game.setSong("");
-                        // On enregistre la chanson selectionnée
-                        Chanson chanson = game.getDaosAccess().getSongDao().getByTitle(button.getText().toString());
-                        game.getEcranJeu().setChanson(chanson);
-
-                        game.setSong(button.getText().toString());
-                        game.setScreen(game.getTmA());
-                    }else{
-                        game.setSong("");
-                        // On enregistre la chanson selectionnée
-                        Chanson chanson = game.getDaosAccess().getSongDao().getByTitle(button.getText().toString());
-                        game.getEcranJeu().setChanson(chanson);
-                        game.setSong(button.getText().toString());
-                        //On l'affiche sur le menu
-                        game.getTmA().buttonSong.setText(button.getText().toString());
-                        //On retourne a l'ecran precedent
-                        game.setScreen(game.getTmA());
+                    game.setSong("");
+                    game.setSong(but.getText().toString());
+                    if (!game.getDifficulty().equals("")) {
+                        game.getTmA().buttonSong.setText(but.getText().toString());
                     }
+                    game.setScreen(game.getTmA());
                 }
             });
-
         }
+
+        buttonReturn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setSong("");
+                game.setScreen(game.getTmA());
+            }
+        });
+
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
