@@ -218,15 +218,10 @@ public class MyGdxGame extends Game {
         song = "";
         typeplayer = -1;
         timeInterface.resetTime();
-        fm = new FirstMenu(this);
-        sm = new SecondMenu(this);
         tmA = new ThirdMenu(this);
-        dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
-        mm = new MultiMenu(this);
         ecranJeu = new Jeu(this);
         scoreMenu=new ScoreMenu(this);
-        hsmenu = new HighScoreMenu(this);
     }
 
     @Override
