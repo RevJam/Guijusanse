@@ -175,8 +175,9 @@ public class Jeu implements Screen {
             }
 
             t=timeInterface.startTime();
-            if(t>=chanson.getTempsChansonTotal()){
-                Score score = new Score("user",myGdxGame.getSong(), TypeDifficultee.valueOf(myGdxGame.getDifficulty()), scoreCourant);
+            if(t>=chanson.getTempsChansonTotal()*1000){
+                System.out.println();
+                Score score = new Score("user",chanson.getTitle(), chanson.getDifficulter(), scoreCourant);
                 myGdxGame.getDaosAccess().getScoreDao().add(score);
                 myGdxGame.setScreen(myGdxGame.getScoreMenu());
             }
