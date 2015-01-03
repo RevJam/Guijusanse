@@ -101,7 +101,6 @@ public class ScoreMenu implements Screen {
         table.setFillParent(true);
         //On ajoute les acteurs a la scène
         stage.addActor(table);
-        System.out.println("score: " + score);
         // On place la scène
         Gdx.input.setInputProcessor(stage);
     }
