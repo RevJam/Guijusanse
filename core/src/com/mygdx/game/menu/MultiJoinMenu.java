@@ -41,14 +41,15 @@ public class MultiJoinMenu implements Screen {
         // Charge le skin de l'appli
         skin = new Skin(Gdx.files.internal("skin/defaultskin.json"), new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
+        // On change la taille de la police
+        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
+
         // On crée un bouton et un titre
         buttonReturn = new TextButton("Retour", skin, "buttonfour");
         buttonConnexion = new TextButton("Saisir l'IP du serveur", skin, "buttonthree");
         title = new Label("GuiJuSanSe", skin);
 
-        // On change la taille de la police
-        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
-        skin.getFont("medium").setScale((game.getLargeur() / 500), 1.5f);
         connectionLabel = new Label("Connexion en cours...", skin, "score");
         connectionErrorLabel = new Label("Erreur de connexion", skin, "score");
         connectedLabel = new Label("Connecte\nAttente du serveur", skin, "score");
@@ -142,7 +143,7 @@ public class MultiJoinMenu implements Screen {
         // On place la scène
         Gdx.input.setInputProcessor(stage);
 
-        // Assignation du gestionnaire de messages réseau
+        // Assigantion du gestionnaire de messages réseau
         game.setMessagesHandler(mClient);
     }
 

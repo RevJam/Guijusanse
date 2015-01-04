@@ -46,6 +46,10 @@ public class MultiServerMenu implements Screen {
         // Charge le skin de l'appli
         skin = new Skin(Gdx.files.internal("skin/defaultskin.json"), new TextureAtlas(Gdx.files.internal("skin/default.pack")));
 
+        // On change la taille de la police
+        skin.getFont("title").setScale((game.getLargeur()/500), 2.6f);
+        skin.getFont("medium").setScale((game.getLargeur()/550), 1.2f);
+
         // On crée un bouton et un titre
         buttonReturn = new TextButton("Retour", skin, "buttonfour");
         buttonStart = new TextButton("Lancer la partie", skin, "buttonthree");
@@ -53,9 +57,6 @@ public class MultiServerMenu implements Screen {
         addressesListLabel = new Label("", skin, "score");
         connectedClientLabel = new Label("", skin, "score");
 
-        // On change la taille de la police
-        skin.getFont("title").setScale((game.getLargeur() / 500), 2.6f);
-        skin.getFont("medium").setScale((game.getLargeur() / 500), 1.5f);
 
         // On ajoute les elements a la trame
         table.add(title).padBottom(40).row();
