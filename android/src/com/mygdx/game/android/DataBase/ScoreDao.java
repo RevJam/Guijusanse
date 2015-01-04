@@ -121,6 +121,7 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
      */
     @Override
     public List<Score> getAll() throws Exception {
+        open();
         List<Score> liste = new ArrayList<Score>();
         Score score = new Score();
         Cursor c = mDb.query(DataBaseMaker.SCORE_TABLE, new String[]{"id",
@@ -147,6 +148,7 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
      */
     @Override
     public List<Score> getAllBySong(String songTitle) throws Exception {
+        open();
         List<Score> liste = new ArrayList<Score>();
         Score score;
         String[] params = new String[]{songTitle};

@@ -158,7 +158,6 @@ public class Jeu implements Screen {
         affScore.setText("Score: "+ String.valueOf(scoreCourant));
 
         //pour eviter le nullpointerException
-        //a rajouter une condition pour si la musique est finie, affichage d'une fenetre de score
         if(i<chanson.getListNote().size()) {
             note = chanson.getListNote().get(i);
 

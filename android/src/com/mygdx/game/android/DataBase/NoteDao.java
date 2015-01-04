@@ -83,6 +83,7 @@ public class NoteDao extends Dao implements NoteDaoInterface {
             note.setDuree(c.getInt(c.getColumnIndex(DataBaseMaker.NOTE_DUREE)));
             note.setIdChanson(c.getInt(c.getColumnIndex(DataBaseMaker.ID_SONG)));
         }
+        c.close();
         return note;
     }
 
