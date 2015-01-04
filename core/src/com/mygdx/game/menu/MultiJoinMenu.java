@@ -142,7 +142,7 @@ public class MultiJoinMenu implements Screen {
         // On place la scène
         Gdx.input.setInputProcessor(stage);
 
-        // Assigantion du gestionnaire de messages réseau
+        // Assignation du gestionnaire de messages réseau
         game.setMessagesHandler(mClient);
     }
 
