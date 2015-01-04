@@ -121,7 +121,6 @@ public class Jeu implements Screen {
                         for (int j = cpt; j < stage.getActors().size; j++) {
                             if (stage.getActors().get(j).getY() == -300) {
                                 cpt++;
-                                scoreCourant+=1000;
                             } else {
                                 if (stage.getActors().get(j).getX() == pos3 && (stage.getActors().get(j).getY() > (2/3)*tailleRond && stage.getActors().get(j).getY() < tailleRond * (4/3))) {
                                     stage.getActors().get(j).addAction(Actions.fadeOut(0.3f));
