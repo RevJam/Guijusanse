@@ -52,8 +52,12 @@ public class ServerConnectionsThread extends Thread {
     }
 
     public void stopAcceptingConnections() {
-        mServerSocket.dispose();
-        this.mAcceptingConnections = false;
+        try {
+            mServerSocket.dispose();
+            this.mAcceptingConnections = false;
+        } catch (NullPointerException e) {
+            // Rien
+        }
     }
 
     public SocketThread getClientThread(String ip) {
