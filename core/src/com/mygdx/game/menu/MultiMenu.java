@@ -62,7 +62,6 @@ public class MultiMenu implements Screen {
         // On lance la scene et la met en visible
         stage.act();
         stage.draw();
-
     }
 
     public void resize(int width, int height) {
@@ -74,13 +73,13 @@ public class MultiMenu implements Screen {
         buttonServeur.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(game.getTmA());
+                game.setScreen(game.getMsm());
             }
         });
         buttonClient.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //game.setScreen(game.getFmcp);
+                game.setScreen(game.getMjm());
             }
         });
         buttonReturn.addListener(new ClickListener(){

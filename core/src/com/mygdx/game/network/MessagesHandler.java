@@ -17,10 +17,6 @@ public abstract class MessagesHandler {
         mMessages.add(message);
     }
 
-    public Integer getMessagesListLength() {
-        return this.mMessages.size();
-    }
-
     public Message getOlderMessage() {
         return this.mMessages.poll();
     }

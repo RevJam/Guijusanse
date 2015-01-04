@@ -4,7 +4,14 @@ import com.mygdx.game.network.Message;
 import com.mygdx.game.network.MessagesHandler;
 import com.mygdx.game.network.SocketThread;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
 
 /**
  * Created by guillaume on 26/11/14.
@@ -17,22 +24,69 @@ public class Server extends MessagesHandler {
         super();
     }
 
+    /**
+     * Commence à accepter des connexions
+     */
     public void startAcceptingConnections() {
         mServerConnectionsThread = new ServerConnectionsThread(this);
         mServerConnectionsThread.start();
     }
 
+    /**
+     * Arrête d'accepter des connexions
+     *
+     * @throws InterruptedException
+     */
     public void stopAcceptingConnections() throws InterruptedException {
-        if (mServerConnectionsThread.isAlive()) {
+        if (mServerConnectionsThread != null && mServerConnectionsThread.isAlive()) {
             mServerConnectionsThread.stopAcceptingConnections();
-            mServerConnectionsThread.wait();
+            mServerConnectionsThread.interrupt();
         }
     }
 
-    public void sendMessageTo(String ip, Message message) {
-        // TODO
+    /**
+     * Retourne la liste des adresses IP de l'appareil
+     *
+     * @return
+     */
+    public List<String> getAddresses() {
+        List<String> addresses = new ArrayList<String>();
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            for (NetworkInterface ni : Collections.list(interfaces)) {
+                for (InetAddress address : Collections.list(ni.getInetAddresses())) {
+                    if (address instanceof Inet4Address) {
+                        addresses.add(address.getHostAddress());
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return addresses;
+    }
+    
+    public int numberOfConnectedClient() {
+        return (mServerConnectionsThread.getClientThreads()).size();
     }
 
+    /**
+     * Envoi un message à une adresse précise
+     *
+     * @param ip      l'adresse du client à qui envioyer le message
+     * @param message le message à envoyer
+     */
+    public void sendMessageTo(String ip, Message message) {
+        SocketThread client = mServerConnectionsThread.getClientThread(ip);
+        if (client != null)
+            client.sendMessage(message);
+    }
+
+    /**
+     * Envoi un message à tous les clients
+     *
+     * @param message le message à envoyer
+     */
     public void sendMessageToAll(Message message) {
         ArrayList<SocketThread> clientThreads = mServerConnectionsThread.getClientThreads();
         for (SocketThread client : clientThreads) {

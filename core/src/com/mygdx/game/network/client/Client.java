@@ -14,21 +14,42 @@ import com.mygdx.game.network.SocketThread;
 public class Client extends MessagesHandler {
 
     private SocketThread mSocketThread;
+    // Socket will time our in 4 seconds
+    final private int timeout = 4000;
 
     public Client() {
         super();
     }
 
-    public void connectToServer(String ipAddress) {
+    public boolean connectToServer(String ipAddress) {
 
         SocketHints socketHints = new SocketHints();
-        // Socket will time our in 4 seconds
-        socketHints.connectTimeout = 4000;
-        //create the socket and connect to the server entered in the text box ( x.x.x.x format ) on port 9021
-        Socket socket = Gdx.net.newClientSocket(Net.Protocol.TCP, ipAddress, 9021, socketHints);
+        socketHints.connectTimeout = timeout;
 
-        mSocketThread = new SocketThread(this, socket);
-        mSocketThread.start();
+        //create the socket and connect to the server entered in the text box ( x.x.x.x format ) on port 9021
+        Socket socket;
+        try {
+            socket = Gdx.net.newClientSocket(Net.Protocol.TCP, ipAddress, 9021, socketHints);
+
+            mSocketThread = new SocketThread(this, socket);
+            mSocketThread.start();
+            
+            return true;
+        }
+        catch (Exception e) {
+
+            Gdx.app.log("Network", e.toString());
+            
+            return false;
+        }
+    }
+    
+    public int getTimeout() {
+        return timeout;
+    }
+    
+    public boolean isConnected() {
+        return mSocketThread.isConnected();
     }
 
     public void sendMessage(Message message) {

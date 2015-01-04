@@ -24,7 +24,7 @@ public class SocketThread extends Thread {
         // Loop forever
         while (true) {
 
-            // Read data from the socket into a BufferedReader
+            // Lecture des donnée depuis le socket vers un BufferedReader
             BufferedReader buffer = new BufferedReader(new InputStreamReader(mClientSocket.getInputStream()));
 
             String header = "";
@@ -36,15 +36,25 @@ public class SocketThread extends Thread {
                 e.printStackTrace();
             }
 
-            mMessagesHandler.addMessage(new Message(mClientSocket.getRemoteAddress(), header, content));
+            Message msg = new Message(header, content);
+            msg.setIp(mClientSocket.getRemoteAddress());
+            mMessagesHandler.addMessage(msg);
         }
+    }
+    
+    public boolean isConnected() {
+        return mClientSocket.isConnected();
+    }
+    
+    public String getRemoteAddress() {
+        return mClientSocket.getRemoteAddress();
     }
 
     public void sendMessage(Message message) {
         String serializedMessage = message.getHeader() + "\n" + message.getContent() + "\n";
 
         try {
-            // write our entered message to the stream
+            // On écrit notre message dans le stream
             mClientSocket.getOutputStream().write(serializedMessage.getBytes());
         } catch (IOException e) {
             e.printStackTrace();

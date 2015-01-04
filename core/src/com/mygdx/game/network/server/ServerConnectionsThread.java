@@ -18,6 +18,7 @@ public class ServerConnectionsThread extends Thread {
     private MessagesHandler mMessagesHandler;
     private boolean mAcceptingConnections;
     private ArrayList<SocketThread> mClientSocketThreads;
+    private ServerSocket mServerSocket;
 
     public ServerConnectionsThread(MessagesHandler messagesHandler) {
         this.mMessagesHandler = messagesHandler;
@@ -29,23 +30,39 @@ public class ServerConnectionsThread extends Thread {
         ServerSocketHints serverSocketHint = new ServerSocketHints();
         serverSocketHint.acceptTimeout = 200;
 
-        ServerSocket serverSocket = Gdx.net.newServerSocket(Net.Protocol.TCP, 9021, serverSocketHint);
+        mServerSocket = Gdx.net.newServerSocket(Net.Protocol.TCP, 9021, serverSocketHint);
 
         this.mAcceptingConnections = true;
 
         // Loop forever
         while (this.mAcceptingConnections) {
-            // Create a socket
-            Socket socket = serverSocket.accept(null);
+            // Crée un socket
+            try {
+                Socket socket = mServerSocket.accept(null);
 
-            SocketThread thread = new SocketThread(mMessagesHandler, socket);
-            thread.start();
-            mClientSocketThreads.add(thread);
+                Gdx.app.log("Network", "connexion de " + socket.getRemoteAddress());
+
+                SocketThread thread = new SocketThread(mMessagesHandler, socket);
+                thread.start();
+                mClientSocketThreads.add(thread);
+            } catch (Exception e) {
+                // Rien, c'est que le socket n'a pas pu se connecter, on continue
+            }
         }
     }
 
     public void stopAcceptingConnections() {
+        mServerSocket.dispose();
         this.mAcceptingConnections = false;
+    }
+
+    public SocketThread getClientThread(String ip) {
+        for (SocketThread client : mClientSocketThreads) {
+            if (client.getRemoteAddress().equals(ip))
+                return client;
+        }
+        // Si pas de client trouvé, on retourne null
+        return null;
     }
 
     public ArrayList<SocketThread> getClientThreads() {

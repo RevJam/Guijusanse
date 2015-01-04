@@ -5,18 +5,13 @@ package com.mygdx.game.network;
  */
 public class Message {
 
-    private String mIp;
     private String mHeader;
     private String mContent;
+    private String mIp;
 
-    public Message(String ip, String header, String content) {
-        this.mIp = ip;
+    public Message(String header, String content) {
         this.mHeader = header;
         this.mContent = content;
-    }
-
-    public String getIp() {
-        return this.mIp;
     }
 
     public String getHeader() {
@@ -25,5 +20,13 @@ public class Message {
 
     public String getContent() {
         return this.mContent;
+    }
+
+    public void setIp(String ip) {
+        this.mIp = ip;
+    }
+
+    public String getIp() {
+        return this.mIp;
     }
 }

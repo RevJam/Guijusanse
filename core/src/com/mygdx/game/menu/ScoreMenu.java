@@ -92,7 +92,7 @@ public class ScoreMenu implements Screen {
                     game.getDaosAccess().getScoreDao().update(score);
                 }
                 game.setScore(new Score());
-                game.resetAll();
+                //game.resetAll();
                 game.setScreen(game.getFm());
             }
         });

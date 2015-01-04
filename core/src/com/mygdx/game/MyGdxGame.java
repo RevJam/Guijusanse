@@ -9,6 +9,7 @@ import com.mygdx.game.DataBase.DaosAccess;
 import com.mygdx.game.Game.TimeInterface;
 import com.mygdx.game.fichier.Score;
 import com.mygdx.game.menu.*;
+import com.mygdx.game.network.MessagesHandler;
 
 
 public class MyGdxGame extends Game {
@@ -17,6 +18,8 @@ public class MyGdxGame extends Game {
     private FirstMenu fm;
     private SecondMenu sm;
     private MultiMenu mm;
+    private MultiJoinMenu mjm;
+    private MultiServerMenu msm;
     private ThirdMenu tmA;
     private DifficultyMenu dm;
     private SongMenu songm;
@@ -32,6 +35,9 @@ public class MyGdxGame extends Game {
     private String difficulty;
     private String song;
 
+    // Attributs pour le réseau
+    private MessagesHandler mMessagesHandler;
+
     // 0 = OnePlayer, 1 = Multi
     private int typeplayer;
 
@@ -45,6 +51,7 @@ public class MyGdxGame extends Game {
         this.daosAccess = daosAccess;
         timeInterface = t;
     }
+
 
     @Override
     public void create() {
@@ -62,8 +69,10 @@ public class MyGdxGame extends Game {
         dm = new DifficultyMenu(this);
         songm = new SongMenu(this);
         mm = new MultiMenu(this);
+        mjm = new MultiJoinMenu(this);
+        msm = new MultiServerMenu(this);
         ecranJeu = new Jeu(this);
-        scoreMenu=new ScoreMenu(this);
+        scoreMenu = new ScoreMenu(this);
         hsmenu = new HighScoreMenu(this);
 
         // Music
@@ -76,24 +85,51 @@ public class MyGdxGame extends Game {
         setScreen(fm);
     }
 
+    public void setMessagesHandler(MessagesHandler messagesHandler) {
+        this.mMessagesHandler = messagesHandler;
+    }
+    public MessagesHandler getMessagesHandler() {
+        return this.mMessagesHandler;
+    }
+
     public FirstMenu getFm() {
         return fm;
+    }
+
+    public void setFm(FirstMenu fm) {
+        this.fm = fm;
     }
 
     public SecondMenu getSm() {
         return sm;
     }
 
+    public void setSm(SecondMenu sm) {
+        this.sm = sm;
+    }
+
     public ThirdMenu getTmA() {
         return tmA;
+    }
+
+    public void setTmA(ThirdMenu tmA) {
+        this.tmA = tmA;
     }
 
     public DifficultyMenu getDm() {
         return dm;
     }
 
+    public void setDm(DifficultyMenu dm) {
+        this.dm = dm;
+    }
+
     public HighScoreMenu getHsmenu() {
         return hsmenu;
+    }
+
+    public void setHsmenu(HighScoreMenu hsmenu) {
+        this.hsmenu = hsmenu;
     }
 
     public String getDifficulty() {
@@ -120,6 +156,14 @@ public class MyGdxGame extends Game {
         return ecranJeu;
     }
 
+    public void setEcranJeu(Jeu ecranJeu) {
+        ecranJeu = ecranJeu;
+    }
+
+    public void setSongm(SongMenu songm) {
+        this.songm = songm;
+    }
+
     public int getTypeplayer() {
         return typeplayer;
     }
@@ -132,12 +176,40 @@ public class MyGdxGame extends Game {
         return mm;
     }
 
+    public void setMm(MultiMenu mm) {
+        this.mm = mm;
+    }
+
+    public MultiJoinMenu getMjm() {
+        return mjm;
+    }
+
+    public void setMjm(MultiJoinMenu mjm) {
+        this.mjm = mjm;
+    }
+
+    public MultiServerMenu getMsm() {
+        return msm;
+    }
+
+    public void setMsm(MultiServerMenu msm) {
+        this.msm = msm;
+    }
+
     public int getLongueur() {
         return longueur;
     }
 
+    public void setLongueur(int longueur) {
+        this.longueur = longueur;
+    }
+
     public int getLargeur() {
         return largeur;
+    }
+
+    public void setLargeur(int largeur) {
+        this.largeur = largeur;
     }
 
     public Music getMusic() {
@@ -160,23 +232,16 @@ public class MyGdxGame extends Game {
         return scoreMenu;
     }
 
+    public void setScoreMenu(ScoreMenu scoreMenu) {
+        this.scoreMenu = scoreMenu;
+    }
+
     public Score getScore() {
         return score;
     }
 
     public void setScore(Score score) {
         this.score = score;
-    }
-
-    public void resetAll(){
-        difficulty = "";
-        song = "";
-        typeplayer = -1;
-        timeInterface.resetTime();
-        tmA = new ThirdMenu(this);
-        songm = new SongMenu(this);
-        ecranJeu = new Jeu(this);
-        scoreMenu=new ScoreMenu(this);
     }
 
     @Override
