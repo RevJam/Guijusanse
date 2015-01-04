@@ -18,7 +18,8 @@ public class WaitMenu implements Screen {
     Stage stage;
     TextButton buttonGo, buttonCancel;
     Label title;
-ScrollPane scroll = new ScrollPane(table);
+    ScrollPane scroll = new ScrollPane(table);
+
     public WaitMenu(MyGdxGame game) {
         this.game = game;
 

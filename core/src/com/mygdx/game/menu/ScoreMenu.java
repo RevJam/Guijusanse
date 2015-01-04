@@ -23,6 +23,7 @@ public class ScoreMenu implements Screen {
     Label title, affScore;
     Score score;
     TextField nomJoueur;
+
     public ScoreMenu(MyGdxGame game) {
         this.game = game;
 

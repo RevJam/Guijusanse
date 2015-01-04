@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.fichier.Chanson;
-import com.mygdx.game.fichier.Note;
 
 import java.util.ArrayList;
 import java.util.List;
