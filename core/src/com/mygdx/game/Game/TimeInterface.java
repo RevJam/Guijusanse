@@ -5,11 +5,20 @@ package com.mygdx.game.Game;
  */
 public interface TimeInterface {
 
-
+    /**
+     * calcul le temps en milliseconde
+     * @return
+     */
     public long startTime();
 
+    /**
+     * permet de récupérer le temps en milliseconde du systeme depuis le lancement du programme
+     */
     public void setCurrentTimeSystem();
 
+    /**
+     * remet le temps à 0
+     */
     public void resetTime();
 
 }
