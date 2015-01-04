@@ -46,7 +46,6 @@ public class MyGdxGame extends Game {
         timeInterface = t;
     }
 
-
     @Override
     public void create() {
         // Initialisation variable Jeu
@@ -81,40 +80,20 @@ public class MyGdxGame extends Game {
         return fm;
     }
 
-    public void setFm(FirstMenu fm) {
-        this.fm = fm;
-    }
-
     public SecondMenu getSm() {
         return sm;
-    }
-
-    public void setSm(SecondMenu sm) {
-        this.sm = sm;
     }
 
     public ThirdMenu getTmA() {
         return tmA;
     }
 
-    public void setTmA(ThirdMenu tmA) {
-        this.tmA = tmA;
-    }
-
     public DifficultyMenu getDm() {
         return dm;
     }
 
-    public void setDm(DifficultyMenu dm) {
-        this.dm = dm;
-    }
-
     public HighScoreMenu getHsmenu() {
         return hsmenu;
-    }
-
-    public void setHsmenu(HighScoreMenu hsmenu) {
-        this.hsmenu = hsmenu;
     }
 
     public String getDifficulty() {
@@ -141,14 +120,6 @@ public class MyGdxGame extends Game {
         return ecranJeu;
     }
 
-    public void setEcranJeu(Jeu ecranJeu) {
-        ecranJeu = ecranJeu;
-    }
-
-    public void setSongm(SongMenu songm) {
-        this.songm = songm;
-    }
-
     public int getTypeplayer() {
         return typeplayer;
     }
@@ -161,24 +132,12 @@ public class MyGdxGame extends Game {
         return mm;
     }
 
-    public void setMm(MultiMenu mm) {
-        this.mm = mm;
-    }
-
     public int getLongueur() {
         return longueur;
     }
 
-    public void setLongueur(int longueur) {
-        this.longueur = longueur;
-    }
-
     public int getLargeur() {
         return largeur;
-    }
-
-    public void setLargeur(int largeur) {
-        this.largeur = largeur;
     }
 
     public Music getMusic() {
@@ -199,10 +158,6 @@ public class MyGdxGame extends Game {
 
     public ScoreMenu getScoreMenu() {
         return scoreMenu;
-    }
-
-    public void setScoreMenu(ScoreMenu scoreMenu) {
-        this.scoreMenu = scoreMenu;
     }
 
     public Score getScore() {
