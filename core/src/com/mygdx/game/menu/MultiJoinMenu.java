@@ -123,10 +123,16 @@ public class MultiJoinMenu implements Screen {
         // Check les messages
         Message msg = mClient.getOlderMessage();
         if (msg != null && msg.getHeader().equals("start")) {
-            // Si message pour indiquer de passer à la suite
-            // TODO un vrai message avec comme contenue le niveau et la difficulté
-            connectionLabel.setVisible(true);
-            connectionLabel.setText("C'est parti");
+            
+            String content = msg.getContent();
+            String[] msgData = content.split(";");
+            
+            if (msgData.length == 2) {
+                game.setDifficulty(msgData[0]);
+                game.setSong(msgData[1]);
+
+                game.setScreen(game.getEcranJeu());
+            }  
         }
     }
 

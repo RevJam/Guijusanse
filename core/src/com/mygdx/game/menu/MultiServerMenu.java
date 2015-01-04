@@ -78,9 +78,11 @@ public class MultiServerMenu implements Screen {
         buttonStart.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(game.getTmA());
+                
                 // On envoi un message vide avec comme en-tête "start" pour signaler aux clients de démarrer
-                // TODO écran de sélection du niveau
-                mServer.sendMessageToAll(new Message("start", ""));
+                // TO DO écran de sélection du niveau
+                //mServer.sendMessageToAll(new Message("start", ""));
             }
         });
     }
@@ -130,11 +132,7 @@ public class MultiServerMenu implements Screen {
     }
 
     public void hide() {
-        try {
-            mServer.stopAcceptingConnections();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        mServer.stopAcceptingConnections();
     }
 
     public void pause() {

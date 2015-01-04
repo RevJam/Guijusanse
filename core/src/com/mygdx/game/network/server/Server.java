@@ -37,7 +37,7 @@ public class Server extends MessagesHandler {
      *
      * @throws InterruptedException
      */
-    public void stopAcceptingConnections() throws InterruptedException {
+    public void stopAcceptingConnections() {
         if (mServerConnectionsThread != null && mServerConnectionsThread.isAlive()) {
             mServerConnectionsThread.stopAcceptingConnections();
             mServerConnectionsThread.interrupt();

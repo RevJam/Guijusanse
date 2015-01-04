@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.network.Message;
+import com.mygdx.game.network.server.Server;
 
 
 /**
@@ -79,9 +81,14 @@ public class ThirdMenu implements Screen {
         buttonPlay.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.getTypeplayer() == 1){
-                    // game.setScreen(game.Waitgame());
-                }else {
+                // Si type de partie = multijoueur
+                if (game.getTypeplayer() == 1){
+                    Server server = (Server) game.getMessagesHandler();
+                    server.sendMessageToAll(new Message("start", game.getDifficulty() + ";" + game.getSong()));
+                    game.setScreen(game.getEcranJeu());
+                }
+                // Sinon, solo
+                else {
                     if(!game.getDifficulty().equals("") && !game.getSong().equals("")){
                         game.setScreen(game.getEcranJeu());
                     }
