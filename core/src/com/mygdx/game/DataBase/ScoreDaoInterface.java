@@ -38,6 +38,13 @@ public interface ScoreDaoInterface {
     public Score get(int id);
 
     /**
+     * renvoi l'id d'un score contenu en base
+     * @param score
+     * @return
+     */
+    public int findId(Score score);
+
+    /**
      * Renvoie tout les scores contenu dans la base de donnee
      * @return
      * @throws Exception

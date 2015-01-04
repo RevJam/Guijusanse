@@ -84,6 +84,13 @@ public class ScoreMenu implements Screen {
         buttonReturn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Score score = game.getScore();
+                score.setIdScore(game.getDaosAccess().getScoreDao().findId(score));
+                if(!nomJoueur.getText().equals("")){
+                    score.setPlayerName(nomJoueur.getText());
+                    game.getDaosAccess().getScoreDao().update(score);
+                }
+                game.setScore(new Score());
                 game.resetAll();
                 game.setScreen(game.getFm());
             }

@@ -164,7 +164,6 @@ public class Jeu implements Screen {
             note = chanson.getListNote().get(i);
 
             if(t/1000 == note.getTemps()/1000) {
-                //img = null;
                 moveAction = new MoveToAction();
                 moveAction.setDuration(vitesse);
 
@@ -196,8 +195,6 @@ public class Jeu implements Screen {
             myGdxGame.getDaosAccess().getScoreDao().add(score);
             myGdxGame.setScore(score);
             myGdxGame.setScreen(myGdxGame.getScoreMenu());
-            myGdxGame.setScore(new Score());
-
         }
 
         t=timeInterface.startTime();

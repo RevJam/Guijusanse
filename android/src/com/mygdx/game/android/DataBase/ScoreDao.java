@@ -59,10 +59,11 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
         open();
         ContentValues value = new ContentValues();
         value.put(DataBaseMaker.SCORE_PLAYER, score.getPlayerName());
+        System.out.println(score.getPlayerName());
         value.put(DataBaseMaker.SCORE_SONGTITLE, score.getSongTitle());
         value.put(DataBaseMaker.SCORE_DIFFICULTY, String.valueOf(score.getDifficultee()));
         value.put(DataBaseMaker.SCORE_SCORE, score.getScore());
-        mDb.update(DataBaseMaker.SONG_TABLE, value," id = ?", new String[] {String.valueOf(score.getIdScore())});
+        mDb.update(DataBaseMaker.SCORE_TABLE, value," id=?", new String[] {String.valueOf(score.getIdScore())});
     }
 
     /**
@@ -87,6 +88,29 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
             score.setScore(c.getInt(c.getColumnIndex(DataBaseMaker.SCORE_SCORE)));
         }
         return score;
+    }
+
+    /**
+     * renvoi l'id d'un score contenu en base
+     *
+     * @param score
+     * @return
+     */
+    @Override
+    public int findId(Score score) {
+        open();
+        int id = -1;
+        String[] params = new String[]{score.getPlayerName(),score.getSongTitle(),String.valueOf(score.getDifficultee()),String.valueOf(score.getScore())};
+        Cursor c = mDb.rawQuery("select * from "+ DataBaseMaker.SCORE_TABLE
+                + " where "+ DataBaseMaker.SCORE_PLAYER + "=? and "
+                + DataBaseMaker.SCORE_SONGTITLE + "=? and "
+                + DataBaseMaker.SCORE_DIFFICULTY + "=? and "
+                + DataBaseMaker.SCORE_SCORE + "=?", params);
+        while (c.moveToNext()) {
+            id = c.getInt(c.getColumnIndex("id"));
+        }
+        c.close();
+        return id;
     }
 
     /**
