@@ -105,7 +105,6 @@ public class HighScoreMenu implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     int i=0;
                     try {
-                        System.out.println(button.getText().toString());
                         listScore=game.getDaosAccess().getScoreDao().getAllBySong(button.getText().toString());
                     } catch (Exception e) {
                         e.printStackTrace();
