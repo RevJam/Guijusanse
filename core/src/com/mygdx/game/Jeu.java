@@ -225,7 +225,7 @@ public class Jeu implements Screen {
             chanson = myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong());
             chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
             if(chanson.getDifficulter().equals(TypeDifficultee.NORMAL)){
-                vitesse=10f;
+                vitesse=2f;
             }
         } catch (Exception e) {
             e.printStackTrace();
