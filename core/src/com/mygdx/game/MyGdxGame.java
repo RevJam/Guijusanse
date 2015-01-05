@@ -85,6 +85,17 @@ public class MyGdxGame extends Game {
         setScreen(fm);
     }
 
+    public void resetAll(){
+        difficulty = "";
+        song = "";
+        typeplayer = -1;
+        timeInterface.resetTime();
+        tmA = new ThirdMenu(this);
+        songm = new SongMenu(this);
+        ecranJeu = new Jeu(this);
+        scoreMenu=new ScoreMenu(this);
+    }
+
     public void setMessagesHandler(MessagesHandler messagesHandler) {
         this.mMessagesHandler = messagesHandler;
     }
