@@ -87,6 +87,7 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
             score.setDifficultee(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_DIFFICULTY))));
             score.setScore(c.getInt(c.getColumnIndex(DataBaseMaker.SCORE_SCORE)));
         }
+        c.close();
         return score;
     }
 

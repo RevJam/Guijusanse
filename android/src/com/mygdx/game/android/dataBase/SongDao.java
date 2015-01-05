@@ -82,6 +82,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
+        c.close();
         return chanson;
     }
 
@@ -104,6 +105,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
+        c.close();
         return chanson;
     }
 
@@ -129,6 +131,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
+        c.close();
         return chanson;
     }
 
