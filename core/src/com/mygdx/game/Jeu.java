@@ -151,7 +151,6 @@ public class Jeu implements Screen {
 
         //Couper la musique
         myGdxGame.getMusic().stop();
-
         affScore.setText("Score: "+ String.valueOf(scoreCourant));
 
         //pour eviter le nullpointerException
@@ -226,6 +225,9 @@ public class Jeu implements Screen {
             chanson = myGdxGame.getDaosAccess().getSongDao().getByTitle(myGdxGame.getSong());
             System.out.println(chanson.getTitle());
             chanson.setListNote(myGdxGame.getDaosAccess().getNoteDao().getAllBySongId(chanson.getIdChanson()));
+            if(chanson.getDifficulter().equals(TypeDifficultee.NORMAL)){
+                vitesse=10f;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
