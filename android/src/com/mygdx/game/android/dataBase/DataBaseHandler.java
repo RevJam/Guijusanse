@@ -34,7 +34,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        System.out.println("créations des tables");
         db.execSQL(DataBaseMaker.CREATE_SONG_TABLE);
         db.execSQL(DataBaseMaker.CREATE_NOTE_TABLE);
         db.execSQL(DataBaseMaker.CREATE_SCORE_TABLE);

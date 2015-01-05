@@ -27,7 +27,6 @@ public class NoteDao extends Dao implements NoteDaoInterface {
     public void add(Note note) {
         open();
         if(findId(note) == -1) {
-            System.out.println(note.toString());
             ContentValues value = new ContentValues();
             value.put(DataBaseMaker.NOTE_TIME, note.getTemps());
             value.put(DataBaseMaker.NOTE_POSITION, note.getPosition());
