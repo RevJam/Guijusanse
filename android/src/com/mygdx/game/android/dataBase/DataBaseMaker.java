@@ -1,4 +1,4 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
 /**
  * Created by sebastien on 28/12/14.

@@ -1,9 +1,9 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
-import com.mygdx.game.DataBase.DaosAccess;
-import com.mygdx.game.DataBase.NoteDaoInterface;
-import com.mygdx.game.DataBase.ScoreDaoInterface;
-import com.mygdx.game.DataBase.SongDaoInterface;
+import com.mygdx.game.dataBase.DaosAccess;
+import com.mygdx.game.dataBase.NoteDaoInterface;
+import com.mygdx.game.dataBase.ScoreDaoInterface;
+import com.mygdx.game.dataBase.SongDaoInterface;
 
 /**
  * Created by sebastien on 28/12/14.

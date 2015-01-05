@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.Game.TimeInterface;
+import com.mygdx.game.game.TimeInterface;
 import com.mygdx.game.fichier.*;
 
 

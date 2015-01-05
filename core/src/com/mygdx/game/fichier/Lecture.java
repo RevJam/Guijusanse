@@ -1,8 +1,8 @@
 package com.mygdx.game.fichier;
 
-import com.mygdx.game.DataBase.DaosAccess;
-import com.mygdx.game.DataBase.NoteDaoInterface;
-import com.mygdx.game.DataBase.SongDaoInterface;
+import com.mygdx.game.dataBase.DaosAccess;
+import com.mygdx.game.dataBase.NoteDaoInterface;
+import com.mygdx.game.dataBase.SongDaoInterface;
 
 import java.io.*;
 import java.util.ArrayList;

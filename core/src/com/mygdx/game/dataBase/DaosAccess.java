@@ -1,4 +1,4 @@
-package com.mygdx.game.DataBase;
+package com.mygdx.game.dataBase;
 
 /**
  * Created by sebastien on 28/12/14.

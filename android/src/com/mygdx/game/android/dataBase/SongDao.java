@@ -1,10 +1,10 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.mygdx.game.DataBase.SongDaoInterface;
+import com.mygdx.game.dataBase.SongDaoInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.TypeDifficultee;
 
@@ -82,6 +82,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
+        c.close();
         return chanson;
     }
 
@@ -104,6 +105,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
+        c.close();
         return chanson;
     }
 
@@ -129,6 +131,7 @@ public class SongDao extends Dao implements SongDaoInterface{
             chanson.setDifficulter(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(String.valueOf(DataBaseMaker.SONG_DIFFICULTY)))));
             chanson.setTempsChansonTotal((c.getLong(c.getColumnIndex(DataBaseMaker.TEMPS_CHANSON))));
         }
+        c.close();
         return chanson;
     }
 

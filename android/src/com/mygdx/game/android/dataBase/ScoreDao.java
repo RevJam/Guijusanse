@@ -1,9 +1,9 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import com.mygdx.game.DataBase.ScoreDaoInterface;
+import com.mygdx.game.dataBase.ScoreDaoInterface;
 import com.mygdx.game.fichier.Score;
 import com.mygdx.game.fichier.TypeDifficultee;
 
@@ -87,6 +87,7 @@ public class ScoreDao extends Dao implements ScoreDaoInterface{
             score.setDifficultee(TypeDifficultee.valueOf(c.getString(c.getColumnIndex(DataBaseMaker.SCORE_DIFFICULTY))));
             score.setScore(c.getInt(c.getColumnIndex(DataBaseMaker.SCORE_SCORE)));
         }
+        c.close();
         return score;
     }
 

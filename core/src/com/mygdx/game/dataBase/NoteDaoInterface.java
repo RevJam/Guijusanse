@@ -1,4 +1,4 @@
-package com.mygdx.game.DataBase;
+package com.mygdx.game.dataBase;
 
 import com.mygdx.game.fichier.Note;
 
