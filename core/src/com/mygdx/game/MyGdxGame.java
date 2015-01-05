@@ -4,9 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
-import com.mygdx.game.DataBase.DaosAccess;
+import com.mygdx.game.dataBase.DaosAccess;
 
-import com.mygdx.game.Game.TimeInterface;
+import com.mygdx.game.game.TimeInterface;
 import com.mygdx.game.fichier.Score;
 import com.mygdx.game.menu.*;
 import com.mygdx.game.network.MessagesHandler;

@@ -7,16 +7,16 @@ import android.view.WindowManager;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
-import com.mygdx.game.DataBase.NoteDaoInterface;
-import com.mygdx.game.DataBase.ScoreDaoInterface;
-import com.mygdx.game.DataBase.SongDaoInterface;
-import com.mygdx.game.Game.TimeInterface;
+import com.mygdx.game.dataBase.NoteDaoInterface;
+import com.mygdx.game.dataBase.ScoreDaoInterface;
+import com.mygdx.game.dataBase.SongDaoInterface;
+import com.mygdx.game.game.TimeInterface;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.android.DataBase.AndroidDaosAccess;
-import com.mygdx.game.android.DataBase.NoteDao;
-import com.mygdx.game.android.DataBase.ScoreDao;
-import com.mygdx.game.android.DataBase.SongDao;
-import com.mygdx.game.android.GameTimer.TimeImpl;
+import com.mygdx.game.android.dataBase.AndroidDaosAccess;
+import com.mygdx.game.android.dataBase.NoteDao;
+import com.mygdx.game.android.dataBase.ScoreDao;
+import com.mygdx.game.android.dataBase.SongDao;
+import com.mygdx.game.android.gameTimer.TimeImpl;
 import com.mygdx.game.fichier.Lecture;
 
 import java.io.IOException;

@@ -1,9 +1,9 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import com.mygdx.game.DataBase.NoteDaoInterface;
+import com.mygdx.game.dataBase.NoteDaoInterface;
 import com.mygdx.game.fichier.Note;
 
 import java.util.ArrayList;

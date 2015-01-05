@@ -1,4 +1,4 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

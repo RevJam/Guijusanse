@@ -1,6 +1,6 @@
-package com.mygdx.game.android.GameTimer;
+package com.mygdx.game.android.gameTimer;
 
-import com.mygdx.game.Game.TimeInterface;
+import com.mygdx.game.game.TimeInterface;
 
 import static android.os.SystemClock.elapsedRealtime;
 

@@ -1,10 +1,10 @@
-package com.mygdx.game.android.DataBase;
+package com.mygdx.game.android.dataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.mygdx.game.DataBase.SongDaoInterface;
+import com.mygdx.game.dataBase.SongDaoInterface;
 import com.mygdx.game.fichier.Chanson;
 import com.mygdx.game.fichier.TypeDifficultee;
 
