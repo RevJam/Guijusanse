@@ -67,7 +67,12 @@ public class Server extends MessagesHandler {
     }
     
     public int numberOfConnectedClient() {
-        return (mServerConnectionsThread.getClientThreads()).size();
+        int connected = 0;
+        ArrayList<SocketThread> clientThreads = mServerConnectionsThread.getClientThreads();
+        for (SocketThread client : clientThreads) {
+            if (client.isConnected()) connected++;
+        }
+        return connected;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.mygdx.game.network;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.net.Socket;
 
 import java.io.BufferedReader;

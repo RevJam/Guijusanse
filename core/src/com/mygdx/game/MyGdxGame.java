@@ -38,7 +38,7 @@ public class MyGdxGame extends Game {
     // Attributs pour le réseau
     private MessagesHandler mMessagesHandler;
 
-    // 0 = OnePlayer, 1 = Multi
+    // 0 = OnePlayer, 1 = Multi (Serveur), 2 = Multi (Client)
     private int typeplayer;
 
     private Music music;

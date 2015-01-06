@@ -74,12 +74,14 @@ public class MultiMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(game.getMsm());
+                game.setTypeplayer(1); // Serveur
             }
         });
         buttonClient.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(game.getMjm());
+                game.setTypeplayer(2); // Client
             }
         });
         buttonReturn.addListener(new ClickListener(){

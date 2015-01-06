@@ -81,7 +81,7 @@ public class ThirdMenu implements Screen {
         buttonPlay.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Si type de partie = multijoueur
+                // Si type de partie = multijoueur (serveur)
                 if (game.getTypeplayer() == 1){
                     Server server = (Server) game.getMessagesHandler();
                     server.sendMessageToAll(new Message("start", game.getDifficulty() + ";" + game.getSong()));

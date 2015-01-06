@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * Created by guillaume on 26/11/14.
  */
-public abstract class MessagesHandler {
+public class MessagesHandler {
 
     protected ConcurrentLinkedQueue<Message> mMessages = new ConcurrentLinkedQueue<Message>();
 

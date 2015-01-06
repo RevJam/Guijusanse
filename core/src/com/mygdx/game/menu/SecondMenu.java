@@ -74,14 +74,13 @@ public class SecondMenu implements Screen {
         buttonOnePlayer.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setTypeplayer(0);
+                game.setTypeplayer(0); // Solo
                 game.setScreen(game.getTmA());
             }
         });
         buttonMulti.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setTypeplayer(1);
                 game.setScreen(game.getMm());
             }
         });
