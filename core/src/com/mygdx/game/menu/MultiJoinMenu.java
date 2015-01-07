@@ -99,7 +99,7 @@ public class MultiJoinMenu implements Screen {
                     }
                 };
                 // TODO valeur par défaut vide
-                Gdx.input.getTextInput(listener, "Dialog Title", "192.168.1.52");
+                Gdx.input.getTextInput(listener, "Dialog Title", "");
 
             }
         });
