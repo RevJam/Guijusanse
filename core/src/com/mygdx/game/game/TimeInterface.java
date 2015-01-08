@@ -21,4 +21,10 @@ public interface TimeInterface {
      */
     public void resetTime();
 
+    /**
+     *
+     */
+    public void pauseTime();
+
+    public long restartTime();
 }

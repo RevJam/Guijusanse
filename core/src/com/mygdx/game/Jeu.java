@@ -37,7 +37,7 @@ public class Jeu implements Screen {
     int i;
     int tailleRond, pos1, pos2, pos3, cpt;
     int scoreCourant=0;
-
+long aux;
     Label affScore;
 
     public Jeu(MyGdxGame game) {
@@ -47,6 +47,7 @@ public class Jeu implements Screen {
         table=new Table();
         stage = new Stage();
         t = 0;
+aux=t;
         i = 0;
         cpt = 4;
         vitesse = 5f;
@@ -254,6 +255,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void pause() {
+        timeInterface.pauseTime();
         music.pause();
     }
 
@@ -262,6 +264,8 @@ public class Jeu implements Screen {
      */
     @Override
     public void resume() {
+        t=timeInterface.restartTime();
+        System.out.println();
         music.play();
     }
 
@@ -270,7 +274,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void dispose() {
-        music.dispose();
+
     }
 
     public Chanson getChanson() {
