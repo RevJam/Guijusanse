@@ -37,7 +37,7 @@ public class Jeu implements Screen {
     int i;
     int tailleRond, pos1, pos2, pos3, cpt;
     int scoreCourant=0;
-long aux;
+    boolean aEteMisEnPAuse=false;
     Label affScore;
 
     public Jeu(MyGdxGame game) {
@@ -47,7 +47,7 @@ long aux;
         table=new Table();
         stage = new Stage();
         t = 0;
-aux=t;
+
         i = 0;
         cpt = 4;
         vitesse = 5f;
@@ -213,9 +213,13 @@ aux=t;
      */
     @Override
     public void show() {
-
-        timeInterface.setCurrentTimeSystem();
-
+        if(!aEteMisEnPAuse) {
+            System.out.println("show faux");
+            timeInterface.setCurrentTimeSystem();
+        }else {
+            System.out.println("show vrai");
+            timeInterface.restartTime();
+        }
         affScore = new Label("Score: "+scoreCourant,skin, "score");
         table.add(affScore).padBottom((myGdxGame.getLongueur()-100)).row();
         table.setFillParent(true);
@@ -256,6 +260,8 @@ aux=t;
     @Override
     public void pause() {
         timeInterface.pauseTime();
+        aEteMisEnPAuse=true;
+        System.out.println(" pause <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  AVANT    "+t);
         music.pause();
     }
 
@@ -264,8 +270,8 @@ aux=t;
      */
     @Override
     public void resume() {
-        t=timeInterface.restartTime();
-        System.out.println();
+        // t=timeInterface.restartTime();
+        System.out.println("resume <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  APRES    "+t);
         music.play();
     }
 
@@ -274,7 +280,8 @@ aux=t;
      */
     @Override
     public void dispose() {
-
+        music.dispose();
+        stage.dispose();
     }
 
     public Chanson getChanson() {
