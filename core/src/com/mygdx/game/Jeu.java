@@ -156,9 +156,11 @@ public class Jeu implements Screen {
 
         //pour eviter le nullpointerException
         if(i<chanson.getListNote().size()) {
+
             note = chanson.getListNote().get(i);
 
             if(t/1000 == note.getTemps()/1000) {
+                System.out.println("<<<<< render inside "+t);
                 moveAction = new MoveToAction();
                 moveAction.setDuration(vitesse);
 
@@ -213,6 +215,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void show() {
+        System.out.println("<<<<<<<<<show");
         if(!aEteMisEnPAuse) {
             System.out.println("show faux");
             timeInterface.setCurrentTimeSystem();
@@ -251,6 +254,7 @@ public class Jeu implements Screen {
      */
     @Override
     public void hide() {
+        System.out.println("<<<<<<<<< hide");
         music.pause();
     }
 
@@ -270,7 +274,8 @@ public class Jeu implements Screen {
      */
     @Override
     public void resume() {
-        // t=timeInterface.restartTime();
+
+        t=timeInterface.restartTime();
         System.out.println("resume <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  APRES    "+t);
         music.play();
     }

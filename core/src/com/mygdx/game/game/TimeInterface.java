@@ -27,4 +27,6 @@ public interface TimeInterface {
     public void pauseTime();
 
     public long restartTime();
+
+    public long getTempsRestartTime();
 }
