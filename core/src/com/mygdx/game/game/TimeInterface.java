@@ -21,6 +21,10 @@ public interface TimeInterface {
      */
     public void resetTime();
 
+    /**
+     * reprend le timer au moment ou le jeu a été mis en pause
+     * @param t
+     */
     public void restartTime(long t);
 
 }

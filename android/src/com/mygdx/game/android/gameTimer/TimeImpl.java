@@ -45,6 +45,10 @@ public class TimeImpl implements TimeInterface {
         currentTimeSystem = 0;
     }
 
+    /**
+     * reprend le timer au moment ou le jeu a été mis en pause
+     * @param t
+     */
     @Override
     public void restartTime(long t) {
         currentTimeSystem = elapsedRealtime() - t;
