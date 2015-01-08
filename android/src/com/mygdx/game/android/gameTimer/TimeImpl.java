@@ -9,18 +9,13 @@ import static android.os.SystemClock.elapsedRealtime;
  */
 public class TimeImpl implements TimeInterface {
 
-    private long time;
+    private long time=0;
     private long currentTimeSystem;
-    private long aux;
-    private long tempsPause;
-    private long tempsRestart;
+
 
     public TimeImpl(){
         time = 0;
         currentTimeSystem = 0;
-        aux=0;
-        tempsPause=0;
-        tempsRestart=0;
     }
 
     /**
@@ -50,27 +45,9 @@ public class TimeImpl implements TimeInterface {
         currentTimeSystem = 0;
     }
 
-    /**
-     *
-     */
     @Override
-    public void pauseTime() {
-        aux=time;
-        tempsPause=elapsedRealtime()-currentTimeSystem;
+    public void restartTime(long t) {
+        currentTimeSystem = elapsedRealtime() - t;
     }
-
-    @Override
-    public long restartTime() {
-        time=aux;
-        tempsRestart= elapsedRealtime()-tempsPause;
-        return time;
-
-    }
-
-    @Override
-    public long getTempsRestartTime() {
-        return tempsRestart;
-    }
-
 
 }

@@ -37,8 +37,10 @@ public class Jeu implements Screen {
     int i;
     int tailleRond, pos1, pos2, pos3, cpt;
     int scoreCourant=0;
-    boolean aEteMisEnPAuse=false;
+
     Label affScore;
+
+    long pause = 0;
 
     public Jeu(MyGdxGame game) {
 
@@ -47,7 +49,6 @@ public class Jeu implements Screen {
         table=new Table();
         stage = new Stage();
         t = 0;
-
         i = 0;
         cpt = 4;
         vitesse = 5f;
@@ -156,11 +157,9 @@ public class Jeu implements Screen {
 
         //pour eviter le nullpointerException
         if(i<chanson.getListNote().size()) {
-
             note = chanson.getListNote().get(i);
 
             if(t/1000 == note.getTemps()/1000) {
-                System.out.println("<<<<< render inside "+t);
                 moveAction = new MoveToAction();
                 moveAction.setDuration(vitesse);
 
@@ -193,7 +192,7 @@ public class Jeu implements Screen {
             myGdxGame.setScore(score);
             myGdxGame.setScreen(myGdxGame.getScoreMenu());
         }
-
+        System.out.println(t);
         t=timeInterface.startTime();
         // On lance la scene et la met en visible
         stage.act();
@@ -215,14 +214,9 @@ public class Jeu implements Screen {
      */
     @Override
     public void show() {
-        System.out.println("<<<<<<<<<show");
-        if(!aEteMisEnPAuse) {
-            System.out.println("show faux");
-            timeInterface.setCurrentTimeSystem();
-        }else {
-            System.out.println("show vrai");
-            timeInterface.restartTime();
-        }
+
+        timeInterface.setCurrentTimeSystem();
+
         affScore = new Label("Score: "+scoreCourant,skin, "score");
         table.add(affScore).padBottom((myGdxGame.getLongueur()-100)).row();
         table.setFillParent(true);
@@ -254,7 +248,6 @@ public class Jeu implements Screen {
      */
     @Override
     public void hide() {
-        System.out.println("<<<<<<<<< hide");
         music.pause();
     }
 
@@ -263,10 +256,8 @@ public class Jeu implements Screen {
      */
     @Override
     public void pause() {
-        timeInterface.pauseTime();
-        aEteMisEnPAuse=true;
-        System.out.println(" pause <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  AVANT    "+t);
         music.pause();
+        pause = t;
     }
 
     /**
@@ -274,10 +265,8 @@ public class Jeu implements Screen {
      */
     @Override
     public void resume() {
-
-        t=timeInterface.restartTime();
-        System.out.println("resume <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  APRES    "+t);
         music.play();
+        timeInterface.restartTime(pause);
     }
 
     /**
@@ -286,7 +275,6 @@ public class Jeu implements Screen {
     @Override
     public void dispose() {
         music.dispose();
-        stage.dispose();
     }
 
     public Chanson getChanson() {
